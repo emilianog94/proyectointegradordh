@@ -1,0 +1,163 @@
+/* reset */
+* {
+	padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* body */
+body {
+    font-family: 'Rubik', sans-serif;
+}
+a, a:hover {
+    text-decoration: none;
+}
+/* header */
+header {
+    background-color: #2e3035;
+    min-height: 75px;
+    position: relative;
+    z-index: 1;
+}
+#boton-menu {
+    color: #1bb76e;
+}
+.logo {
+    color: white;
+    display: inline-block;
+    height: 50px;
+    margin-top: 10px;
+}
+.nav-link {
+    display: block;
+    height: 50px;
+    padding: 17px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #1bb76e;
+}
+.nav-item:hover {
+    color: #999;
+}
+/* Estilos para Primer sección */
+#fondo-home {
+    margin-top: -75px;
+    min-height: 100vh;
+    background-image: url("../img/imagen-01.jpg");
+    background-size: cover;
+}
+#titulo-home {
+    color: white;
+    /* background-color: rgba(150,150,150,0.50); */
+    margin: 75px 10px 0px 20px;
+}
+.contenedor-form-home {
+    /* Nada por aquí aún */
+}
+#form-home {
+    width: 300px;
+    height: 320px;
+    background-color: white;
+    border-radius: 5%;
+    color: #1bb76e;
+}
+#form-home * {
+    width: 100%;
+}
+#boton-avanzar {
+    background-color: #1bb76e;
+    color: white;
+    padding: 5px;
+    border: 1px solid #1bb76e;
+    border-radius: 5px;
+}
+/* Estilos para Segunda sección */
+#pasos {
+    margin: 50px;
+}
+#pasos h2 {
+    font-weight: 900;
+    color: #1bb76e;;
+}
+.imagen-paso {
+    width: 100px;
+}
+/*Estilos para Tercera sección */
+#categorias {
+    background-color: #2e3035;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+#titulo-categorias {
+    padding-bottom: 10px;
+}
+.tarjeta {
+    margin-bottom: 5px;
+}
+.imagen-tarjeta {
+    display: inline-block;
+    width: 100%;
+    
+}
+.titulo-tarjeta {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin: 0;
+}
+.ver-desafios {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+    background-color: #1bb76e;
+    color: white;
+    padding: 5px;
+}
+.ver-desafios:hover {
+    color: black;
+}
+/* Estilos para Cuarta sección */
+#fondo-faq {
+    height: 100vh;
+    background-image: url("../img/imagen-02.jpg");
+    background-size: cover;
+    text-align: center;
+}
+#ir-a-faq {
+    width: 300px;
+    height: 120px;
+    background-color: white;
+    border-radius: 5px;
+    color: #1bb76e;
+}
+.ver-faqs {
+    background-color: #1bb76e;
+    color: white;
+    padding: 5px;
+    border: 1px solid #1bb76e;
+    border-radius: 5px;
+}
+.ver-faqs:hover {
+    color: black;
+}
+/* Estilos para el footer */
+.footer {
+    background-color: #2e3035;
+    color: white;
+}
+.footer h4 {
+    color: #1bb76e;
+}
+.footer a {
+    color: white;
+
+}
+.footer a:hover {
+    color: #1bb76e;
+    text-decoration: none;
+}
+.copy-info {
+    background-color: #1bb76e;
+    color: white;
+}
