@@ -7,25 +7,26 @@ include("include/head.php");
 
 <body class="animated fadeIn">
     <?php include('include/header.php');?>
-    <section class="container-fluid px-5 hero">
-        <div class="row d-flex align-items-center vh-100 flex-nowrap">
-            <div class="col-12 col-md-9">
-                <h1 class="text-white display-4">Superá tus límites participando en la primera red social de desafíos digitales</h1>
+    <section class="container-fluid px-5 py-5 py-md-0 hero">
+        <div class="row d-flex align-items-center vh-100 flex-wrap">
+            <div class="col-12 col-sm-7 col-md-8 col-lg-9">
+                <h1 class="text-white display-4 d-none d-md-block">Superá tus límites participando en la primera red social de desafíos digitales</h1>
+                <h1 class="text-white d-block d-md-none">Superá tus límites participando en la primera red social de desafíos digitales</h1>
             </div>
 
-            <div class="col-12 col-md-3 shadow hero-form p-5 d-flex flex-column align-items-center">
+            <div class="col-12 col-sm-5 col-md-4 col-lg-3 shadow hero-form p-5 d-flex flex-column align-items-center">
                 <img class="mb-4" src="img/logo_c.svg" alt="">
                 <h3 class="color-verde text-center mb-4">¡Creá tu cuenta ahora!</h3>
                 <form class="w-100">
 
-                <div class="form-group">
+                <div class="form-group" method="POST" action="register.php">
                     <label for="inputName">Tu nombre y Apellido</label>
-                    <input type="text" class="form-control" id="inputName">
+                    <input type="text" class="form-control" id="inputName" required>
                 </div>
 
                 <div class="form-group">
                     <label for="inputMail">Tu mail</label>
-                    <input type="email" class="form-control" id="inputMail" >
+                    <input type="email" class="form-control" id="inputMail" required>
                 </div>
 
 
@@ -33,7 +34,7 @@ include("include/head.php");
                 </form>                
             </div>
 
-            <div class="col-3 position-absolute">
+            <div class="col-3 position-absolute d-none d-md-block">
                 <img src="" alt="">
                 <p>@mark78 - Diseñador Web</p>
             </div>
@@ -43,25 +44,25 @@ include("include/head.php");
 
     <section class="container pasos my-5">
         <div class="row">
-            <div class="col-12 ">
+            <div class="col-12">
                 <h2 class="color-verde font-weight-bold text-center">Chally es muy simple.</h2>
             </div>
 
-            <div class="col-4 text-center">
+            <div class="col-12 col-sm-4 text-center">
                 <img class="my-5" src="img/ico/search.png" alt="">
                 <p class="color-verde font-weight-bold mb-0">Paso 1</p>
                 <p>Buscás desafíos de tu área de interés. ¡También podés crear tu propio desafío!</p>
             </div>
 
-            <div class="col-4 text-center">
+            <div class="col-12 col-sm-4  text-center">
                 <img class="my-5" src="img/ico/paper-plane.png" alt="">
                 <p class="color-verde font-weight-bold mb-0">Paso 2</p>
                 <p>Participás enviando tu respuesta y competís con miles de challengers en todo el mundo</p>
             </div>
 
-            <div class="col-4 text-center">
+            <div class="col-12 col-sm-4  text-center">
                 <img class="my-5" src="img/ico/resume.png" alt="">
-                <p class="color-verde font-weight-bold mb-0">Paso 1</p>
+                <p class="color-verde font-weight-bold mb-0">Paso 3</p>
                 <p>Además de ejercitar el cerebro y compartir conocimiento, Chally arma tu portfolio profesional en base a tus respuestas.</p>
             </div>
 
@@ -71,13 +72,13 @@ include("include/head.php");
 
     <section class="container-fluid categorias">
         <div class="row">
-            <div class="col-12 text-center pt-5 ">
+            <div class="col-12 text-center pt-3 pb-3  pt-md-5 pb-md-0">
                 <h2 class="text-white font-weight-bold">Tenemos desafíos para todos los gustos.</h2>
             </div>
         </div>
                 <div class="row">
                     <div class="container">
-                    <div class="col-12 text-center">
+                    <div class="col-12 text-center d-none d-md-block">
                                 <div id="carouselExampleControls" class="carousel slide"  data-ride="carousel"> <!-- data-ride="carousel" Para activar Autoplay -->
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
@@ -163,36 +164,96 @@ include("include/head.php");
                                 </div>  <!-- CIERRE CARRUSEL -->            
                             </div>    
                     </div>
+                </div> <!-- CIERRE CONTAINER CARRUSEL -->
+
+                <div class="col-12 d-block d-md-none text-center pb-5">
+                    <div class="row">
+                                                <div class="col-6 item pb-3">
+                                                    <div class="cont shadow bg-white">
+                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
+                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
+                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
+                                                    </div>
+                                                </div>
+ 
+                                                <div class="col-6 item pb-3">
+                                                    <div class="cont shadow ">
+                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
+                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
+                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
+                                                    </div>
+                                                </div>                                                
+ 
+                                                <div class="col-6 item pb-3">
+                                                    <div class="cont shadow bg-white">
+                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
+                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
+                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
+                                                    </div>
+                                                </div>
+ 
+                                                <div class="col-6 item pb-3">
+                                                    <div class="cont shadow ">
+                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
+                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
+                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
+                                                    </div>
+                                                </div>      
+
+                                                <div class="col-6 item pb-3">
+                                                    <div class="cont shadow bg-white">
+                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
+                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
+                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
+                                                    </div>
+                                                </div>
+ 
+                                                <div class="col-6 item pb-3">
+                                                    <div class="cont shadow ">
+                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
+                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
+                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
+                                                    </div>
+                                                </div>      
+                                                
+                        </div>
+
                 </div>
 
             
     </section>  <!-- CIERRE CONTENEDOR SECCION CATEGORIAS -->  
 
-    <section class="container destacados my-5 pt-5">
+    <section class="container destacados my-3 my-md-5 pt-3 pt-md-5">
         <div class="row">
             <div class="col-12">
                 <h2 class="color-verde">Challys destacados de la Semana</h2>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6">
             <img src="" alt="Foto de Desafío">
                 <p>Ejemplo de desafío que por el momento no se me ocurre </p>
                 <p class="text-secondary">¡985 challengers participando!</p>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6">
             <img src="" alt="Foto de Desafío">
                 <p>Ejemplo de desafío que por el momento no se me ocurre </p>
                 <p class="text-secondary">¡985 challengers participando!</p>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6">
             <img src="" alt="Foto de Desafío">
                 <p>Ejemplo de desafío que por el momento no se me ocurre </p>
                 <p class="text-secondary">¡985 challengers participando!</p>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6">
             <img src="" alt="Foto de Desafío">
                 <p>Ejemplo de desafío que por el momento no se me ocurre </p>
                 <p class="text-secondary">¡985 challengers participando!</p>
@@ -202,25 +263,25 @@ include("include/head.php");
                 <h2 class="color-verde">Challengers Destacados del Mes</h2>
             </div>
 
-            <div class="col-3 text-center">
+            <div class="col-6 col-lg-3 text-center">
                 <img src="" alt="Foto de Usuario">
                 <p>Nombre y Apellido <br> @username</p>
                 <a class="btn btn-secondary" href="#">Seguir</a>
             </div>
 
-            <div class="col-3 text-center">
+            <div class="col-6 col-lg-3 text-center">
             <img src="" alt="Foto de Usuario">
                 <p>Nombre y Apellido <br> @username</p>
                 <a class="btn btn-secondary" href="#">Seguir</a>
             </div>
 
-            <div class="col-3 text-center">
+            <div class="col-6 col-lg-3 text-center">
             <img src="" alt="Foto de Usuario">
                 <p>Nombre y Apellido <br> @username</p>
                 <a class="btn btn-secondary" href="#">Seguir</a>
             </div>
 
-            <div class="col-3 text-center ">
+            <div class="col-6 col-lg-3  text-center ">
             <img src="" alt="Foto de Usuario">
                 <p>Nombre y Apellido <br> @username</p>
                 <a class="btn btn-secondary" href="#">Seguir</a>
@@ -232,8 +293,8 @@ include("include/head.php");
 
 
     <section class="container-fluid faq vh-100">
-        <div class="row vh-100 justify-content-end align-items-center px-5">
-            <div class="col-4">
+        <div class="row vh-100 justify-content-center justify-content-lg-end align-items-center px-5">
+            <div class="col-12 col-md-8 col-lg-4">
             <h3 class="text-white">Algunas preguntas frecuentes</h3>    
                     <div class="accordion" id="accordionExample">
                         <div class="card">

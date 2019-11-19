@@ -3,6 +3,11 @@
     font-weight:400;
 }
 
+.vh-100{
+    height:auto !important;
+    min-height:100vh !important;
+}
+
 section.hero{
     background-image:url('../img/hero-background.jpg');
     background-size:cover;
@@ -11,7 +16,14 @@ section.hero{
 
 section.pasos img{
     width:30%;
+    transition:all 0.25s ease;
 }
+
+section.pasos img:hover{
+    transform:scale(1.05);
+}
+
+
 
 section.categorias{
     background-image:url('../img/misc-background.jpg');
@@ -44,10 +56,17 @@ footer a:hover{
 }
 
 
-section.categorias .carousel-item .item .cont{
-    border-top-left-radius:30px;
-    border-top-right-radius:30px;
+section.categorias .item .cont{
+    border-radius:30px;
     background-color:#fff;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+
+
+.cont:hover{
+    transform:scale(1.05);
 }
 
 
