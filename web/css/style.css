@@ -1,0 +1,131 @@
+*{
+    font-family:'Rubik',sans-serif;
+    font-weight:400;
+}
+
+section.hero{
+    background-image:url('../img/hero-background.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+section.pasos img{
+    width:30%;
+}
+
+section.categorias{
+    background-image:url('../img/misc-background.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+section.faq{
+    background-image:url('../img/faq-background.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+} 
+
+footer{
+    background-color:#2e3035;
+}
+
+footer h4{
+    color:#1bb76e;
+}
+
+footer p,footer a{
+    color:#fff;
+    transition:all 0.25s ease;
+}
+
+footer a:hover{
+    color:#1bb76e;
+    text-decoration:none;
+}
+
+
+section.categorias .carousel-item .item .cont{
+    border-top-left-radius:30px;
+    border-top-right-radius:30px;
+    background-color:#fff;
+}
+
+
+section.destacados h2{
+    border-bottom:1px solid #1bb76e;
+}
+
+
+.carousel-inner{
+    overflow:visible;
+}
+
+.carousel{
+    top:50px;
+}
+
+.carousel-control-prev{
+    left:-150px;
+}
+
+.carousel-control-next{
+    right:-150px;
+}
+
+.item img{
+    border-top-left-radius:30px;
+    border-top-right-radius:30px;
+}
+
+
+.hero-form{
+    background-color:#fff;
+    border-radius:10px;
+}
+
+.hero-form img{
+    width:60px;
+}
+
+.navbar-brand img{
+    width:120px;
+}
+
+.btn-secondary{
+    border:0 !important;
+    background-color:#1bb76e !important;
+}
+
+.btn-secondary:hover{
+    background-color:#54c992 !important;
+}
+
+.color-verde{
+    color:#1bb76e;
+}
+
+.bg-verde{
+    background-color:#1bb76e;
+}
+
+.hero h1{
+    text-shadow: 0px 0px 12px rgba(0,0,0,0.34);
+    font-weight:700;
+}
+
+.nav-item{
+    margin-left:10px;
+}
+
+.navbar-brand img{
+    width:160px;
+}
+
+.nav-item .nav-link{
+    color:#1bb76e !important;
+    transition:all 0.25s ease;
+}
+
+.nav-item .nav-link:hover{
+    color:#54c992 !important;
+}
