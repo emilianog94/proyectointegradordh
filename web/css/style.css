@@ -1,3 +1,23 @@
+/*ESTILOS PROFILE*/
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.info_profile{
+    width: 100%;
+    background-image: url('../img/background_profile.jpg');
+    background-size: cover;
+}
+
+
+
+/*FIN ESTILOS PROFILE*/
+
+
+
+
 *{
     font-family:'Rubik',sans-serif;
     font-weight:400;
