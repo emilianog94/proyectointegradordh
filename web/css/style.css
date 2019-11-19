@@ -26,16 +26,30 @@ section.pasos img:hover{
 
 
 section.categorias{
-    background-image:url('../img/misc-background.jpg');
+    background-image:none;
+    background-color:#2e3035;
     background-size:cover;
     background-repeat:no-repeat;
 }
 
+
 section.faq{
-    background-image:url('../img/faq-background.jpg');
+    background-color:#2e3035;
+    background-image:none;
     background-size:cover;
     background-repeat:no-repeat;
 } 
+
+@media screen and (min-width:768px){
+    section.categorias{
+        background-image:url('../img/misc-background.jpg');
+    }
+
+    section.faq{
+        background-image:url('../img/faq-background.jpg');
+    }
+}
+
 
 footer{
     background-color:#2e3035;
@@ -83,11 +97,11 @@ section.destacados h2{
     top:50px;
 }
 
-.carousel-control-prev{
+.carousel-control-prev.desktop{
     left:-150px;
 }
 
-.carousel-control-next{
+.carousel-control-next.desktop{
     right:-150px;
 }
 

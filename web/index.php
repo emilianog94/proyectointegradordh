@@ -80,7 +80,7 @@ include("include/head.php");
                     <div class="container">
                     <div class="col-12 text-center d-none d-md-block">
                                 <div id="carouselExampleControls" class="carousel slide"  data-ride="carousel"> <!-- data-ride="carousel" Para activar Autoplay -->
-                                    <div class="carousel-inner">
+                                    <div class="carousel-inner carousel-desktop">
                                         <div class="carousel-item active">
                                             <div class="row">
                                                 <div class="col-4 item">
@@ -153,8 +153,8 @@ include("include/head.php");
 
 
                                     </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <a class="carousel-control-prev desktop" href="#carouselExampleControls" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon desktop" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
                                     <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
@@ -167,64 +167,55 @@ include("include/head.php");
                 </div> <!-- CIERRE CONTAINER CARRUSEL -->
 
                 <div class="col-12 d-block d-md-none text-center pb-5">
-                    <div class="row">
-                                                <div class="col-6 item pb-3">
+                    
+                <div id="carouselExampleControls" class="carousel slide"  data-ride="carousel"> <!-- data-ride="carousel" Para activar Autoplay -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row d-flex justify-content-center">
+                                                <div class="col-10 item pb-3">
                                                     <div class="cont shadow bg-white">
                                                         <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
                                                         <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
                                                         <p class="text-secondary">4258 Desafíos Abiertos</p>
                                                         <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
                                                     </div>
-                                                </div>
- 
-                                                <div class="col-6 item pb-3">
-                                                    <div class="cont shadow ">
-                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
-                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-                                                </div>                                                
- 
-                                                <div class="col-6 item pb-3">
-                                                    <div class="cont shadow bg-white">
-                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
-                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-                                                </div>
- 
-                                                <div class="col-6 item pb-3">
-                                                    <div class="cont shadow ">
-                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
-                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-                                                </div>      
-
-                                                <div class="col-6 item pb-3">
-                                                    <div class="cont shadow bg-white">
-                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
-                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-                                                </div>
- 
-                                                <div class="col-6 item pb-3">
-                                                    <div class="cont shadow ">
-                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
-                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-                                                </div>      
-                                                
+                                                </div>                                               
+                            </div>
                         </div>
 
+
+                        <div class="carousel-item">
+                            <div class="row d-flex justify-content-center">
+                                                <div class="col-10 item pb-3">
+                                                    <div class="cont shadow bg-white">
+                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
+                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
+                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
+                                                    </div>
+                                                </div>                                               
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="row d-flex justify-content-center">
+                                                <div class="col-10 item pb-3">
+                                                    <div class="cont shadow bg-white">
+                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="">
+                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
+                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
+                                                    </div>
+                                                </div>                                               
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
+
+                    
+
 
             
     </section>  <!-- CIERRE CONTENEDOR SECCION CATEGORIAS -->  
