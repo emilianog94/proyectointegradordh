@@ -6,11 +6,11 @@
     ?>
 <body>
     <?php include("include/header.php");?>
-    <section id="fondo-home" class="row d-flex justify-content-around align-items-center">
-        <h1 id="titulo-home" class="col-md-4">
+    <section id="fondo-home">
+        <h1 id="titulo-home">
             Supera tus límites participando en la<br> primera red social de desafíos digitales
         </h1>
-        <div class="contenedor-form-home col-md-6">
+        <div class="contenedor-form-home">
             <form id="form-home" action="" class="container">
                 <img class="logo" src="img/logo_c.svg" alt="">
                 <h5>¡Crea tu cuenta en un minuto!</h5>
@@ -72,7 +72,7 @@
             </div>
         </div>
     </section>
-    <section id="fondo-faq" class="row d-flex justify-content-center align-items-center">
+    <section id="fondo-faq" class="d-flex justify-content-center align-items-center">
         <div id="ir-a-faq" class="d-flex flex-column justify-content-around align-items-center">
             <h5>¿Tenés alguna duda?</h5>
             <a class="ver-faqs" href="">Ver Preguntas Frecuentes</a>

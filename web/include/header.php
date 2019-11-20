@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-md">
-        <a href="index.html">
+        <a href="index.php">
             <img class="logo" src="img/logo_chally.svg" alt="Logo de Chally">
         </a>
         <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

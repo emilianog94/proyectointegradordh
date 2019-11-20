@@ -45,6 +45,10 @@ header {
     min-height: 100vh;
     background-image: url("../img/imagen-01.jpg");
     background-size: cover;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 #titulo-home {
     color: white;
@@ -160,4 +164,10 @@ header {
 .copy-info {
     background-color: #1bb76e;
     color: white;
+}
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    #fondo-home {
+        flex-direction: column;
+    }
 }
