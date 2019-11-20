@@ -10,23 +10,21 @@
         <h1 id="titulo-home">
             Supera tus límites participando en la<br> primera red social de desafíos digitales
         </h1>
-        <div class="contenedor-form-home">
-            <form id="form-home" action="" class="container">
-                <img class="logo" src="img/logo_c.svg" alt="">
-                <h5>¡Crea tu cuenta en un minuto!</h5>
-                <div class="form-group">
-                    <label for="nombre">Nombre y Apellido</label>
-                    <input type="text" id="nombre" name="nombre"/>
-                </div>
-                <div class="form-group">
-                    <label for="email">Tu Mail</label>
-                    <input type="email" id="email" name="email"/>
-                </div>
-                <div class="form-group">
-                    <button id="boton-avanzar">Avanzar</button>
-                </div>
-            </form>
-        </div>
+        <form id="form-home" action="" class="container">
+            <img class="logo" src="img/logo_c.svg" alt="">
+            <h5>¡Crea tu cuenta en un minuto!</h5>
+            <div class="form-group">
+                <label for="nombre">Nombre y Apellido</label>
+                <input type="text" id="nombre" name="nombre"/>
+            </div>
+            <div class="form-group">
+                <label for="email">Tu Mail</label>
+                <input type="email" id="email" name="email"/>
+            </div>
+            <div class="form-group">
+                <button id="boton-avanzar">Avanzar</button>
+            </div>
+        </form>
     </section>
     <section id="pasos">
         <div class="container">
