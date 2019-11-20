@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$title="Inicio";
+$title="Chally - Participá en Desafíos Digitales y armá tu portfolio";
 include("include/head.php");
 ?>
 

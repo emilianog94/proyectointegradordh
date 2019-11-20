@@ -34,6 +34,41 @@ section.hero{
     background-repeat:no-repeat;
 }
 
+section.faq-hero{
+    background:#2e3035;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+section.faq-hero img{
+    width:50%;
+}
+
+.card .btn-link{
+    color:#2e3035;
+}
+
+/*
+.selector-faq{
+    top:150px;
+    z-index:100;
+}
+
+*/
+
+.selector-faq > div{
+    transition:all 0.25s ease;
+}
+
+.selector-faq a:hover{
+    text-decoration:none !important;
+}
+
+.selector-faq > div:hover{
+    transform:scale(1.05);
+    text-decoration:none !important;
+}
+
 section.pasos img{
     width:30%;
     transition:all 0.25s ease;
@@ -67,6 +102,10 @@ section.faq{
 
     section.faq{
         background-image:url('../img/faq-background.jpg');
+    }
+
+    section.faq-hero{
+        background-image:url('../img/misc-background.jpg');
     }
 }
 

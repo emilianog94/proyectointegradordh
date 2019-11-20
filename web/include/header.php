@@ -7,7 +7,7 @@
     <ul class="navbar-nav ml-auto">
 
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-question"></i> &nbsp; Preguntas Frecuentes</a>
+        <a class="nav-link" href="faq.php"><i class="fas fa-question"></i> &nbsp; Preguntas Frecuentes</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-user"></i> &nbsp; Registrarse / Iniciar Sesión</a>
