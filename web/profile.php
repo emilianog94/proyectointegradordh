@@ -14,7 +14,7 @@ include("include/head.php");
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <div class="info_profile text-center pt-5 pb-5">
+          <div class="text-white info_profile text-center pt-5 pb-5">
             <img class="img-thumbnail rounded-circle" src="img/head_profile.png" alt="head_profile">        
             <h1>Franco Fourmantin</h1>
             <h2>@Franklinss</h2>
@@ -32,15 +32,122 @@ include("include/head.php");
   <!--Seccion Posteos -->
   
   <div class="container">
-
     <div class="row">
       <div class="col-3">
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, iure accusantium modi blanditiis ab voluptatibus neque fugiat vel ipsa voluptatum ratione non. Modi sed iusto at veritatis esse expedita in.</p>
+
+        <aside >
+          <section class="informacion_usuario p-3 mt-3 mb-3">
+            <h3 class="color-verde">About user</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut quis excepturi, cum veritatis delectus inventore, deserunt aliquam ea repellat quam reprehenderit, saepe possimus dignissimos fuga animi recusandae. Esse, earum ullam!</p>
+            <div class="trofeos">
+              <div>  
+                <!--Tarjeta para trofeos ganados -->
+                <div class="card mb-3" style="max-width: 540px;">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="img/trofeo_perfil.png" class="card-img p-3" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">Chally solved</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Fin tarjeta para trofeos ganados-->
+
+                <!--Tarjeta para trofeos ganados -->
+                <div class="card mb-3" style="max-width: 540px;">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="img/trofeo_perfil.png" class="card-img p-3" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">Chally solved</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Fin tarjeta para trofeos ganados-->
+                <!--Tarjeta para trofeos ganados -->
+                <div class="card mb-3" style="max-width: 540px;">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="img/trofeo_perfil.png" class="card-img p-3" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">Chally solved</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Fin tarjeta para trofeos ganados-->
+              </div>
+            </div>
+          </section>
+
+          <section class="previsualizacion_amigos p-3 mt-3 mb-3">
+            <h4 class="color-verde">Lista de amigos</h4>
+            <div class="container">
+              <div class="row">
+                  <div class="col-4">
+                      <div class="text-center m-1">
+                        <img src="http://lorempixel.com/50/50/people" alt="meme">
+                        <p>@Lorem Ipsum</p>
+                      </div>
+                  </div>
+
+                  <div class="col-4">
+                      <div class="text-center m-1">
+                        <img src="http://lorempixel.com/50/50/people" alt="meme">
+                        <p>@Lorem Ipsum</p>
+                      </div>
+                  </div>
+
+
+                  <div class="col-4">
+                      <div class="text-center m-1">
+                        <img src="http://lorempixel.com/50/50/people" alt="meme">
+                        <p>@Pepe Argento</p>
+                      </div>
+                  </div>
+
+
+                  <div class="col-4">
+                      <div class="text-center m-1">
+                        <img src="http://lorempixel.com/50/50/people" alt="meme">
+                        <p>@Lorem Ipsum</p>
+                      </div>
+                  </div>
+
+                  <div class="col-4">
+                      <div class="text-center m-1">
+                        <img src="http://lorempixel.com/50/50/people" alt="meme">
+                        <p>@Lorem Ipsum</p>
+                      </div>
+                  </div>
+
+
+                  <div class="col-4">
+                      <div class="text-center m-1">
+                        <img src="http://lorempixel.com/50/50/people" alt="meme">
+                        <p>@Lorem Ipsum</p>
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+          </section>
+
+
+        </aside>
       </div>
       
       <div class="col-9">
-
-      <!--Menu para elegir vista de posteos-->
+        
+        <!--Menu para elegir vista de posteos-->
         <div class="seleccion_vista_posteos">
           <div class="input-group mb-3">
             
@@ -54,16 +161,16 @@ include("include/head.php");
             </select>
           </div>
         </div>
-      <!--Fin menu para elegir vista de posteos-->
-
-      <?php include('include/chally.php');?>
-      <?php include('include/chally.php');?>
-      <?php include('include/chally.php');?>
+        <!--Fin menu para elegir vista de posteos-->
+        
+        <?php include('include/chally.php');?>
+        <?php include('include/chally.php');?>
+        <?php include('include/chally.php');?>
       </div>
     </div>
-
-
-
+    
+    
+    
   </div>
   
   
