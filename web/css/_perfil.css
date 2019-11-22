@@ -1,0 +1,28 @@
+/* INICIO  PROFILE */
+
+
+header.profile{
+    background-image: url(../img/misc-background.jpg);
+    background-size: cover;
+}
+
+.previsualizacion_amigos{
+    border: #1bb76e 1px solid;
+}
+
+.info_profile{
+    width: 100%;
+    background-image: url('../img/background_profile.jpg');
+    background-size: cover;
+}
+
+.caja-amigo{
+    max-width: 50px;
+    max-height: 30px;
+}
+
+.informacion_usuario{
+    border: #1bb76e 1px solid;
+}
+
+/*FIN ESTILOS PROFILE*/

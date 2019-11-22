@@ -1,127 +1,34 @@
-/*ESTILOS PROFILE*/
-*{
-    padding: 0px;
-    margin: 0px;
-}
+/* IMPORTS DE PAGINAS ESPECIFICAS */
 
-header.profile{
-    background-image: url(../img/misc-background.jpg);
-    background-size: cover;
-}
+@import '_index.css';
 
-.previsualizacion_amigos{
-    border: #1bb76e 1px solid;
-}
+@import '_login.css';
 
-.info_profile{
-    width: 100%;
-    background-image: url('../img/background_profile.jpg');
-    background-size: cover;
-}
+@import '_registro.css';
 
-.caja-amigo{
-    max-width: 50px;
-    max-height: 30px;
-}
+@import '_perfil.css';
 
-.informacion_usuario{
-    border: #1bb76e 1px solid;
-}
+@import '_amigos.css';
 
-/*FIN ESTILOS PROFILE*/
+@import '_contacto.css';
+
+@import '_faq.css';
+
+@import '_feed.css';
 
 
-
+/* ESTILOS GLOBALES */
 
 *{
     font-family:'Rubik',sans-serif;
     font-weight:400;
+    margin:0;
+    padding:0;
 }
 
 .vh-100{
     height:auto !important;
     min-height:100vh !important;
-}
-
-section.hero{
-    background-image:url('../img/hero-background.jpg');
-    background-size:cover;
-    background-repeat:no-repeat;
-}
-
-section.faq-hero{
-    background:#2e3035;
-    background-size:cover;
-    background-repeat:no-repeat;
-}
-
-section.faq-hero img{
-    width:50%;
-}
-
-.card .btn-link{
-    color:#2e3035;
-}
-
-/*
-.selector-faq{
-    top:150px;
-    z-index:100;
-}
-
-*/
-
-.selector-faq > div{
-    transition:all 0.25s ease;
-}
-
-.selector-faq a:hover{
-    text-decoration:none !important;
-}
-
-.selector-faq > div:hover{
-    transform:scale(1.05);
-    text-decoration:none !important;
-}
-
-section.pasos img{
-    width:30%;
-    transition:all 0.25s ease;
-}
-
-section.pasos img:hover{
-    transform:scale(1.05);
-}
-
-
-
-section.categorias{
-    background-image:none;
-    background-color:#2e3035;
-    background-size:cover;
-    background-repeat:no-repeat;
-}
-
-
-section.faq{
-    background-color:#2e3035;
-    background-image:none;
-    background-size:cover;
-    background-repeat:no-repeat;
-} 
-
-@media screen and (min-width:768px){
-    section.categorias{
-        background-image:url('../img/misc-background.jpg');
-    }
-
-    section.faq{
-        background-image:url('../img/faq-background.jpg');
-    }
-
-    section.faq-hero{
-        background-image:url('../img/misc-background.jpg');
-    }
 }
 
 
@@ -143,57 +50,6 @@ footer a:hover{
     text-decoration:none;
 }
 
-
-section.categorias .item .cont{
-    border-radius:30px;
-    background-color:#fff;
-    cursor:pointer;
-    transition:all 0.25s ease;
-}
-
-
-
-.cont:hover{
-    transform:scale(1.05);
-}
-
-
-section.destacados h2{
-    border-bottom:1px solid #1bb76e;
-}
-
-
-.carousel-inner{
-    overflow:visible;
-}
-
-.carousel{
-    top:50px;
-}
-
-.carousel-control-prev.desktop{
-    left:-150px;
-}
-
-.carousel-control-next.desktop{
-    right:-150px;
-}
-
-.item img{
-    border-top-left-radius:30px;
-    border-top-right-radius:30px;
-}
-
-
-.hero-form{
-    background-color:#fff;
-    border-radius:10px;
-}
-
-.hero-form img{
-    width:60px;
-}
-
 .navbar-brand img{
     width:120px;
 }
@@ -211,15 +67,8 @@ section.destacados h2{
     color:#1bb76e;
 }
 
-
-
 .bg-verde{
     background-color:#1bb76e;
-}
-
-.hero h1{
-    text-shadow: 0px 0px 12px rgba(0,0,0,0.34);
-    font-weight:700;
 }
 
 .nav-item{
@@ -238,3 +87,22 @@ section.destacados h2{
 .nav-item .nav-link:hover{
     color:#54c992 !important;
 }
+
+.card .btn-link{
+    color:#2e3035;
+}
+
+
+section.destacados h2{
+    border-bottom:1px solid #1bb76e;
+}
+
+
+
+
+
+
+
+
+
+
