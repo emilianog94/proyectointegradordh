@@ -31,7 +31,7 @@
     <?php include("include/header.php");?>
     
     <!--Seccion PORTADA -->
-  
+    <div class="contenedor-principal-amigos">
     <header class="profile">
         <div class="container">
         <div class="row">
@@ -55,98 +55,112 @@
     </div>
     <div class="contenedor-amigos container">
         <div class="tarjeta-amigo">
-            <div class="foto-portada"> </div>
+            <div class="contenedor-foto-portada">
+                <img class="foto-portada" src="img/foto-ventana-barco.jpg" alt="">
+            </div>
             <div class="info-amigo">
                 <img class="foto-perfil" src="img/foto-matias-bruno.jpg">
                 <h6 class="nombre">Matías Bruno</h6>
                 <h6 class="nombre-usuario">@matiasb</h6>
                 <div>
-                    <a class="boton-mensaje" href="">Mensaje</a>
-                    <a class="estado-amigo" href="">Amigos</a>
+                    <a class="boton-mensaje" href="#">Mensaje</a>
+                    <a class="estado-amigo" href="#">Amigos</a>
                 </div>
-                <a class="ver-perfil" href="">Ver Perfil</a>
+                <a class="ver-perfil" href="#">Ver Perfil</a>
             </div>
         </div>
         <div class="tarjeta-amigo">
-            <div class="foto-portada"> </div>
+            <div class="contenedor-foto-portada">
+                <img class="foto-portada" src="img/foto-ventana-barco.jpg" alt="">
+            </div>
             <div class="info-amigo">
                 <img class="foto-perfil" src="img/foto-matias-bruno.jpg">
                 <h6 class="nombre">Matías Bruno</h6>
                 <h6 class="nombre-usuario">@matiasb</h6>
                 <div>
-                    <a class="boton-mensaje" href="">Mensaje</a>
-                    <a class="estado-amigo" href="">Amigos</a>
+                    <a class="boton-mensaje" href="#">Mensaje</a>
+                    <a class="estado-amigo" href="#">Amigos</a>
                 </div>
-                <a class="ver-perfil" href="">Ver Perfil</a>
+                <a class="ver-perfil" href="#">Ver Perfil</a>
             </div>
         </div>
         <div class="tarjeta-amigo">
-            <div class="foto-portada"> </div>
+            <div class="contenedor-foto-portada">
+                <img class="foto-portada" src="img/foto-ventana-barco.jpg" alt="">
+            </div>
             <div class="info-amigo">
                 <img class="foto-perfil" src="img/foto-matias-bruno.jpg">
                 <h6 class="nombre">Matías Bruno</h6>
                 <h6 class="nombre-usuario">@matiasb</h6>
                 <div>
-                    <a class="boton-mensaje" href="">Mensaje</a>
-                    <a class="estado-amigo" href="">Amigos</a>
+                    <a class="boton-mensaje" href="#">Mensaje</a>
+                    <a class="estado-amigo" href="#">Amigos</a>
                 </div>
-                <a class="ver-perfil" href="">Ver Perfil</a>
+                <a class="ver-perfil" href="#">Ver Perfil</a>
             </div>
         </div>
         <div class="tarjeta-amigo">
-            <div class="foto-portada"> </div>
+            <div class="contenedor-foto-portada">
+                <img class="foto-portada" src="img/foto-ventana-barco.jpg" alt="">
+            </div>
             <div class="info-amigo">
                 <img class="foto-perfil" src="img/foto-matias-bruno.jpg">
                 <h6 class="nombre">Matías Bruno</h6>
                 <h6 class="nombre-usuario">@matiasb</h6>
                 <div>
-                    <a class="boton-mensaje" href="">Mensaje</a>
-                    <a class="estado-amigo" href="">Amigos</a>
+                    <a class="boton-mensaje" href="#">Mensaje</a>
+                    <a class="estado-amigo" href="#">Amigos</a>
                 </div>
-                <a class="ver-perfil" href="">Ver Perfil</a>
+                <a class="ver-perfil" href="#">Ver Perfil</a>
             </div>
         </div>
         <div class="tarjeta-amigo">
-            <div class="foto-portada"> </div>
+            <div class="contenedor-foto-portada">
+                <img class="foto-portada" src="img/foto-ventana-barco.jpg" alt="">
+            </div>
             <div class="info-amigo">
                 <img class="foto-perfil" src="img/foto-matias-bruno.jpg">
                 <h6 class="nombre">Matías Bruno</h6>
                 <h6 class="nombre-usuario">@matiasb</h6>
                 <div>
-                    <a class="boton-mensaje" href="">Mensaje</a>
-                    <a class="estado-amigo" href="">Amigos</a>
+                    <a class="boton-mensaje" href="#">Mensaje</a>
+                    <a class="estado-amigo" href="#">Amigos</a>
                 </div>
-                <a class="ver-perfil" href="">Ver Perfil</a>
+                <a class="ver-perfil" href="#">Ver Perfil</a>
             </div>
         </div>
         <div class="tarjeta-amigo">
-            <div class="foto-portada"> </div>
+            <div class="contenedor-foto-portada">
+                <img class="foto-portada" src="img/foto-ventana-barco.jpg" alt="">
+            </div>
             <div class="info-amigo">
                 <img class="foto-perfil" src="img/foto-matias-bruno.jpg">
                 <h6 class="nombre">Matías Bruno</h6>
                 <h6 class="nombre-usuario">@matiasb</h6>
                 <div>
-                    <a class="boton-mensaje" href="">Mensaje</a>
-                    <a class="estado-amigo" href="">Amigos</a>
+                    <a class="boton-mensaje" href="#">Mensaje</a>
+                    <a class="estado-amigo" href="#">Amigos</a>
                 </div>
-                <a class="ver-perfil" href="">Ver Perfil</a>
+                <a class="ver-perfil" href="#">Ver Perfil</a>
             </div>
         </div>
         <div class="tarjeta-amigo">
-            <div class="foto-portada"> </div>
+            <div class="contenedor-foto-portada">
+                <img class="foto-portada" src="img/foto-ventana-barco.jpg" alt="">
+            </div>
             <div class="info-amigo">
                 <img class="foto-perfil" src="img/foto-matias-bruno.jpg">
                 <h6 class="nombre">Matías Bruno</h6>
                 <h6 class="nombre-usuario">@matiasb</h6>
                 <div>
-                    <a class="boton-mensaje" href="">Mensaje</a>
-                    <a class="estado-amigo" href="">Amigos</a>
+                    <a class="boton-mensaje" href="#">Mensaje</a>
+                    <a class="estado-amigo" href="#">Amigos</a>
                 </div>
-                <a class="ver-perfil" href="">Ver Perfil</a>
+                <a class="ver-perfil" href="#">Ver Perfil</a>
             </div>
         </div>
     </div>
-    
+    </div>
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
