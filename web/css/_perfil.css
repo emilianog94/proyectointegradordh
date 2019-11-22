@@ -1,13 +1,30 @@
 /* INICIO  PROFILE */
 
+body.perfil .col-4{
+    padding: 0;
+}
+.boton_opciones{
+    padding: 0px;
+}
+
+body.perfil{
+    width: 100%;
+    background-color: #ccc;
+    box-sizing: border-box;
+}
+
+.container-fluid{
+    padding: 0;
+}
 
 header.profile{
-    background-image: url(../img/misc-background.jpg);
+   /*background-image: url(../img/misc-background.jpg);*/
     background-size: cover;
+
 }
 
 .previsualizacion_amigos{
-    border: #1bb76e 1px solid;
+    background-color: #ccc;
 }
 
 .info_profile{
@@ -21,8 +38,9 @@ header.profile{
     max-height: 30px;
 }
 
-.informacion_usuario{
-    border: #1bb76e 1px solid;
+.informacion_usuario + {
+     
+    background-color: #ccc;
 }
 
 /*FIN ESTILOS PROFILE*/
