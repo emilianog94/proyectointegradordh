@@ -1,13 +1,4 @@
-/* reset */
-* {
-	padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-/* body */
-body {
-    font-family: 'Rubik', sans-serif;
+.contenedor-principal-amigos {
     background-color: #ccc;
 }
 a, a:hover {
@@ -36,10 +27,12 @@ a, a:hover {
     text-align: center;
     background-color: white;
 }
-.foto-portada {
-    background-image: url("../img/foto-ventana-barco.jpg");
-    background-size: cover;
+.contenedor-foto-portada {
     height: 100px;
+    overflow: hidden;
+}
+.foto-portada {
+    width: 100%;
 }
 .info-amigo {
     position: relative;
