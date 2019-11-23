@@ -1,6 +1,7 @@
 /* INICIO LOGIN */
 .contenedor-principal-login {
     background-color: #2e3035;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +54,5 @@ h3, #mail, #pass, #boton-ingresar, #registrarse {
     .contenedor-principal-login {
         background-image: url("../img/hero-background.jpg");
         background-size: cover;
-        min-height: 100vh;
     }
 }
