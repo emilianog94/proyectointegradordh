@@ -1,1 +1,54 @@
 /* INICIO LOGIN */
+.contenedor-principal-login {
+    background-image: url("../img/hero-background.jpg");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor-form-login {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    padding: 10px;
+    max-width: 400px;
+    display: flex;
+}
+#form-login {
+    text-align: center;
+}
+.contenedor-logo {
+    background-color: #2e3035;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+h3, #mail, #pass, #boton-ingresar, #registrarse {
+    margin: 10px;
+}
+#mail, #pass {
+    padding: 5px;
+    width: 90%;
+}
+#boton-ingresar {
+    background-color: #1bb76e;
+    color: white;
+    padding: 5px;
+    width: 90%;
+    border: 1px solid #1bb76e;
+    border-radius: 5px;
+}
+#boton-ingresar:hover {
+    background-color: #3bd78e;
+    border: 1px solid #3bd78e;
+}
+#checkbox-recordar {
+    text-align: left;
+    margin: 0 20px;
+}
+.fuente-chica {
+    font-size: 12px;
+}
+#error-ingreso {
+    color: red;
+}
