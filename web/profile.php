@@ -304,10 +304,10 @@ include("include/head.php");
                         <button class="btn  ml-auto " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           ...
                         </button>
+
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Creados</a>
-                          <a class="dropdown-item" href="#">Resueltos</a>
-                          <a class="dropdown-item" href="#">Todos</a>
+                          <a class="dropdown-item" href="#">Ver desafio</a>
+                          <a class="dropdown-item" href="#">Ver respuestas</a>
                         </div>
                       </div>
                       
@@ -317,9 +317,21 @@ include("include/head.php");
                     <p class="card-text"><small class="text-muted">Solved</small></p>
                     <a href="#" class="btn btn-secondary">Partcipar</a>
                   </div>
+                  
+
                 </div>
+                
               </div>
+              
             </div>
+            <div class="card-footer d-flex justify-content-around">
+              <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
+
+              <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
+
+              <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
+              <span class="guardar"><i class="fas fa-bookmark"></i> </span>
+          </div>
           </div>
           
           
@@ -341,15 +353,16 @@ include("include/head.php");
                           <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
                           <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
                           <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
+                          <img src="img/logo_c_gris.svg" alt="..." width="18px" height="18px">
+                          <img src="img/logo_c_gris.svg" alt="..." width="18px" height="18px">
                           
                         </div>
                         <button class="btn  ml-auto " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           ...
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Creados</a>
-                          <a class="dropdown-item" href="#">Resueltos</a>
-                          <a class="dropdown-item" href="#">Todos</a>
+                          <a class="dropdown-item" href="#">Ver desafio</a>
+                          <a class="dropdown-item" href="#">Ver respuestas</a>
                         </div>
                       </div>
                       
@@ -358,10 +371,22 @@ include("include/head.php");
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ad, impedit libero, maxime quidem atque id minus magnam omnis iusto consequatur nisi? Repudiandae laboriosam voluptate explicabo corrupti, eum mollitia at.</p>
                     <p class="card-text"><small class="text-muted">Solved</small></p>
                     <a href="#" class="btn btn-secondary">Partcipar</a>
+
+
                   </div>
                 </div>
               </div>
+
             </div>
+
+            <div class="card-footer d-flex justify-content-around">
+              <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
+
+              <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
+
+              <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
+              <span class="guardar"><i class="fas fa-bookmark"></i> </span>
+          </div>
           </div>
           
           
@@ -385,15 +410,15 @@ include("include/head.php");
                           <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
                           <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
                           <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
+                          <img src="img/logo_c_gris.svg" alt="..." width="18px" height="18px">
                           
                         </div>
                         <button class="btn  ml-auto " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           ...
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Creados</a>
-                          <a class="dropdown-item" href="#">Resueltos</a>
-                          <a class="dropdown-item" href="#">Todos</a>
+                          <a class="dropdown-item" href="#">Ver desafio</a>
+                          <a class="dropdown-item" href="#">Ver respuestas</a>
                         </div>
                       </div>
                       
@@ -402,11 +427,23 @@ include("include/head.php");
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ad, impedit libero, maxime quidem atque id minus magnam omnis iusto consequatur nisi? Repudiandae laboriosam voluptate explicabo corrupti, eum mollitia at.</p>
                     <p class="card-text"><small class="text-muted">Solved</small></p>
                     <a href="#" class="btn btn-secondary">Partcipar</a>
+
                   </div>
+
                 </div>
               </div>
+
             </div>
+            <div class="card-footer d-flex justify-content-around">
+              <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
+  
+              <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
+  
+              <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
+              <span class="guardar"><i class="fas fa-bookmark"></i> </span>
           </div>
+          </div>
+
         </div>
       </div>
       
@@ -423,10 +460,7 @@ include("include/head.php");
             </div>
           </div>
         </div>
-      </div>
-      
-      
-      
+      </div>  
     </div>
   </div>
   
