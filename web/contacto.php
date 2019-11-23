@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$title="Inicio";
+$title="Contacto";
 include("include/head.php");
 ?>
 

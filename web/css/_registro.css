@@ -1,1 +1,23 @@
 /* INICIO REGISTRO */
+
+/* INICIO CONTACTO */
+.contenedor-registro{
+    background-image: url(../img/background_contacto.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    background-attachment:fixed;
+}
+
+
+.registro-form{
+    background-color:#fff;
+    border-radius:10px;
+}
+
+
+.registro-form img{
+    width:60px;
+}
