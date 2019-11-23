@@ -20,10 +20,10 @@
     border-radius: 5px;
     margin: 20px 0;
 }
-h3, #mail, #pass, #boton-ingresar, #registrarse {
+h3, #email, #pass, #boton-ingresar, #registrarse {
     margin: 10px;
 }
-#mail, #pass {
+#email, #pass {
     padding: 5px;
     width: 90%;
 }

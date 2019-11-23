@@ -15,7 +15,7 @@
                     <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
                 </div>
                 <h3>Iniciar sesión</h3>
-                <input type="mail" id="mail" name="mail" placeholder="Correo electrónico" required>
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
                 <input type="password" id="pass" name="pass" placeholder="Contraseña" required>
                 <p id="error-ingreso" class="fuente-chica" name="error-ingreso"></p>
                 <p id="checkbox-recordar"><input type="checkbox" name="recordar" id="recordar" checked><label for="recordar" class="fuente-chica">Recordarme</label></p>
