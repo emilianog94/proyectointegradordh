@@ -4,6 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/959125d25f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/animate.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    
+
     <!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.0/smooth-scroll.js"></script>    
     <script>
