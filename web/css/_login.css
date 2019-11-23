@@ -1,8 +1,6 @@
 /* INICIO LOGIN */
 .contenedor-principal-login {
-    background-image: url("../img/hero-background.jpg");
-    background-size: cover;
-    height: 100vh;
+    background-color: #2e3035;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,4 +47,12 @@ h3, #mail, #pass, #boton-ingresar, #registrarse {
 }
 #error-ingreso {
     color: red;
+}
+
+@media screen and (min-width: 768px) {
+    .contenedor-principal-login {
+        background-image: url("../img/hero-background.jpg");
+        background-size: cover;
+        height: 100vh;
+    }
 }
