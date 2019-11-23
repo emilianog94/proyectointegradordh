@@ -8,8 +8,6 @@
     align-items: center;
 }
 .contenedor-form-login {
-    position: relative;
-    z-index: 1;
     background-color: #fff;
     padding: 10px;
     max-width: 400px;

@@ -18,9 +18,9 @@
 
                     <div class="col-12 col-md-4 mb-4 mb-md-0">
                         <h4>Accesos Rápidos</h4>
-                        <a href="#">Home</a><br>
-                        <a href="#">Iniciar Sesión / Registrarse</a><br>
-                        <a href="#">Preguntas Frecuentes</a><br>
+                        <a href="index.php">Home</a><br>
+                        <a href="login.php">Iniciar Sesión / Registrarse</a><br>
+                        <a href="faq.php">Preguntas Frecuentes</a><br>
                         <a href="#">Contacto</a><br>
                         <a href="#">Política de Privacidad</a>
                     </div>    
