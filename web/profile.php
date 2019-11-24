@@ -5,21 +5,8 @@ $title="Perfil";
 include("include/head.php");
 ?>
 
-<body class="perfil">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
-    <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-user"></i> &nbsp; Log out / Configuracion</a>
-        </li>
-        
-      </ul>
-    </div>
-  </nav>
+<body class="perfil animated fadeIn">
+<?php include('include/header-user.php');?>
   
   <!--Seccion PORTADA -->
   

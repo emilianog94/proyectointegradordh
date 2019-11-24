@@ -5,11 +5,11 @@
     include("include/head.php");
     ?>
     
-<body>
+<body class="animated fadeIn">
     <!-- <?php include("include/header.php");?> -->
     
     <div class="contenedor-principal-login">
-        <div class="contenedor-form-login">
+        <div class="contenedor-form-login rounded shadow my-4">
             <form action="" method="post" id="form-login" name="form-login">
                 <div class="contenedor-logo">
                     <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
@@ -20,8 +20,8 @@
                 <p id="error-ingreso" class="fuente-chica" name="error-ingreso"></p>
                 <p id="checkbox-recordar"><input type="checkbox" name="recordar" id="recordar" checked><label for="recordar" class="fuente-chica">Recordarme</label></p>
                 <input type="submit" id="boton-ingresar" value="Ingresar">
-                <p id="olvido-password" class="fuente-chica"><a href="#">¿Olvidaste tu contraseña?</a></p>
-                <p id="registrarse" class="fuente-chica"><a  href="registro.php" alt="Enlace a la página de registro">¿No tienes cuenta? Regístrate aquí.</a></p>
+                <p id="olvido-password" class="fuente-chica"><a href="#" class="text-secondary">¿Olvidaste tu contraseña?</a></p>
+                <p id="registrarse" class="fuente-chica"><a  href="registro.php" class="font-weight-bold d-inline-block" alt="Enlace a la página de registro">¿No tienes cuenta? Regístrate aquí.</a></p>
             </form>
         </div>
     </div>

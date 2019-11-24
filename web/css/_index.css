@@ -81,6 +81,18 @@ section.categorias .item .cont{
     font-weight:700;
 }
 
+.destacados a{
+    transition:all 0.25s ease;
+}
+
+.destacados img.challenger{
+    max-width:100px;
+}
+
+.destacados a:hover{
+    transform:scale(1.05);
+}
+
 @media screen and (min-width:768px){
     section.categorias{
         background-image:url('../img/misc-background.jpg');

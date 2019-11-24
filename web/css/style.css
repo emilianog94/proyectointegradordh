@@ -26,6 +26,10 @@
     padding:0;
 }
 
+body{
+    overflow-x:hidden;
+}
+
 .vh-100{
     height:auto !important;
     min-height:100vh !important;
@@ -92,6 +96,13 @@ footer a:hover{
     color:#2e3035;
 }
 
+.subrayado{
+    text-decoration:underline
+}
+
+.texto-chico{
+    font-size:0.8em;
+}
 
 section.destacados h2{
     border-bottom:1px solid #1bb76e;

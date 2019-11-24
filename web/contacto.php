@@ -8,13 +8,12 @@ include("include/head.php");
 
 <body class="animated fadeIn">
     <div class="contenedor-perfil">
+    <?php include ('include/header.php');?>
         
-        <section class="container-fluid px-5">
-            <div class="row d-flex align-items-center vh-100 flex-wrap">
+        <section class="container-fluid">
+            <div class="row d-flex align-items-center vh-100 flex-wrap py-5 pr-5">
                 <div class="d-none d-sm-none d-md-flex d-lg-flex  col-sm-7 col-md-7 col-lg-8">
-                    <!-- <h1 class="text-white display-4 d-none d-md-block">Superá tus límites participando en la primera red social de desafíos digitales</h1>
-                        <h1 class="text-white d-block d-md-none">Superá tus límites participando en la primera red social de desafíos digitales</h1> -->
-                    </div>
+                </div>
                     
                     <div class="col-12 col-sm-12 col-md-5 col-lg-4 shadow contacto-form px-5 py-3    d-flex flex-column align-items-center">
                         <a href="index.php"><img class="mb-4" src="img/logo_c.svg" alt=""></a>
@@ -50,6 +49,11 @@ include("include/head.php");
                             <a class="btn btn-secondary w-100" href="#" role="button">Avanzar</a>
                         </form>                
                     </div>
+
                     
+                    
+
                 </div>
+                <?php include ('include/footer.php');?>
+</section>    
             </body>

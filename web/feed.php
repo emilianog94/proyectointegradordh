@@ -6,7 +6,7 @@ include("include/head.php");
 ?>
 
 <body class="animated fadeIn">
-  <?php include('include/header.php');?>
+<?php include('include/header-user.php');?>
   
   
   
@@ -16,7 +16,7 @@ include("include/head.php");
     <div class="row">
         <div class="col-3">
 
-            <aside class="d-none d-md-block">
+            <aside class="d-none d-md-block sticky-top">
 
                 <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bell"></i>&nbsp;Alertas de Desafíos</p>
                 <div class="card shadow  p-3 mt-1 mb-4 alert alert-danger">
@@ -36,7 +36,7 @@ include("include/head.php");
                 <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-trophy"></i>&nbsp;Chally destacado de la semana</p>
                 <div class="card shadow  p-3 mt-1 mb-4">
                     <p>Creá un pixel-art de un momento épico de la TV Argentina</p>
-                    <img src="img/challys/pelea-samid-viale.jpg" alt="">
+                    <img src="img/challys/pelea-samid-viale.jpg" alt="Desafío - Creá un pixel-art de un momento épico de la TV Argentina">
                     <a href="#" class="btn btn-secondary">Participar</a>
                 </div>
 
@@ -60,8 +60,8 @@ include("include/head.php");
                         <div class="card mb-5">
 
                             <div class="card-header posteo d-flex align-items-center">
-                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="">
-                                <p class="mb-0 ml-3">Matías Bruno</p>
+                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="Foto de Usuario">
+                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>                       
                                 <a class="ml-auto" href="#"><i class="fa fa-ellipsis-v"></i></a>
                             </div>
 
@@ -73,11 +73,11 @@ include("include/head.php");
 
                                     <div class="row card-content-attached">
                                         <div class="col-12 col-md-4">
-                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="">
+                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="Desafío Viajes Espaciales">
                                         </div>
 
                                         <div class="col-12 col-md-8">
-                                            <h3>Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
+                                            <h3 class="ml-0">Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
 
                                             <div class="metadata d-flex justify-content-between">
                                                 <span class="dificultad">Dificultad: <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> </span>
@@ -109,8 +109,8 @@ include("include/head.php");
                         <div class="card mb-5">
 
                             <div class="card-header posteo d-flex align-items-center">
-                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="">
-                                <p class="mb-0 ml-3">Matías Bruno</p>
+                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="Foto Usuario">
+                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>                       
                                 <a class="ml-auto" href="#"><i class="fa fa-ellipsis-v"></i></a>
                             </div>
 
@@ -122,11 +122,11 @@ include("include/head.php");
 
                                     <div class="row card-content-attached">
                                         <div class="col-12 col-md-4">
-                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="">
+                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="Desafío Viajes Espaciales">
                                         </div>
 
                                         <div class="col-12 col-md-8">
-                                            <h3>Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
+                                            <h3 class="ml-0">Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
 
                                             <div class="metadata d-flex justify-content-between">
                                                 <span class="dificultad">Dificultad: <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> </span>
@@ -159,8 +159,8 @@ include("include/head.php");
                         <div class="card mb-5">
 
                             <div class="card-header posteo d-flex align-items-center">
-                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="">
-                                <p class="mb-0 ml-3">Matías Bruno</p>
+                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="Foto Usuario">
+                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>                       
                                 <a class="ml-auto" href="#"><i class="fa fa-ellipsis-v"></i></a>
                             </div>
 
@@ -172,11 +172,11 @@ include("include/head.php");
 
                                     <div class="row card-content-attached">
                                         <div class="col-12 col-md-4">
-                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="">
+                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="Desafío Viajes Espaciales">
                                         </div>
 
                                         <div class="col-12 col-md-8">
-                                            <h3>Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
+                                            <h3 class="ml-0" >Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
 
                                             <div class="metadata d-flex justify-content-between">
                                                 <span class="dificultad">Dificultad: <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> </span>

@@ -22,7 +22,7 @@ include("include/head.php");
                 <div class="row selector-faq position-relative text-center py-5">
                     <div class="col-12 col-md-4 mb-5 mb-md-0">
                         <a href="#chally">
-                            <img class="img-fluid rounded-circle bg-white shadow" src="img/logo_c.svg" alt="">
+                            <img class="img-fluid rounded-circle bg-white shadow" src="img/logo_c.svg" alt="Ayuda sobre Chally">
                             <p class="mt-3 color-verde font-weight-bold">Chally</p>
                             <a class="btn btn-secondary" href="#chally">Ver</a>
                         </a>
@@ -30,7 +30,7 @@ include("include/head.php");
 
                     <div class="col-12 col-md-4 mb-5 mb-md-0">
                         <a href="#cuenta">
-                            <img class="img-fluid rounded-circle bg-white shadow" src="img/ico/account.png" alt="">
+                            <img class="img-fluid rounded-circle bg-white shadow" src="img/ico/account.png" alt="Ayuda sobretu Cuenta">
                             <p class="mt-3 color-verde font-weight-bold">Cuenta</p>
                             <a class="btn btn-secondary" href="#cuenta">Ver</a>
                         </a>
@@ -38,7 +38,7 @@ include("include/head.php");
 
                     <div class="col-12 col-md-4 mb-5 mb-md-0">
                         <a href="#desafios">
-                            <img class="img-fluid rounded-circle bg-white shadow" src="img/ico/challenges.png" alt="">
+                            <img class="img-fluid rounded-circle bg-white shadow" src="img/ico/challenges.png" alt="Ayuda sobre Desafíos">
                             <p class="mt-3 color-verde font-weight-bold">Desafíos</p>
                             <a class="btn btn-secondary" href="#desafios">Ver</a>
                         </a>
@@ -124,7 +124,7 @@ include("include/head.php");
 
                 <div class="fallback mt-3">
                     <p class="mb-0">¿No encontraste lo que estabas buscando?</p>
-                    <a href="#">Envianos tu consulta</a>
+                    <a href="contacto.php">Envianos tu consulta</a>
                 </div>
 
             </div>
@@ -189,7 +189,7 @@ include("include/head.php");
 
                 <div class="fallback mt-3">
                     <p class="mb-0">¿No encontraste lo que estabas buscando?</p>
-                    <a href="#">Envianos tu consulta</a>
+                    <a href="contacto.php">Envianos tu consulta</a>
                 </div>
 
             </div>
@@ -277,7 +277,7 @@ include("include/head.php");
 
                 <div class="fallback mt-3">
                     <p class="mb-0">¿No encontraste lo que estabas buscando?</p>
-                    <a href="#">Envianos tu consulta</a>
+                    <a href="contacto.php">Envianos tu consulta</a>
                 </div>
 
             </div>
