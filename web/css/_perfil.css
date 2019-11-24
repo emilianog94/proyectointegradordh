@@ -9,7 +9,7 @@ body.perfil .col-4{
 
 body.perfil{
     width: 100%;
-    background-color: #ccc;
+    background-color: #eeeeee;
     box-sizing: border-box;
 }
 
@@ -24,7 +24,7 @@ header.profile{
 }
 
 .previsualizacion_amigos{
-    background-color: #ccc;
+    background-color: rgb(255, 255, 255);
 }
 
 .info_profile{
@@ -38,9 +38,9 @@ header.profile{
     max-height: 30px;
 }
 
-.informacion_usuario + {
+.informacion_usuario  {
      
-    background-color: #ccc;
+    background-color: rgb(255, 255, 255);
 }
 
 /*FIN ESTILOS PROFILE*/
