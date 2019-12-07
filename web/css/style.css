@@ -108,8 +108,15 @@ section.destacados h2{
     border-bottom:1px solid #1bb76e;
 }
 
+/* FIX DROPDOWN MENU */
+.dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+}
 
-
+.dropdown-item{
+    font-size:0.85em;
+}
 
 
 
