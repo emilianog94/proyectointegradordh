@@ -16,7 +16,7 @@ include("include/head.php");
                 </div>
                     
                     <div class="col-12 col-sm-12 col-md-5 col-lg-4 shadow contacto-form px-5 py-3    d-flex flex-column align-items-center">
-                        <a href="index.php"><img class="mb-4" src="img/logo_c.svg" alt=""></a>
+                        <a href="index.php"><img class="mb-4" src="img/logo_c.svg" class="logo" alt=""></a>
                         <h3 class="color-verde text-center mb-4">Contactanos</h3>
                         <form class="w-100">
                             
