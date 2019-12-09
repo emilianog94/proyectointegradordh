@@ -4,11 +4,12 @@
 require('funciones.php');
 
 if($_POST){
-
     $errores = [];
 
-    pre($_POST);
-    
+if (isset($_POST)){
+
+    $errores = validar($_POST);
+
     if(!$errores) {
         // llamo a la función guardarUsuario() --> me devuelve un array asociativo con los datos que envió el usuario
         $usuario = guardarUsuario($_POST);
@@ -36,6 +37,7 @@ if($_POST){
 
         }
     }
+}
     
     
     ?>
@@ -71,49 +73,57 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
-                                        <input type="text" class="form-control" name="name" required>
+                                        <input type="text" class="form-control" name="name" required value="<?=persistenciaRegistro("name")?>">
+                                        
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
-                                        <input type="text" class="form-control" name="lastname" required>
+                                        <input type="text" class="form-control" name="lastname" value="<?=persistenciaRegistro('lastname')?>" required>
+                                       
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Nombre de usuario</label>
-                                        <input type="text" class="form-control" name="username" required>
+                                        <input type="text" class="form-control" name="username" value="<?=persistenciaRegistro('username')?>" required>
+                                        <small><?=mostrarErrores('username')?></small>
+                                      
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
-                                        <input type="email" class="form-control " name="email" required>
-                                    </div>
+                                        <input type="email" class="form-control " name="email" value="<?=persistenciaRegistro('email')?>" required>
+                                        </div>
+                                        <small><?=mostrarErrores('email')?></small>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
-                                        <input type="email" class="form-control " name="validacion_email" required>
-                                    </div>
+                                        <input type="email" class="form-control " name="validacion_email"  required>
+                                        </div>
+                                        <small ><?=mostrarErrores('validacion_email')?></small>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control " name="password" required>
-                                    </div>
+                                        <small><?=mostrarErrores('password')?></small>
+                                        </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control is-valid" name="confirm-password" required>
+                                        <small> <?=mostrarErrores('confirm-password')?></small>
                                     </div>
                                 </div>
                                 
@@ -122,33 +132,37 @@ if($_POST){
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputFechaNac">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control" name="birth" placeholder="Date of Birth" required>
+                                        <input type="date" class="form-control" name="birth" placeholder="Date of Birth" value="<?=persistenciaRegistro('birth')?>"required>
                                     </div>
                                 </div>
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4">
                                     <label for="">Sexo</label>
-                                    <select class="custom-select" name="sex">
+                                    <select class="custom-select" name="sex" value="<?=persistenciaRegistro('sex')?>" >
                                         <option selected>Seleccionar</option>
                                         <option value="h">Hombre</option>
                                         <option value="m">Mujer</option>
                                     </select>
+                                    <small ><?=mostrarErrores('sex')?></small>
                                     
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Ingrese imagen de perfil</label>
                                     <input type="file" class="form-control-file" name="avatar">
+                                    <small><?=mostrarErrores('avatar')?></small>
+               
                                 </div>
                                 
                                 
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-9 mb-0 mb-md-4 ">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" name="tyc_check" required>
+                                        <input class="form-check-input" type="checkbox" value="true" name="tyc_check" >
                                         <label class="form-check-label"  for="invalidCheck">
                                             Acepto los <a href="#" class="subrayado">términos y condiciones</a> y la <a href="#" class="subrayado">política de privacidad</a>.
                                         </label>
+                                        <small ><?=mostrarErrores('tyc_check')?></small>
                                     </div>
                                 </div>
                                 
@@ -176,21 +190,21 @@ if($_POST){
                                                     
                                                     <div class="seleccion-intereses d-flex flex-column flex-md-row">
                                                         
-                                                        <input type="checkbox" id="myCheckbox1" name="opcion_diseno_y_arte"  value="diseno_y_arte" />
+                                                        <input type="checkbox" id="myCheckbox1" name="intereses"  value="diseno_y_arte" />
                                                         <label for="myCheckbox1">
                                                             <img src="img/categoria-diseno.jpg"><p class="mt-2">Diseño y Arte</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox2" value="fotografía" name="opcion_fotografia"  />
+                                                        <input type="checkbox" id="myCheckbox2" value="fotografía" name="intereses"  />
                                                         <label for="myCheckbox2">
                                                             <img src="img/categoria-fotografia.jpg"><p class="mt-2">Fotografía</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox3" value="opcion_programación_y_lógica" />
+                                                        <input type="checkbox" id="myCheckbox3" name="intereses" value="opcion_programación_y_lógica" />
                                                         <label for="myCheckbox3">
                                                             <img src="img/categoria-programacion.jpg"><p class="mt-2">Programación y Lógica</p>
                                                         </label>
-                                                        
+                                                        <small ><?=mostrarErrores('intereses')?></small>
                                                     </div>
                                                     
                                                     

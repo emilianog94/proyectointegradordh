@@ -50,7 +50,7 @@ function validar($data) {
     $errores = [];
 
     // CAMPO NOMBRE
-    $nombre = trim($data['name']);
+    $nombre = trim($data["name"]);
     // si está vacío,
     if($nombre == "") {
       // creo la posición "name" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
@@ -71,13 +71,15 @@ function validar($data) {
       //ABRO EL JSON PARA CHEQUEAR QUE NO EXISTA OTRO MAIL IGUAL EN LA BASE DE DATOS
       $directorioJson = "usuarios.json";
       $todosLosUsuarios = abrirJson($directorioJson);
-      foreach($todosLosUsuarios as $usuarios){
-        if($usuarios['email'] == $email){
-          $errores['email'] = "El mail ya existe";
+      if(!empty($todosLosUsuarios)){
+        foreach($todosLosUsuarios as $usuarios){
+          if($usuarios['email'] == $email){
+            $errores['email'] = "El mail ya existe";
+          }
         }
       }
 
-      //AQUI SE HACE LA VALIDACION CON LA CONFIRMACION DE MAIL
+    //AQUI SE HACE LA VALIDACION CON LA CONFIRMACION DE MAIL
       if(isset($_POST['validacion_email'])){
         if(strlen($_POST['validacion_email'])== 0){
             $errores['validacion_email'] = "Este campo no se puede encontrar vacio";
@@ -91,19 +93,22 @@ function validar($data) {
     
     // CAMPO NOMBRE DE USUARIO
     $userName = trim($data['username']);
-    if(strlen($userName) < 5) {
+    if(strlen($userName) < 5 && strlen($userName) > 12) {
       // creo la posición "username" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
-      $errores['username'] = "El nombre de usuario debe tener al menos 5 caracteres";
+      $errores['username'] = "El nombre de usuario debe tener entre 5 y 12 caracteres";
     }else {
 
         //AQUI SE ABRE EL JSON PARA CHEQUEAR QUE NO EXISTA OTRO USERNAME EN LA BASE
         $directorioJson = "usuarios.json";
         $todosLosUsuarios = abrirJson($directorioJson);
-        foreach($todosLosUsuarios as $usuarios){
-          if($usuarios['username'] == $userName){
-            $errores['username'] = "El username ya existe";
+        if(!empty($todosLosUsuarios)){
+          foreach($todosLosUsuarios as $usuarios){
+            if($usuarios['username'] == $userName){
+              $errores['username'] = "El username ya existe";
+            }
           }
         }
+
     }
     
     // CAMPO AVATAR
@@ -148,18 +153,85 @@ function validar($data) {
     // si está vacío
     if($cpassword == "") {
       // creo la posición "repassword" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
-      $errores['repassword'] = "Debe repetir la contraseña para continuar";
+      $errores['confirm-password'] = "Debe repetir la contraseña para continuar";
     } 
       // si es diferente al password que escribió
       elseif($cpassword != $password) {
       // creo la posición "repassword" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
-      $errores['repassword'] = "Las contraseñas no coinciden";
+      $errores['confirm-password'] = "Las contraseñas no coinciden";
+    }
+
+
+
+    //CAMPO SEXO
+    if($data['sex'] != "h" && $data['sex'] != "m"){
+      $errores['sex'] = "Este campo no puede encontrarse vacio";
+    }
+
+
+    //CAMPO INTERESES
+    if(isset($data['intereses'])){
+      if($data['intereses'] == null){
+        $errores['intereses'] = "Debe al menos seleccionar una categoria de interes";
+      }
+    }
+
+    //CAMPO EDAD
+    if($data['birth'] == ""){
+      $errores['birth'] = "Este campo no puede quedar vacio";
+    }
+
+    //CAMPO TERMINOS Y CONDICIONES 
+    if(isset($data['tyc_check'])){
+      if(empty($data['tyc_check']))
+      $errores['tyc_check'] = "Debe marcar esta casilla para continuar";
     }
 
     // devuelvo el array de errores. Si no entró en ninǵun condicional de los declarados arriba, el array de errores va a estar vacío
     return $errores;
   }
 
+
+//FUNCION PARA PERSISTENCIA
+function persistenciaRegistro($campo_a_persistir){
+  //  REVISO QUE EXISTA POST
+    if ($_POST){
+      if (isset($_POST)){
+        $errores = [];
+        //ME TRAIGO ERRORES PARA SABER SI PERSISTIR EN EL DATO O NO
+        $errores = validar($_POST);
+        //COMPRUEBO QUE NO EXISTA ERROR EN EL CAMPO A VERIFICAR (ESTO SE SABE SI ERRORES ESTA VACIO)
+
+        if (isset($errores["$campo_a_persistir"]) == ""){
+          //DEVUELVO VALOR DEL CAMPO SI PASA LA VERIFICACION
+          return $_POST["$campo_a_persistir"];
+        }
+      }else{
+        //EN CASO DE QUE NO ESTE SETEADA DEVOLVERA NADA
+        return "";
+      }
+    }
+}
+
+//FUNCION PARA MOSTRAR ERRORES 
+
+function mostrarErrores($campo_a_verificar){
+  if($_POST){
+    if (isset($_POST)){
+      $errores = [];
+
+      $errores = validar($_POST);
+
+      if (isset($errores["$campo_a_verificar"]) != ""){
+        return "*" . $errores["$campo_a_verificar"];
+      }
+    }else{
+      return "";
+    }
+  }
+
+
+}
 
 // FUNCIÓN PARA GUARGAR IMAGEN
 
@@ -190,9 +262,17 @@ function guardarAvatar() {
 
 function guardarUsuario($data) {
     $dirJson = "usuarios.json";
+    $totalUsuarios = 0;
 
     $todosLosUsuarios = abrirJson($dirJson);
+   if(empty ($todosLosUsuarios)){
+     $data['id'] = 0;
+
+  } else{
+    
     $totalUsuarios = count($todosLosUsuarios);
+
+   }
     
     $data['id'] = $totalUsuarios;
     
@@ -205,6 +285,9 @@ function guardarUsuario($data) {
         "birth" => $data['birth'],
         "username" => $data["username"],
         "password" => password_hash($data["password"], PASSWORD_DEFAULT),
+        "intereses" => $data['intereses'],
+        "tyc_check" => $data['tyc_check'],
+        "sex" => $data['sex']
     ];
     return $usuario;
 }

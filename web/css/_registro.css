@@ -1,5 +1,7 @@
 /* INICIO REGISTRO */
-
+small{
+    color:red;
+}
 /* INICIO CONTACTO */
 .contenedor-registro{
     background-image: url(../img/background_contacto.jpg);
