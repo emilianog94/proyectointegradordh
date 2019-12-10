@@ -246,7 +246,7 @@ function guardarAvatar() {
     $nombreImagen = uniqid('img_') . '.' . $ext;
     
     // armo la ruta final de la imagen, concatenando al final el nombre que creé
-    $carpetaFinal = dirname(__FILE__) . '/avatars/' . $nombreImagen;
+    $carpetaFinal = dirname(__FILE__) . "/avatars/" . $nombreImagen;
     
     // muevo el archivo a la carpeta avatars
     move_uploaded_file($directorioTemporal, $carpetaFinal);
@@ -266,7 +266,7 @@ function guardarUsuario($data) {
 
     $todosLosUsuarios = abrirJson($dirJson);
    if(empty ($todosLosUsuarios)){
-     $data['id'] = 0;
+     $data['id'] = 1;
 
   } else{
     
@@ -274,7 +274,7 @@ function guardarUsuario($data) {
 
    }
     
-    $data['id'] = $totalUsuarios;
+    $data['id'] = $totalUsuarios + 1;
     
     
     $usuario = [
