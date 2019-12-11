@@ -115,8 +115,8 @@ function validarRegistro($data) {
       $errores['avatar'] = "Debe subir una foto de perfil";
     } else {
         // obtengo la extensión
-        $ext = pathinfo($avatar['name'], PATHINFO_EXTENSION);
-        if($ext !== 'jpg' && $ext !== 'jpeg' && $ext !== 'png') {
+        $ext = strtolower(pathinfo($avatar['name'], PATHINFO_EXTENSION));
+        if($ext !== 'jpg' && $ext !== 'jpeg' && $ext !== 'png' ) {
           $errores['avatar'] = "La extensión del archivo debe ser jpg, png ó jpeg";
         }elseif ($avatar['size'] > 2*MB){
             $errores['avatar'] == "El archivo es demasiado pesado, maximo 2MB";
@@ -166,10 +166,8 @@ function validarRegistro($data) {
 
 
     //CAMPO INTERESES
-    if(isset($data['intereses'])){
-      if($data['intereses'] == null){
-        $errores['intereses'] = "Debe al menos seleccionar una categoria de interes";
-      }
+    if(!isset($data['diseno_y_arte']) && !isset($data['fotografia']) && !isset($data['programacion_y_logica'])){
+      $errores['intereses'] = "Debe elegir al menos una categoria de interes";
     }
 
     //CAMPO EDAD
@@ -188,16 +186,35 @@ function validarRegistro($data) {
   }
 
 
-//FUNCION PARA PERSISTENCIA
+//FUNCION PARA PERSISTENCIA PARA REGISTRO
 function persistenciaRegistro($campo_a_persistir){
   //  REVISO QUE EXISTA POST
     if ($_POST){
       if (isset($_POST)){
         $errores = [];
         //ME TRAIGO ERRORES PARA SABER SI PERSISTIR EN EL DATO O NO
-        $errores = validar($_POST);
+        $errores = validarRegistro($_POST);
         //COMPRUEBO QUE NO EXISTA ERROR EN EL CAMPO A VERIFICAR (ESTO SE SABE SI ERRORES ESTA VACIO)
+        if (isset($errores["$campo_a_persistir"]) == ""){
+          //DEVUELVO VALOR DEL CAMPO SI PASA LA VERIFICACION
+          return $_POST["$campo_a_persistir"];
+        }
+      }else{
+        //EN CASO DE QUE NO ESTE SETEADA DEVOLVERA NADA
+        return "";
+      }
+    }
+}
 
+//FUNCION PARA PERSISTENCIA PARA LOGIN
+function persistenciaLogin($campo_a_persistir){
+  //  REVISO QUE EXISTA POST
+    if ($_POST){
+      if (isset($_POST)){
+        $errores = [];
+        //ME TRAIGO ERRORES PARA SABER SI PERSISTIR EN EL DATO O NO
+        $errores = validarLogin($_POST);
+        //COMPRUEBO QUE NO EXISTA ERROR EN EL CAMPO A VERIFICAR (ESTO SE SABE SI ERRORES ESTA VACIO)
         if (isset($errores["$campo_a_persistir"]) == ""){
           //DEVUELVO VALOR DEL CAMPO SI PASA LA VERIFICACION
           return $_POST["$campo_a_persistir"];
@@ -215,9 +232,7 @@ function mostrarErrores($campo_a_verificar){
   if($_POST){
     if (isset($_POST)){
       $errores = [];
-
-      $errores = validar($_POST);
-
+      $errores = validarRegistro($_POST);
       if (isset($errores["$campo_a_verificar"]) != ""){
         return "*" . $errores["$campo_a_verificar"];
       }
@@ -253,9 +268,35 @@ function guardarAvatar() {
 
 
 
+//Funcion para generar un array con los intereses.
+function arrayIntereses($data){
+  if(isset($data['diseno_y_arte'])){
+    $arrayIntereses['diseno_y_arte'] = true;  
+  }else{
+    $arrayIntereses['diseno_y_arte'] = false;
+  }
+
+  if(isset($data['fotografia'])){
+    $arrayIntereses['fotografia'] = true;  
+  }else{
+    $arrayIntereses['fotografia'] = false;
+  }
+
+  if(isset($data['programacion_y_logica'])){
+    $arrayIntereses['programacion_y_logica'] = true;  
+  }else{
+    $arrayIntereses['programacion_y_logica'] = false;
+  }
+  
+  return $arrayIntereses;
+}
+
+
+
+
+
 
 //FUNCIÓN PARA CREAR UN ARRAY ASOCIATIVO CON LOS DATOS QUE ME LLEGAN POR POST
-
 function guardarUsuario($data) {
     $dirJson = "usuarios.json";
     $totalUsuarios = 0;
@@ -275,9 +316,8 @@ function guardarUsuario($data) {
         "birth" => $data['birth'],
         "username" => $data["username"],
         "password" => password_hash($data["password"], PASSWORD_DEFAULT),
-        "intereses" => $data['intereses'],
         //"tyc_check" => $data['tyc_check'], ESTE CAMPO NO SE GUARDA
-        "sex" => $data['sex']
+        "sex" => $data['sex'] 
     ];
     return $usuario;
 }
@@ -299,7 +339,7 @@ function validarLogin($data){
             }elseif(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
                 $errores['email'] = "Este campo debe ser un mail";
             }else{
-                //INVOCAMOS LA FUNCION BUSCAR USUARIO POR EMAIL SI DEVUELVE FALSE ENTONCES NO EXISTE EN LA BASE DE DATOS
+                //INVOCAMOS LA FUNCION BUSCAR USUARIO SI DEVUELVE FALSE ENTONCES NO EXISTE EN LA BASE DE DATOS
                 if (buscarUsuario("email",$data['email']) == false){
                     $errores['email'] = "Este mail no existe en la base de datos";
                 } else {
@@ -325,6 +365,7 @@ function buscarUsuario($campo, $valor) {
   }
   return false;
 }
+
 
 //FUNCIONES PARA LA SESION Y LAS COOKIES
 function crearSesion($usuario) {

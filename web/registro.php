@@ -27,6 +27,12 @@ if($_POST){
             
             // al array asocativo del nuevo usuario, le creo la posición "avatar" para guardar el nombre de la imagen que subió el usuario
             $usuario['avatar'] = $nombreImagen;
+
+            //Llamo a la funcion arrayintereses() para generar un array con los intereses marcados por el usuario 
+            $intereses = arrayIntereses($_POST);
+
+            //Ese array lo vamos a guardar en el indice intereses del usuario
+            $usuario['intereses'] = $intereses;
             
             // me traigo el contenido del archivo usuarios.json
             $listaDeUsuarios = file_get_contents('usuarios.json');
@@ -173,6 +179,7 @@ if($_POST){
                                             Acepto los <a href="#" class="subrayado">términos y condiciones</a> y la <a href="#" class="subrayado">política de privacidad</a>.
                                         </label>
                                         <small ><?=mostrarErrores('tyc_check')?></small>
+                                        <small ><?=mostrarErrores('intereses')?></small>
                                     </div>
                                 </div>
                                 
@@ -200,21 +207,20 @@ if($_POST){
                                                     
                                                     <div class="seleccion-intereses d-flex flex-column flex-md-row">
                                                         
-                                                        <input type="checkbox" id="myCheckbox1" name="intereses"  value="diseno_y_arte" />
+                                                        <input type="checkbox" id="myCheckbox1" name="diseno_y_arte"  />
                                                         <label for="myCheckbox1">
                                                             <img src="img/categoria-diseno.jpg"><p class="mt-2">Diseño y Arte</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox2" value="fotografía" name="intereses"  />
+                                                        <input type="checkbox" id="myCheckbox2"  name="fotografia"  />
                                                         <label for="myCheckbox2">
                                                             <img src="img/categoria-fotografia.jpg"><p class="mt-2">Fotografía</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox3" name="intereses" value="opcion_programación_y_lógica" />
+                                                        <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" />
                                                         <label for="myCheckbox3">
                                                             <img src="img/categoria-programacion.jpg"><p class="mt-2">Programación y Lógica</p>
                                                         </label>
-                                                        <small ><?=mostrarErrores('intereses')?></small>
                                                     </div>
                                                     
                                                     

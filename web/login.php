@@ -47,7 +47,7 @@ if(!$errores && $_POST){
                     <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
                 </div>
                 <h3>Iniciar sesión</h3>
-                <input type="email" id="email" name="email" value="" placeholder="Correo electrónico" required><br>
+                <input type="email" id="email" name="email" value="<?=persistenciaLogin('email')?>" placeholder="Correo electrónico" required><br>
                 <small><?=isset($errores['email']) ? $errores['email'] : ""?></small>
                 <input type="password" id="pass" name="password" placeholder="Contraseña" required>
                 <small><?=isset($errores['password']) ? $errores['password'] : ""?></small>
