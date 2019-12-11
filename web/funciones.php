@@ -270,7 +270,7 @@ function guardarUsuario($data) {
     $usuario = [
         "id" => $data['id'],
         "name" => $data["name"],
-        "lastname" => $data['username'],
+        "lastname" => $data['lastname'],
         "email" => $data["email"],
         "birth" => $data['birth'],
         "username" => $data["username"],
