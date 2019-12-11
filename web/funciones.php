@@ -285,46 +285,63 @@ function guardarUsuario($data) {
 //FUNCIONES AGREGADAS
 
 //FUNCIÓN PARA VALIDAR CAMPOS DEL FORMULARIO DE LOGIN
-function validarLogin($data, $arrayUsuarios) {
-  //VERIFICAMOS QUE EL CAMPO NO ESTE VACIO
-  if(empty($data['email']) == true) {
-     return "Este campo no puede estar vacio";
-  }
-  //VERIFICAMOS QUE EL CAMPO SEA UN MAIL
-  if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-      return "Este campo debe ser un mail";
-  }
 
-  //VERIFICAMOS QUE EL MAIL EXISTA EN LA BASE DE DATOS
-  $indiceUsuario = buscarUsuario($arrayUsuarios,"email",$data["email"]);
-  if($indiceUsuario == -1) {
-    return "El mail no existe en la base de datos";
-  }
-  return "";
+function validarLogin($data){
+    $usuario = [];
+    $errores = [];
+    //CHEQUEAMOS QUE EXISTA POST Y CONTENGA ALGO EN ELLA
+    if($data){
+        if(isset($data['email'])){
+            //VERIFICAMOS QUE EL CAMPO NO ESTE VACIO
+            if(empty($data['email']) == true){
+                $errores['email']= "Este campo no puede estar vacio";
+                //VERIFICAMOS QUE EL CAMPO SEA UN MAIL
+            }elseif(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+                $errores['email'] = "Este campo debe ser un mail";
+            }else{
+                //INVOCAMOS LA FUNCION BUSCAR USUARIO POR EMAIL SI DEVUELVE FALSE ENTONCES NO EXISTE EN LA BASE DE DATOS
+                if (buscarUsuario("email",$data['email']) == false){
+                    $errores['email'] = "Este mail no existe en la base de datos";
+                } else {
+                    $usuario = buscarUsuario("email",$data['email']);
+                    if(password_verify($data['password'] , $usuario['password'] ) == false){
+                        $errores['password'] = "La contraseña no es correcta";
+                    }
+                }
+            }
+        }
+    }
+    return $errores;
 }
 
+
+
 //FUNCION PARA BUSCAR UN USUARIO CON UN DETERMINADO VALOR EN UNO DE SUS CAMPOS
-function buscarUsuario($arrayUsuarios,$campo, $valor) {
+function buscarUsuario($campo, $valor) {
+  $arrayUsuarios = abrirJson('usuarios.json');
   for($i = 0; $i < count($arrayUsuarios); $i++) {
     if(isset($arrayUsuarios[$i][$campo]) && $arrayUsuarios[$i][$campo] == $valor)
-      return $i;
+      return $arrayUsuarios[$i];
   }
-  return -1;
+  return false;
 }
 
 //FUNCIONES PARA LA SESION Y LAS COOKIES
 function crearSesion($usuario) {
   foreach($usuario as $campo => $valor) {
-    if($clave != "password") {
+    if($campo != "password") {
       $_SESSION[$campo] = $valor;
     }
   }
 }
+
+
 function crearSesionConCookies() {
   foreach($_COOKIE as $campo => $valor) {
     $_SESSION[$campo] = $valor;
   }
 }
+
 function crearCookies() {
   foreach($_SESSION as $campo => $valor) {
     setcookie($campo,$valor, time() + 60 * 60 * 24 * 7);

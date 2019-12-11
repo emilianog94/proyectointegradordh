@@ -11,34 +11,18 @@ if(isset($_SESSION["email"])) {
     header("location:feed.php");
 }
 
-$email  = "";
 
-//CHEQUEAMOS QUE EXISTA POST Y CONTENGA ALGO EN ELLA
-if($_POST) {
-    //ABRIMOS LA BASE DE DATOS PARA PODER VERIFICAR TODO
-    $arrayDeUsuarios = abrirJson('usuarios.json');
-    //LLAMAMOS A LA FUNCION DE VALIDAR PARA EL EMAIL
-    $errores['email'] = validarLogin($_POST, $arrayDeUsuarios);
-    //SI EL EMAIL ESTA CORRECTO DESPUES HACEMOS LO DEMAS
-    if(empty($errores['email'])) {
-        //PERSISTIMOS EL VALOR DEL CAMPO MAIL AHORA QUE SE ENCUENTRA VALIDADO
-        $email = $_POST["email"];
-        //BUSCAMOS EL USUARIO PARA PODER TRABAJAR CON SUS DATOS
-        $indiceUsuario = buscarUsuario($arrayDeUsuarios,"email",$_POST["email"]);
-        //VERIFICAMOS QUE LA CONTRASEÑA CORRESPONDA
-        if(!password_verify($_POST['password'] , $arrayDeUsuarios[$indiceUsuario]['password'])){
-            $errores['password'] = "Contraseña incorrecta";
-        } else {
+$errores = validarLogin($_POST);
 
-            //SI TODO ES CORRECTO SE LOGUEA AL USUARIO
-            crearSesion($arrayDeUsuarios[$indiceUsuario]);
-            //GUARDAMOS LA COOKIE SI EL USUARIO MARCO LA CASILLA RECORDAR
-            if(isset($_POST['recordar'])){
-                crearCookies();
-            }
-            //SE REDIRIGE AL USUARIO AL FEED
-            header('location:feed.php');exit;
-        }
+if(!$errores && $_POST){
+   
+    crearSesion(buscarUsuario("email", $_POST['email']));
+
+    if(isset($_POST['recordar'])){
+        crearCookies();
+        header("location:feed.php");exit;
+    }else{
+        header("location:feed.php");exit;
     }
 }
 
@@ -63,7 +47,7 @@ if($_POST) {
                     <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
                 </div>
                 <h3>Iniciar sesión</h3>
-                <input type="email" id="email" name="email" value="<?=$email?>" placeholder="Correo electrónico" required><br>
+                <input type="email" id="email" name="email" value="" placeholder="Correo electrónico" required><br>
                 <small><?=isset($errores['email']) ? $errores['email'] : ""?></small>
                 <input type="password" id="pass" name="password" placeholder="Contraseña" required>
                 <small><?=isset($errores['password']) ? $errores['password'] : ""?></small>

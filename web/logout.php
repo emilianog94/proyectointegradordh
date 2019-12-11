@@ -7,7 +7,7 @@ session_start();
 session_destroy();
 
 //SI EXISTE UNA COOKIE BORRA TODAS
-if($_COOKIE["email"]) {
+if(isset($_COOKIE["email"])) {
     borrarCookies();
 }
 //SE REDIRIGE A LA PÁGINA PRINCIPAL
