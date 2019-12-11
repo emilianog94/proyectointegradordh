@@ -1,47 +1,43 @@
 <?php 
-session_start();
 require_once("funciones.php");
 
+session_start();
+//SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
+if(isset($_COOKIE["email"])) {
+    crearSesionConCookies();
+}
+//SI LA SESIÓN ESTÁ INICIADA NO SE PUEDE ACCEDER AL LOGIN
+if(isset($_SESSION["email"])) {
+    header("location:feed.php");
+}
+
+$email  = "";
 
 //CHEQUEAMOS QUE EXISTA POST Y CONTENGA ALGO EN ELLA
-if($_POST){
-    if(isset($_POST['email'])){
-        //VERIFICAMOS QUE EL CAMPO NO ESTE VACIO
-        if(empty($_POST['email']) == true){
-            $errores['email']= "Este campo no puede estar vacio";
-        //VERIFICAMOS QUE EL CAMPO SEA UN MAIL
-        }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-            $errores['email'] = "Este campo debe ser un mail";
-        }else{
-            //LUEGO DE LAS VERIFICACIONES ABRIMOS LA BASE DE DATOS PARA BUSCAR EL MAIL
-            $arrayDeUsuarios = abrirJson('usuarios.json');
+if($_POST) {
+    //ABRIMOS LA BASE DE DATOS PARA PODER VERIFICAR TODO
+    $arrayDeUsuarios = abrirJson('usuarios.json');
+    //LLAMAMOS A LA FUNCION DE VALIDAR PARA EL EMAIL
+    $errores['email'] = validarLogin($_POST, $arrayDeUsuarios);
+    //SI EL EMAIL ESTA CORRECTO DESPUES HACEMOS LO DEMAS
+    if(empty($errores['email'])) {
+        //PERSISTIMOS EL VALOR DEL CAMPO MAIL AHORA QUE SE ENCUENTRA VALIDADO
+        $email = $_POST["email"];
+        //BUSCAMOS EL USUARIO PARA PODER TRABAJAR CON SUS DATOS
+        $indiceUsuario = buscarUsuario($arrayDeUsuarios,"email",$_POST["email"]);
+        //VERIFICAMOS QUE LA CONTRASEÑA CORRESPONDA
+        if(!password_verify($_POST['password'] , $arrayDeUsuarios[$indiceUsuario]['password'])){
+            $errores['password'] = "Contraseña incorrecta";
+        } else {
 
-            foreach($arrayDeUsuarios as $usuarios){
-                //BUSCAMOS EN EL MAIL EN LA BASE DE DATOS RECORRIENDO USUARIOS POR USUARIO
-
-                if ($usuarios['email'] == $_POST['email']){ //SI ENCUENTRA UN USUARIO VA A REALIZAR EL PASSWORD VERIFY CON LO QUE SE MANDA POR POST
-                    $flag_existe_mail= true; 
-                    if(password_verify($_POST['password'] , $usuarios['password'])== true){
-                        //SI SE ENCUENTRA USUARIO VAMOS A CHEQUEAR SI EL CAMPO RECORDAR USUARIO FUE TILDADO Y VAMOS A LEVANTAR UNA COOKIE PARA MANTENERLO LOGEADO
-                        $_SESSION = $usuarios;
-                        //pre($_SESSION);exit;
-                        if(isset($_POST['recordar'])){
-                            setcookie("recordar_usuario" , $_SESSION['id'] , time() + (60 * 60 * 24 * 30));
-                        }
-                        header('location:feed.php');exit;
-                    }else{
-                        $errores['password'] = "Contraseña incorrecta";
-                    break;
-                    }
-                }else{
-                    $flag_existe_mail = false;
-                }
+            //SI TODO ES CORRECTO SE LOGUEA AL USUARIO
+            crearSesion($arrayDeUsuarios[$indiceUsuario]);
+            //GUARDAMOS LA COOKIE SI EL USUARIO MARCO LA CASILLA RECORDAR
+            if(isset($_POST['recordar'])){
+                crearCookies();
             }
-            //Si llego a este punto es por que no existe el mail en la base de datos asi que lo vamos a mandar a register.php mediante un link
-            if ($flag_existe_mail == false){
-                $errores['no-email'] = "El mail no existe en la base de datos";
-                $linkRegistro = "register.php";
-            }
+            //SE REDIRIGE AL USUARIO AL FEED
+            header('location:feed.php');exit;
         }
     }
 }
@@ -67,13 +63,12 @@ if($_POST){
                     <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
                 </div>
                 <h3>Iniciar sesión</h3>
-                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
-                <small><?=isset($errores['email']) ? $errores['email'] : ""?></small><br>
-                <small><?=isset($errores['no-email']) ? $errores['no-email'] : ""?></small>
+                <input type="email" id="email" name="email" value="<?=$email?>" placeholder="Correo electrónico" required><br>
+                <small><?=isset($errores['email']) ? $errores['email'] : ""?></small>
                 <input type="password" id="pass" name="password" placeholder="Contraseña" required>
                 <small><?=isset($errores['password']) ? $errores['password'] : ""?></small>
                 <p id="error-ingreso" class="fuente-chica" name="error-ingreso"></p>
-                <p id="checkbox-recordar"><input type="checkbox" name="recordar" id="recordar" checked><label for="recordar" class="fuente-chica">Recordarme</label></p>
+                <p id="checkbox-recordar"><input type="checkbox" name="recordar" id="recordar"><label for="recordar" class="fuente-chica">Recordarme</label></p>
                 <input type="submit" id="boton-ingresar" value="Ingresar">
                 <p id="olvido-password" class="fuente-chica"><a href="#" class="text-secondary">¿Olvidaste tu contraseña?</a></p>
                 <p id="registrarse" class="fuente-chica"><a  href="registro.php" class="font-weight-bold d-inline-block" alt="Enlace a la página de registro">¿No tienes cuenta? Regístrate aquí.</a></p>

@@ -29,7 +29,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Modificar perfil</a>
-          <a class="dropdown-item" href="#"><i class="fas fa-times"></i> Cerrar Sesión</a>
+          <a class="dropdown-item" href="logout.php"><i class="fas fa-times"></i> Cerrar Sesión</a>
 </li>
 
 

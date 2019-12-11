@@ -1,40 +1,50 @@
 <?php
+require_once('funciones.php');
 
-
-require('funciones.php');
+session_start();
+//SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
+if(isset($_COOKIE["email"])) {
+    crearSesionConCookies();
+}
+//SI LA SESIÓN ESTÁ INICIADA NO SE PUEDE ACCEDER AL LOGIN
+if(isset($_SESSION["email"])) {
+    header("location:feed.php");
+}
 
 if($_POST){
     $errores = [];
 
-if (isset($_POST)){
+    if (isset($_POST)){
 
-    $errores = validar($_POST);
+        $errores = validarRegistro($_POST);
 
-    if(!$errores) {
-        // llamo a la función guardarUsuario() --> me devuelve un array asociativo con los datos que envió el usuario
-        $usuario = guardarUsuario($_POST);
-        
-        // llamo a la función guardarAvatar() --> guarda la imagen y devuelve le nombre con el que guardé la imagen
-        $nombreImagen = guardarAvatar();
-        
-        // al array asocativo del nuevo usuario, le creo la posición "avatar" para guardar el nombre de la imagen que subió el usuario
-        $usuario['avatar'] = $nombreImagen;
-        
-        // me traigo el contenido del archivo usuarios.json
-        $listaDeUsuarios = file_get_contents('usuarios.json');
-        
-        // convierto ese contenido a formato array para poder manipular los datos
-        $arrayUsuarios = json_decode($listaDeUsuarios, true);
-        
-        // en la última posicón del array de usuarios me guardo al nuevo usuario
-        $arrayUsuarios[] = $usuario;
-        
-        // convierto el aray de usuarios a formato json para volver a guardarlo en el archivo de usuarios
-        $todosLosUsuarios = json_encode($arrayUsuarios);
-        
-        // guardo el json completo de ususarios en usuarios.json 
-        file_put_contents('usuarios.json', $todosLosUsuarios);
+        if(!$errores) {
+            // llamo a la función guardarUsuario() --> me devuelve un array asociativo con los datos que envió el usuario
+            $usuario = guardarUsuario($_POST);
+            
+            // llamo a la función guardarAvatar() --> guarda la imagen y devuelve le nombre con el que guardé la imagen
+            $nombreImagen = guardarAvatar();
+            
+            // al array asocativo del nuevo usuario, le creo la posición "avatar" para guardar el nombre de la imagen que subió el usuario
+            $usuario['avatar'] = $nombreImagen;
+            
+            // me traigo el contenido del archivo usuarios.json
+            $listaDeUsuarios = file_get_contents('usuarios.json');
+            
+            // convierto ese contenido a formato array para poder manipular los datos
+            $arrayUsuarios = json_decode($listaDeUsuarios, true);
+            
+            // en la última posicón del array de usuarios me guardo al nuevo usuario
+            $arrayUsuarios[] = $usuario;
+            
+            // convierto el aray de usuarios a formato json para volver a guardarlo en el archivo de usuarios
+            $todosLosUsuarios = json_encode($arrayUsuarios);
+            
+            // guardo el json completo de ususarios en usuarios.json 
+            file_put_contents('usuarios.json', $todosLosUsuarios);
 
+            // se redirige al usuario al login
+            header('location:login.php');exit;
         }
     }
 }

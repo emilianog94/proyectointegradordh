@@ -1,6 +1,5 @@
 <?php
 
-
 //FUNCION PRE PARA LOS VARDUMP LINDOS 
 function pre($dato){
   echo "<pre>";
@@ -25,7 +24,6 @@ function abrirJson($dirJson){
   return $arrayUsuarios;
 }
 
-
 //FUNCION PARA MODIFICAR EL ARCHIVO JSON, NECESITA EL NUEVO DATO , EL CAMPO QUE SE VA A MODIFICAR, EL DATO VIEJO PARA PODER REEMPLARLO Y UN ID PARA UNA VERIFICACION.
 
 function modificarJson($nuevo_dato , $campo_para_modificar, $dato_viejo  , $id){
@@ -41,10 +39,8 @@ function modificarJson($nuevo_dato , $campo_para_modificar, $dato_viejo  , $id){
   file_put_contents('usuarios.json' , $json); 
 }
 
-
-
 // FUNCIÓN PARA VALIDAR CAMPOS DEL FORMULARIO DE REGISTRO
-function validar($data) {
+function validarRegistro($data) {
 
     // Creo un array de errores vacío.
     $errores = [];
@@ -184,7 +180,7 @@ function validar($data) {
     //CAMPO TERMINOS Y CONDICIONES 
     if(isset($data['tyc_check'])){
       if(empty($data['tyc_check']))
-      $errores['tyc_check'] = "Debe marcar esta casilla para continuar";
+      $errores['tyc_check'] = "Debe aceptar los términos y condiciones para continuar";
     }
 
     // devuelvo el array de errores. Si no entró en ninǵun condicional de los declarados arriba, el array de errores va a estar vacío
@@ -265,15 +261,9 @@ function guardarUsuario($data) {
     $totalUsuarios = 0;
 
     $todosLosUsuarios = abrirJson($dirJson);
-   if(empty ($todosLosUsuarios)){
-     $data['id'] = 1;
-
-  } else{
-    
-    $totalUsuarios = count($todosLosUsuarios);
-
-   }
-    
+    if(!empty ($todosLosUsuarios)) {
+      $totalUsuarios = count($todosLosUsuarios);
+    }
     $data['id'] = $totalUsuarios + 1;
     
     
@@ -286,10 +276,63 @@ function guardarUsuario($data) {
         "username" => $data["username"],
         "password" => password_hash($data["password"], PASSWORD_DEFAULT),
         "intereses" => $data['intereses'],
-        "tyc_check" => $data['tyc_check'],
+        //"tyc_check" => $data['tyc_check'], ESTE CAMPO NO SE GUARDA
         "sex" => $data['sex']
     ];
     return $usuario;
 }
 
+//FUNCIONES AGREGADAS
+
+//FUNCIÓN PARA VALIDAR CAMPOS DEL FORMULARIO DE LOGIN
+function validarLogin($data, $arrayUsuarios) {
+  //VERIFICAMOS QUE EL CAMPO NO ESTE VACIO
+  if(empty($data['email']) == true) {
+     return "Este campo no puede estar vacio";
+  }
+  //VERIFICAMOS QUE EL CAMPO SEA UN MAIL
+  if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+      return "Este campo debe ser un mail";
+  }
+
+  //VERIFICAMOS QUE EL MAIL EXISTA EN LA BASE DE DATOS
+  $indiceUsuario = buscarUsuario($arrayUsuarios,"email",$data["email"]);
+  if($indiceUsuario == -1) {
+    return "El mail no existe en la base de datos";
+  }
+  return "";
+}
+
+//FUNCION PARA BUSCAR UN USUARIO CON UN DETERMINADO VALOR EN UNO DE SUS CAMPOS
+function buscarUsuario($arrayUsuarios,$campo, $valor) {
+  for($i = 0; $i < count($arrayUsuarios); $i++) {
+    if(isset($arrayUsuarios[$i][$campo]) && $arrayUsuarios[$i][$campo] == $valor)
+      return $i;
+  }
+  return -1;
+}
+
+//FUNCIONES PARA LA SESION Y LAS COOKIES
+function crearSesion($usuario) {
+  foreach($usuario as $campo => $valor) {
+    if($clave != "password") {
+      $_SESSION[$campo] = $valor;
+    }
+  }
+}
+function crearSesionConCookies() {
+  foreach($_COOKIE as $campo => $valor) {
+    $_SESSION[$campo] = $valor;
+  }
+}
+function crearCookies() {
+  foreach($_SESSION as $campo => $valor) {
+    setcookie($campo,$valor, time() + 60 * 60 * 24 * 7);
+  }
+}
+function borrarCookies() {
+  foreach($_COOKIE as $campo => $valor) {
+    setcookie($campo,"", -1);
+  }
+}
 ?>
