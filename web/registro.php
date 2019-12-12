@@ -11,6 +11,8 @@ if(isset($_SESSION["email"])) {
     header("location:feed.php");
 }
 
+
+
 if($_POST){
     $errores = [];
 
@@ -138,7 +140,7 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
-                                        <input type="password" class="form-control is-valid" name="confirm-password" required>
+                                        <input type="password" class="form-control" name="confirm-password" required>
                                         <small> <?=mostrarErrores('confirm-password')?></small>
                                     </div>
                                 </div>

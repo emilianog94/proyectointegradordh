@@ -39,6 +39,162 @@ function modificarJson($nuevo_dato , $campo_para_modificar, $dato_viejo  , $id){
   file_put_contents('usuarios.json' , $json); 
 }
 
+
+
+// FUNCIÓN PARA VALIDAR CAMPOS DEL MODIFICADOR DE DATOS
+function validarModificacion($data) {
+
+  // Creo un array de errores vacío.
+  $errores = [];
+
+  // CAMPO NOMBRE
+  $nombre = trim($data["name"]);
+  // si está vacío,
+  if($nombre == "") {
+    // creo la posición "name" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
+    $errores['name'] = "El nombre es obligatorio";
+  }
+
+  // CAMPO EMAIL
+  $email = trim($data['email']);
+  $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+  // si está vacío
+  if($email == ""){
+    // creo la posición "email" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
+    $errores['email'] = "El mail es obligatorio";
+  } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errores['email'] = "El email ingresado no es válido";
+  } else {
+
+    //ABRO EL JSON PARA CHEQUEAR QUE NO EXISTA OTRO MAIL IGUAL EN LA BASE DE DATOS
+    $directorioJson = "usuarios.json";
+    $todosLosUsuarios = abrirJson($directorioJson);
+    if(!empty($todosLosUsuarios)){
+      foreach($todosLosUsuarios as $usuarios){
+        if($usuarios['email'] == $_SESSION['email']){
+        }
+        elseif($usuarios['email'] == $_POST['email']){
+          $errores['email'] = "Este mail ya pertenece a otra cuenta";
+        }
+
+      }
+    }
+
+  //AQUI SE HACE LA VALIDACION CON LA CONFIRMACION DE MAIL
+    if(isset($_POST['validacion_email'])){
+      if(strlen($_POST['validacion_email'])== 0){
+          $errores['validacion_email'] = "Este campo no se puede encontrar vacio";
+      }elseif (!($_POST['validacion_email'] == $_POST['email'])){
+          $errores['validacion_email'] = "El mail no coincide con el ingresado";
+      }else{
+          $validado['validacion_email'] = $_POST['validacion_email'];
+      }
+  }
+  }
+
+  
+  // CAMPO AVATAR
+
+  if(isset($_FILES['avatar'])){
+    $avatar = $_FILES['avatar'];
+
+    if($avatar['error']) {
+
+    } else {
+        // obtengo la extensión
+        $ext = strtolower(pathinfo($avatar['name'], PATHINFO_EXTENSION));
+        if($ext !== 'jpg' && $ext !== 'jpeg' && $ext !== 'png' ) {
+          $errores['avatar'] = "La extensión del archivo debe ser jpg, png ó jpeg";
+        }elseif ($avatar['size'] > 2*MB){
+            $errores['avatar'] == "El archivo es demasiado pesado, maximo 2MB";
+        }
+  
+     }
+
+
+  }
+
+
+
+  // CAMPO CONTRASEÑA
+  $password = trim($data['password']);
+  // si está vacío
+  if($password == "" ) {
+    // NO PASA NADA
+  }else{
+    $uppercase = preg_match('@[A-Z]@', $_POST['password']);
+    $lowercase = preg_match('@[a-z]@', $_POST['password']);
+    $number    = preg_match('@[0-9]@', $_POST['password']);
+    $specialChars = preg_match('@[^\w]@', $_POST['password']);
+    // si tiene una longitud menos a 6
+    if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($_POST['password']) < 8) {
+    // creo la posición "password" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
+    $errores['password'] = "La contraseña debe tener al menos 8 caracteres de longitud y debe incluir al menos una letra mayúscula, un número y un carácter especial";
+    }
+  }
+
+  
+  // CAMPO REPETIR CONTRASEÑA
+  $cpassword = trim($data['confirm-password']);
+  // si está vacío
+  if($cpassword == "") {
+    // NO PASA NADA
+  } 
+    // si es diferente al password que escribió
+    elseif($cpassword != $password) {
+    // creo la posición "repassword" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
+    $errores['confirm-password'] = "Las contraseñas no coinciden";
+  }
+
+
+}
+
+
+//FUNCION PARA PERSISTENCIA PARA REGISTRO
+function persistenciaRegistro($campo_a_persistir){
+//  REVISO QUE EXISTA POST
+  if ($_POST){
+    if (isset($_POST)){
+      $errores = [];
+      //ME TRAIGO ERRORES PARA SABER SI PERSISTIR EN EL DATO O NO
+      $errores = validarRegistro($_POST);
+      //COMPRUEBO QUE NO EXISTA ERROR EN EL CAMPO A VERIFICAR (ESTO SE SABE SI ERRORES ESTA VACIO)
+      if (isset($errores["$campo_a_persistir"]) == ""){
+        //DEVUELVO VALOR DEL CAMPO SI PASA LA VERIFICACION
+        return $_POST["$campo_a_persistir"];
+      }
+    }else{
+      //EN CASO DE QUE NO ESTE SETEADA DEVOLVERA NADA
+      return "";
+    }
+  }
+}
+
+//FUNCION PARA PERSISTENCIA PARA LOGIN
+function persistenciaLogin($campo_a_persistir){
+//  REVISO QUE EXISTA POST
+  if ($_POST){
+    if (isset($_POST)){
+      $errores = [];
+      //ME TRAIGO ERRORES PARA SABER SI PERSISTIR EN EL DATO O NO
+      $errores = validarLogin($_POST);
+      //COMPRUEBO QUE NO EXISTA ERROR EN EL CAMPO A VERIFICAR (ESTO SE SABE SI ERRORES ESTA VACIO)
+      if (isset($errores["$campo_a_persistir"]) == ""){
+        //DEVUELVO VALOR DEL CAMPO SI PASA LA VERIFICACION
+        return $_POST["$campo_a_persistir"];
+      }
+    }else{
+      //EN CASO DE QUE NO ESTE SETEADA DEVOLVERA NADA
+      return "";
+    }
+  }
+}
+
+
+
+
+
+
 // FUNCIÓN PARA VALIDAR CAMPOS DEL FORMULARIO DE REGISTRO
 function validarRegistro($data) {
 
@@ -186,45 +342,7 @@ function validarRegistro($data) {
   }
 
 
-//FUNCION PARA PERSISTENCIA PARA REGISTRO
-function persistenciaRegistro($campo_a_persistir){
-  //  REVISO QUE EXISTA POST
-    if ($_POST){
-      if (isset($_POST)){
-        $errores = [];
-        //ME TRAIGO ERRORES PARA SABER SI PERSISTIR EN EL DATO O NO
-        $errores = validarRegistro($_POST);
-        //COMPRUEBO QUE NO EXISTA ERROR EN EL CAMPO A VERIFICAR (ESTO SE SABE SI ERRORES ESTA VACIO)
-        if (isset($errores["$campo_a_persistir"]) == ""){
-          //DEVUELVO VALOR DEL CAMPO SI PASA LA VERIFICACION
-          return $_POST["$campo_a_persistir"];
-        }
-      }else{
-        //EN CASO DE QUE NO ESTE SETEADA DEVOLVERA NADA
-        return "";
-      }
-    }
-}
 
-//FUNCION PARA PERSISTENCIA PARA LOGIN
-function persistenciaLogin($campo_a_persistir){
-  //  REVISO QUE EXISTA POST
-    if ($_POST){
-      if (isset($_POST)){
-        $errores = [];
-        //ME TRAIGO ERRORES PARA SABER SI PERSISTIR EN EL DATO O NO
-        $errores = validarLogin($_POST);
-        //COMPRUEBO QUE NO EXISTA ERROR EN EL CAMPO A VERIFICAR (ESTO SE SABE SI ERRORES ESTA VACIO)
-        if (isset($errores["$campo_a_persistir"]) == ""){
-          //DEVUELVO VALOR DEL CAMPO SI PASA LA VERIFICACION
-          return $_POST["$campo_a_persistir"];
-        }
-      }else{
-        //EN CASO DE QUE NO ESTE SETEADA DEVOLVERA NADA
-        return "";
-      }
-    }
-}
 
 //FUNCION PARA MOSTRAR ERRORES 
 
@@ -291,6 +409,52 @@ function arrayIntereses($data){
   return $arrayIntereses;
 }
 
+
+//FUNCIÓN PARA CREAR UN ARRAY ASOCIATIVO CON LOS DATOS QUE ME LLEGAN POR POST
+function guardarModificacion($data) {
+  $dirJson = "usuarios.json";
+
+  $todosLosUsuarios = abrirJson($dirJson);
+ 
+  foreach ($todosLosUsuarios as $usuario) {
+    if($usuario['id'] == $_SESSION['id']) {
+      $usuario['email'] = $_POST['email'];
+      $usuario['name'] = $_POST['name'];
+      $usuario['lastname'] = $_POST['lastname'];
+
+      if($usuario['intereses']['programacion_y_logica']=true){
+        $usuario['intereses']['programacion_y_logica'] = true;
+      }
+      else{
+        $usuario['intereses']['programacion_y_logica']=false;
+      }
+
+      if($usuario['intereses']['fotografia']=true){
+        $usuario['intereses']['fotografia'] = true;
+      }
+      else{
+        $usuario['intereses']['fotografia']=false;
+      }      
+
+      if(isset($usuario['intereses']['diseno_y_arte'])){
+        $usuario['intereses']['diseno_y_arte'] = true;
+      }
+      else{
+        $usuario['intereses']['diseno_y_arte']=false;
+      }
+
+
+    if(isset($_FILES['avatar'])){
+      $nombreImagen = guardarAvatar();
+      $usuario['avatar'] = $nombreImagen;
+    }  
+
+      
+
+    }
+  }
+  return $usuario;
+}
 
 
 
