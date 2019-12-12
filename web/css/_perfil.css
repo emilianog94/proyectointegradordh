@@ -43,4 +43,8 @@ header.profile{
     background-color: rgb(255, 255, 255);
 }
 
+.profile-pic{
+    max-width:200px;
+}
+
 /*FIN ESTILOS PROFILE*/

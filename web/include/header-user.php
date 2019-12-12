@@ -12,7 +12,8 @@
 
 
         <li class="nav-item">
-          <a class="nav-link" href="profile.php"><i class="fas fa-user"></i> &nbsp; Franco F.</a>
+
+          <a class="nav-link" href="profile.php"><i class="fas fa-user"></i> &nbsp; <?=$_SESSION['name'] . " " . $_SESSION['lastname'];?></a>
         </li>
 
         <li class="nav-item">
@@ -28,7 +29,7 @@
           
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Modificar perfil</a>
+          <a class="dropdown-item" href="modify-profile.php"><i class="fas fa-cog"></i> Modificar perfil</a>
           <a class="dropdown-item" href="logout.php"><i class="fas fa-times"></i> Cerrar Sesión</a>
 </li>
 

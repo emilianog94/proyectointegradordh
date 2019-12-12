@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -15,11 +18,11 @@ include("include/head.php");
       <!--<div class="row">-->
         <!--<div class="col-12">-->
           <div class="text-white info_profile text-center pt-5 pb-5">
-            <img class="img-thumbnail rounded-circle" src="img/head_profile.png" alt="head_profile">        
-            <h1>Franco Fourmantin</h1>
-            <h2>@Franklinss</h2>
-            <h3>challys solved:123</h3>
-            <h3>challys created:123</h3>
+            <img class="img-thumbnail rounded-circle profile-pic" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile">        
+            <h1><?=$_SESSION['name'] . " " . $_SESSION['lastname'];?></h1>
+            <h2>@<?=$_SESSION['username'];?></h2>
+            <h3>Challys creados: 0</h3>
+            <h3>Challys resultos: 9</h3>
           </div>
         </div>
       </div>
