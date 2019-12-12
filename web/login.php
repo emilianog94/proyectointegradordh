@@ -54,7 +54,7 @@ if(!$errores && $_POST){
                 <p id="error-ingreso" class="fuente-chica" name="error-ingreso"></p>
                 <p id="checkbox-recordar"><input type="checkbox" name="recordar" id="recordar"><label for="recordar" class="fuente-chica">Recordarme</label></p>
                 <input type="submit" id="boton-ingresar" value="Ingresar">
-                <p id="olvido-password" class="fuente-chica"><a href="#" class="text-secondary">¿Olvidaste tu contraseña?</a></p>
+                <p id="olvido-password" class="fuente-chica"><a href="recuperar-contrasena.php" class="text-secondary">¿Olvidaste tu contraseña?</a></p>
                 <p id="registrarse" class="fuente-chica"><a  href="registro.php" class="font-weight-bold d-inline-block" alt="Enlace a la página de registro">¿No tienes cuenta? Regístrate aquí.</a></p>
             </form>
         </div>

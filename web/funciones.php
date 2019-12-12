@@ -29,7 +29,7 @@ function abrirJson($dirJson){
 function modificarJson($nuevo_dato , $campo_para_modificar, $dato_viejo  , $id){
   $arrayDeUsuarios = abrirJson("usuarios.json");
   foreach($arrayDeUsuarios as $usuarios){
-    if ($usuarios["$campo_para_modificar"] == $dato_viejo && $usuarios['id'] == $_SESSION['id']){
+    if ($usuarios["$campo_para_modificar"] == $dato_viejo &&  $usuarios['id'] == $id){
       $usuarios["$campo_para_modificar"] = $nuevo_dato;
     }
     $arrayDeUsuariosFinal[] = $usuarios;

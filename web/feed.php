@@ -11,8 +11,6 @@ include("include/head.php");
 <body class="animated fadeIn">
 <?php include('include/header-user.php');?>
   
-  
-  
   <!--Seccion Posteos -->
   
 		<div class="container contenedor-feed mt-3">
