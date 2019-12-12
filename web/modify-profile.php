@@ -19,6 +19,25 @@ $usuario = verificarUsuario($arrayUsuarios);
 
 */
 
+if($_POST){
+    $errores = [];
+    if (isset($_POST)){
+        $errores = validarModificacion($_POST);
+        if(!$errores) {
+            $modificacion = guardarModificacion($_POST);
+            
+            $listaDeUsuarios = file_get_contents('usuarios.json');
+            
+            $arrayUsuarios = json_decode($listaDeUsuarios, true);
+            $arrayUsuarios[$_SESSION['id']] = $modificacion;
+            $todosLosUsuarios = json_encode($arrayUsuarios);
+            file_put_contents('usuarios.json', $todosLosUsuarios);
+            crearSesion($modificacion);
+            pre($_SESSION);
+        }
+    }
+}
+
 $title="Modificar Perfil";
 include("include/head.php");
 ?>
