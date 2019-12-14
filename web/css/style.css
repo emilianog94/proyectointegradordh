@@ -72,6 +72,10 @@ footer a:hover{
 .color-verde{
     color:#1bb76e;
 }
+a.color-verde:hover {
+    color:#1bb76e;
+    text-decoration: underline;
+}
 
 .bg-verde{
     background-color:#1bb76e;

@@ -1,5 +1,24 @@
-.contenedor-principal-amigos {
-    background-color: #ccc;
+body.perfil .col-4{
+    padding: 0;
+}
+.boton_opciones{
+    padding: 0px;
+}
+
+body.perfil{
+    width: 100%;
+    background-color: #eeeeee;
+    box-sizing: border-box;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+header.profile{
+   /*background-image: url(../img/misc-background.jpg);*/
+    background-size: cover;
+
 }
 a, a:hover {
     text-decoration: none;
@@ -15,7 +34,7 @@ a, a:hover {
     padding-left: 20px;
 }
 .contenedor-amigos {
-    padding-bottom: 100px;
+    padding-bottom: 30px;
     width: 320px;
     margin: 0 auto;
 }

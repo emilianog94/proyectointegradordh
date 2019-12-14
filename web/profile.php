@@ -102,7 +102,7 @@ include("include/head.php");
           </section>
           
           <section class="previsualizacion_amigos shadow p-3 mt-3 mb-3">
-            <h4 class="color-verde">Lista de amigos</h4>
+            <h4><a class="color-verde" href="amigos.php">Lista de amigos</a></h4>
             <div class="container-fluid">
               <div class="row">
                 <div class="col-4">
