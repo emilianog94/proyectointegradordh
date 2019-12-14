@@ -6,7 +6,7 @@ session_start();
 if(isset($_COOKIE["email"])) {
     crearSesionConCookies();
 }
-//SI LA SESIÓN ESTÁ INICIADA NO SE PUEDE ACCEDER AL INICIO
+//SI LA SESIÓN NO ESTÁ INICIADA NO SE PUEDE ACCEDER A LA PÁGINA DE AMIGOS
 if(!isset($_SESSION["email"])) {
     header("location:index.php");
 }
@@ -42,30 +42,30 @@ if(!isset($_SESSION["email"])) {
     <title><?php echo $title;?></title>
 </head>
     
-<body>
-    <?php include("include/header.php");?>
+<body class="perfil animated fadeIn">
+    <?php include("include/header-user.php");?>
     
     <!--Seccion PORTADA -->
     <div class="contenedor-principal-amigos">
     <header class="profile">
         <div class="container">
-        <div class="row">
-            <div class="col-12">
-            <div class="info_profile text-center pt-5 pb-5">
-                <img class="img-thumbnail rounded-circle" src="img/head_profile.png" alt="head_profile">        
-                <h1>Franco Fourmantin</h1>
-                <h2>@Franklinss</h2>
+        <!-- <div class="row"> -->
+            <!-- <div class="col-12"> -->
+            <div class="text-white info_profile text-center pt-5 pb-5">
+                <img class="img-thumbnail rounded-circle profile-pic" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile">        
+                <h1><?=$_SESSION['name'] . " " . $_SESSION['lastname'];?></h1>
+                <h2>@<?=$_SESSION['username'];?></h2>
                 <h3>challys solved:123</h3>
                 <h3>challys created:123</h3>
             </div>
-            </div>
-        </div>
+            <!-- </div> -->
+        <!-- </div> -->
         </div>
     </header>
 
     <div class="container">
         <div class="barra-amigos">
-            <h6>Amigos de Franco Fourmantin (7)</h6>
+            <h6>Amigos de <?=$_SESSION['name'] . " " . $_SESSION['lastname'];?> (7)</h6>
         </div>
     </div>
     <div class="contenedor-amigos container">

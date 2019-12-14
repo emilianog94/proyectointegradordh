@@ -6,7 +6,7 @@ session_start();
 if(isset($_COOKIE["email"])) {
     crearSesionConCookies();
 }
-//SI LA SESIÓN ESTÁ INICIADA NO SE PUEDE ACCEDER AL LOGIN
+//SI LA SESIÓN NO ESTÁ INICIADA NO SE PUEDE ACCEDER AL PERFIL
 if(!isset($_SESSION["email"])) {
     header("location:index.php");
 }
