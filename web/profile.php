@@ -1,5 +1,15 @@
 <?php
+require_once('funciones.php');
+
 session_start();
+//SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
+if(isset($_COOKIE["email"])) {
+    crearSesionConCookies();
+}
+//SI LA SESIÓN ESTÁ INICIADA NO SE PUEDE ACCEDER AL LOGIN
+if(!isset($_SESSION["email"])) {
+    header("location:index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
