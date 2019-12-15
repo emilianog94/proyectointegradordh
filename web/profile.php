@@ -28,14 +28,17 @@ include("include/head.php");
       <!--<div class="row">-->
         <!--<div class="col-12">-->
           <div class="text-white info_profile text-center pt-5 pb-5">
-            <img class="img-thumbnail rounded-circle profile-pic" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile">        
+            <!-- <img class="img-thumbnail rounded-circle profile-pic" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile">         -->
+            <div class="contenedor-main-foto">
+                <img class="main-foto" src="avatars/<?=$_SESSION['avatar'];?>" alt="">
+            </div>
             <h1><?=$_SESSION['name'] . " " . $_SESSION['lastname'];?></h1>
             <h2>@<?=$_SESSION['username'];?></h2>
             <h3>Challys creados: 0</h3>
             <h3>Challys resueltos: 9</h3>
           </div>
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
     </div>
   </header>
   

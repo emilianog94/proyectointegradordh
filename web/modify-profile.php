@@ -87,7 +87,10 @@ include("include/header-user.php");
 
 
                         <div class="text-center">
-                            <img height = "100px" class="rounded-circle" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile">
+                            <!-- <img height = "100px" class="rounded-circle" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile"> -->
+                            <div class="mini-contenedor-foto">
+                                <img class="main-foto" src="avatars/<?=$_SESSION['avatar'];?>" alt="">
+                            </div>
                         </div>
 
                     

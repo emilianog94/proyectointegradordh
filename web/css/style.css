@@ -124,9 +124,28 @@ section.destacados h2{
     font-size:0.85em;
 }
 
-
-
-
-
-
-
+/* ESTILOS PARA LA FOTO DE PERFIL */
+/* Un contenedor que encierra la foto de perfil en un círculo */
+.contenedor-main-foto {
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+/* Un contenedor más chico para la parte de configuracion */
+.mini-contenedor-foto {
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+/* Foto de perfil */
+.main-foto {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translatex(-50%);
+    height: 100%;
+}
