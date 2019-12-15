@@ -1,5 +1,6 @@
 <?php
 session_start();
+require('funciones.php');
 /*$_SESSION['email']="eg@gmail.com";
 
 $listaDeUsuarios = file_get_contents('jsonPrueba.json');
@@ -24,19 +25,42 @@ if($_POST){
     if (isset($_POST)){
         $errores = validarModificacion($_POST);
         if(!$errores) {
-            $modificacion = guardarModificacion($_POST);
+            if(isset($_POST['name'])){
+                modificarJson($_POST['name'], "name" , $_SESSION['name'] , $_SESSION['id']);
+            }
+
+            if(isset($_POST['lastname'])){
+                modificarJson($_POST['lastname'] , "lastname" , $_SESSION['lastname'] , $_SESSION['id']);
+            }
+
+            if(isset($_POST['email'])){
+                modificarJson($_POST['email'] , "email" , $_SESSION['email'] , $_SESSION['id']);
+            }
+
+            if(isset($_POST['password'])){
+                if(!empty($_POST['password'])){
+                    $usuario = buscarUsuario("id" , $_SESSION['id']);
+                    modificarJson($_POST['password'] , "password" , $usuario['password'] , $_SESSION['id']);
+                }
+            }
+            if(isset($_POST['diseno_y_logica']) || isset($_POST['fotografia']) || isset($_POST['programacion_y_logica'])){
+                $intereses = arrayIntereses($_POST);
+                modificarJson($intereses , 'intereses' , $_SESSION['intereses'] , $_SESSION['id']);
+            }
+
+            if(isset($_FILES['avatar'])){
+                $nombreImagen = guardarAvatar();
+                modificarJson($nombreImagen , 'avatar' , $_SESSION['avatar'] , $_SESSION['id']);    
+            }
             
-            $listaDeUsuarios = file_get_contents('usuarios.json');
-            
-            $arrayUsuarios = json_decode($listaDeUsuarios, true);
-            $arrayUsuarios[$_SESSION['id']] = $modificacion;
-            $todosLosUsuarios = json_encode($arrayUsuarios);
-            file_put_contents('usuarios.json', $todosLosUsuarios);
-            crearSesion($modificacion);
-            pre($_SESSION);
         }
+
+        $_SESSION = buscarUsuario("id" , $_SESSION['id']);
+
     }
 }
+
+
 
 $title="Modificar Perfil";
 include("include/head.php");
@@ -59,21 +83,38 @@ include("include/header-user.php");
                     
                     <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
                         <h3 class="color-verde text-left mb-3 mx-0"><a href="feed.php"><i class="fas fa-arrow-left color-verde"></i></a>  Tu perfil</h3>
-                        <form class="w-100 needs-validation" method="POST" action="register.php">
-                            
+                        <form class="w-100 needs-validation" method="POST" action="modify-profile.php" enctype="multipart/form-data">
+
+
+                        <div class="text-center">
+                            <img height = "100px" class="rounded-circle" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile">
+                        </div>
+
+                    
+                        <div class="custom-file my-3">
+                             <input type="file" id="inputGroupFile01" class="custom-file-input" name="avatar" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Cambiar imagen de perfil</label>
+                        </div>
+
+
+                        
+
+
                             <div class="form-row">
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
-                                        <input type="text" class="form-control" name="nombre" id="inputName" value="<?=$_SESSION['name'];?>" required>
+                                        <input type="text" class="form-control" name="name" id="inputName" value="<?=$_SESSION['name'];?>" >
+                                        <small><?=isset($errores['name']) ? $errores['name']: ""?></small>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
-                                        <input type="text" class="form-control" name="apellido" id="inputName" value="<?=$_SESSION['lastname'];?>" required>
+                                        <input type="text" class="form-control" name="lastname" id="inputName" value="<?=$_SESSION['lastname'];?>">
+                                        <small><?=isset($errores['lastname']) ? $errores['lastname']: ""?></small>
                                     </div>
                                 </div>
                                 
@@ -89,14 +130,16 @@ include("include/header-user.php");
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
-                                        <input type="email" class="form-control" name="email" id="inputMail" value="<?=$_SESSION['email'];?>" required>
+                                        <input type="email" class="form-control" name="email" id="inputMail" value="<?=$_SESSION['email'];?>">
+                                        <small><?=isset($errores['email']) ? $errores['email']: ""?></small>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
-                                        <input type="email" class="form-control" name="cemail" value="<?=$_SESSION['email'];?>" id="inputMail" required>
+                                        <input type="email" class="form-control" name="confirm-email" value="<?=$_SESSION['email'];?>" id="inputMail" >
+                                        <small><?=isset($errores['confirm-email']) ? $errores['confirm-email']: ""?></small>
                                     </div>
                                 </div>
                                 
@@ -105,21 +148,23 @@ include("include/header-user.php");
 
                                     <!-- DEBERIA HACER UNA FUNCION APARTE PARA LA CONTRASEÑA Y QUE SEA OPCIONAL; ES DECIR QUE SI ESTA VACIO NO PASE NADA -->
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
-                                        <input type="password" class="form-control" name="password" id="inputPassword" required>
+                                        <input type="password" class="form-control" name="password" id="inputPassword">
+                                        <small><?=isset($errores['password']) ? $errores['password']: ""?></small>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
-                                        <input type="password" class="form-control is-valid" name="cpassword" id="inputPassword" required>
+                                        <input type="password" class="form-control is-valid" name="confirm-password" id="inputPassword">
+                                        <small><?=isset($errores['confirm-password']) ? $errores['confirm-password']: ""?></small>
                                     </div>
                                 </div>
 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputFechaNac">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control" id="inputFechaNac" name="cumpleanos" value="<?=$_SESSION['birth'];?>" placeholder="Date of Birth" required disabled>
+                                        <input type="date" class="form-control" id="inputFechaNac" name="birth" value="<?=$_SESSION['birth'];?>" placeholder="Date of Birth" required disabled>
                                         <small class="text-muted">Este dato no se puede modificar</small>
 
                                     </div>
@@ -160,19 +205,19 @@ include("include/header-user.php");
 
                                                 <div class="seleccion-intereses d-flex flex-column flex-md-row">
     
-                                                    <input type="checkbox" id="myCheckbox1" value="Diseño y Arte" />
+                                                    <input type="checkbox" id="myCheckbox1" name="diseno_y_arte" <?=($_SESSION['intereses']['diseno_y_arte'] == true) ? "checked" : "" ?>/>
                                                     <label for="myCheckbox1">
-                                                    <img src="img/categoria-diseno.jpg"><p class="mt-2">Diseño y Arte</p>
+                                                    <img src="img/categoria-diseno.jpg"><p class="mt-2" >Diseño y Arte</p>
                                                     </label>
                                                     
-                                                    <input type="checkbox" id="myCheckbox2" value="Fotografía" />
+                                                    <input type="checkbox" id="myCheckbox2" name="fotografia" <?=($_SESSION['intereses']['fotografia'] == true) ? "checked" : "" ?> />
                                                     <label for="myCheckbox2">
-                                                    <img src="img/categoria-fotografia.jpg"><p class="mt-2">Fotografía</p>
+                                                    <img src="img/categoria-fotografia.jpg"><p class="mt-2" >Fotografía</p>
                                                     </label>
                                                     
-                                                    <input type="checkbox" id="myCheckbox3" value="Programación y Lógica" />
+                                                    <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" <?=($_SESSION['intereses']['programacion_y_logica'] == true) ? "checked" : "" ?>> />
                                                     <label for="myCheckbox3">
-                                                    <img src="img/categoria-programacion.jpg"><p class="mt-2">Programación y Lógica</p>
+                                                    <img src="img/categoria-programacion.jpg"><p class="mt-2" >Programación y Lógica</p>
                                                     </label>
 
                                                 </div>
@@ -200,4 +245,6 @@ include("include/footer.php");
 
 
 
-                </body>
+</body>
+
+</html>

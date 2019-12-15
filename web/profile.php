@@ -32,7 +32,7 @@ include("include/head.php");
             <h1><?=$_SESSION['name'] . " " . $_SESSION['lastname'];?></h1>
             <h2>@<?=$_SESSION['username'];?></h2>
             <h3>Challys creados: 0</h3>
-            <h3>Challys resultos: 9</h3>
+            <h3>Challys resueltos: 9</h3>
           </div>
         </div>
       </div>

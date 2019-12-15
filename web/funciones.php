@@ -146,6 +146,7 @@ function validarModificacion($data) {
     $errores['confirm-password'] = "Las contraseñas no coinciden";
   }
 
+  return $errores;
 
 }
 
@@ -539,7 +540,7 @@ function buscarUsuario($campo, $valor) {
   $arrayUsuarios = abrirJson('usuarios.json');
   for($i = 0; $i < count($arrayUsuarios); $i++) {
     if(isset($arrayUsuarios[$i][$campo]) && $arrayUsuarios[$i][$campo] == $valor)
-      return $arrayUsuarios[$i];
+      return $arrayUsuarios[$i];  
   }
   return false;
 }
