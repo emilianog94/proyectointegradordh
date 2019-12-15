@@ -11,6 +11,13 @@ if(isset($_SESSION["email"])) {
     header("location:feed.php");
 }
 
+
+if($_GET){
+    $nameHero=$_GET['nameHero'];
+    $lastnameHero=$_GET['lastnameHero'];
+    $mailHero=$_GET['mailHero'];
+}
+
 if($_POST){
     $errores = [];
 
@@ -50,7 +57,7 @@ if($_POST){
             file_put_contents('usuarios.json', $todosLosUsuarios);
 
             // se redirige al usuario al login
-            header('location:login.php');exit;
+            header('location:login.php?status=success');exit;
         }
     }
 }
@@ -89,16 +96,18 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
-                                        <input type="text" class="form-control" name="name" required value="<?=persistenciaRegistro("name")?>">
-                                        
+                                        <input type="text" class="form-control" name="name" required value="<?php if($_GET){echo $nameHero;} else {echo persistenciaRegistro("name");}?>">
+                                        <small><?=mostrarErrores('name')?></small>
+
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
-                                        <input type="text" class="form-control" name="lastname" value="<?=persistenciaRegistro('lastname')?>" required>
-                                       
+                                        <input type="text" class="form-control" name="lastname" value="<?php if ($_GET) {echo $lastnameHero;} else {echo persistenciaRegistro('lastname');}?>" required>
+                                        <small><?=mostrarErrores('lastname')?></small>
+
                                     </div>
                                 </div>
                                 
@@ -114,7 +123,7 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
-                                        <input type="email" class="form-control " name="email" value="<?=persistenciaRegistro('email')?>" required>
+                                        <input type="email" class="form-control " name="email" value="<?php if ($_GET) {echo $mailHero;} else {echo persistenciaRegistro('email');}?>" required>
                                         </div>
                                         <small><?=mostrarErrores('email')?></small>
                                 </div>
@@ -122,7 +131,7 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
-                                        <input type="email" class="form-control " name="validacion_email"  required>
+                                        <input type="email" class="form-control " name="validacion_email" value="<?=persistenciaRegistro('validacion_email')?>"  required>
                                         </div>
                                         <small ><?=mostrarErrores('validacion_email')?></small>
                                 </div>
@@ -130,7 +139,7 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
-                                        <input type="password" class="form-control " name="password" required>
+                                        <input type="password" class="form-control " name="password" data-toggle="tooltip" data-placement="bottom" title="Mínimo de 8 caracteres, un número, una mayúscula y un caracter especial." required>
                                         <small><?=mostrarErrores('password')?></small>
                                         </div>
                                 </div>
@@ -138,7 +147,7 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
-                                        <input type="password" class="form-control is-valid" name="confirm-password" required>
+                                        <input type="password" class="form-control" name="confirm-password" required>
                                         <small> <?=mostrarErrores('confirm-password')?></small>
                                     </div>
                                 </div>
@@ -154,17 +163,26 @@ if($_POST){
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4">
                                     <label for="">Sexo</label>
-                                    <select class="custom-select" name="sex" value="<?=persistenciaRegistro('sex')?>" >
+                                    <select class="custom-select" name="sex" value="" >
                                         <option selected>Seleccionar</option>
-                                        <option value="h">Hombre</option>
-                                        <option value="m">Mujer</option>
+                                        <option value="h" <?php if(isset($_POST['sex'])) {
+                                            if($_POST['sex'] == "h"){
+                                                echo "selected";
+                                            }
+                                            }?>>Hombre</option>
+
+                                        <option value="m" <?php if(isset($_POST['sex'])) {
+                                            if($_POST['sex'] == "m"){
+                                                echo "selected";
+                                            }
+                                            }?>>Mujer</option>
                                     </select>
                                     <small ><?=mostrarErrores('sex')?></small>
                                     
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="exampleFormControlFile1">Ingrese imagen de perfil</label>
+                                    <label for="exampleFormControlFile1">Tu foto de perfil</label>
                                     <input type="file" class="form-control-file" name="avatar">
                                     <small><?=mostrarErrores('avatar')?></small>
                
@@ -174,7 +192,8 @@ if($_POST){
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-9 mb-0 mb-md-4 ">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="true" name="tyc_check" >
+                                        <input class="form-check-input" type="checkbox" value="true" name="tyc_check" <?php if(isset($_POST['tyc_check'])){
+                                            echo "checked";}?>>
                                         <label class="form-check-label"  for="invalidCheck">
                                             Acepto los <a href="#" class="subrayado">términos y condiciones</a> y la <a href="#" class="subrayado">política de privacidad</a>.
                                         </label>
@@ -183,7 +202,7 @@ if($_POST){
                                     </div>
                                 </div>
                                 
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-3 ">
+                                <div class="col-12 ">
                                     <!--
                                         <button class="btn btn-secondary float-right     mt-1" type="submit">Registrarse</button>
                                     -->
@@ -207,17 +226,17 @@ if($_POST){
                                                     
                                                     <div class="seleccion-intereses d-flex flex-column flex-md-row">
                                                         
-                                                        <input type="checkbox" id="myCheckbox1" name="diseno_y_arte"  />
+                                                        <input type="checkbox" id="myCheckbox1" name="diseno_y_arte" <?php if(isset($_POST['diseno_y_arte'])){echo "checked";}?>  />
                                                         <label for="myCheckbox1">
                                                             <img src="img/categoria-diseno.jpg"><p class="mt-2">Diseño y Arte</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox2"  name="fotografia"  />
+                                                        <input type="checkbox" id="myCheckbox2"  name="fotografia" <?php if(isset($_POST['fotografia'])){echo "checked";}?>  />
                                                         <label for="myCheckbox2">
                                                             <img src="img/categoria-fotografia.jpg"><p class="mt-2">Fotografía</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" />
+                                                        <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" <?php if(isset($_POST['programacion_y_logica'])){echo "checked";}?> />
                                                         <label for="myCheckbox3">
                                                             <img src="img/categoria-programacion.jpg"><p class="mt-2">Programación y Lógica</p>
                                                         </label>
@@ -238,5 +257,10 @@ if($_POST){
                         </div>               
                     </div>
                 </div>
+                <script>
+                    $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                    })
+                </script>
     </body>
 </html>     

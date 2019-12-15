@@ -208,6 +208,20 @@ function validarRegistro($data) {
       // creo la posición "name" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
       $errores['name'] = "El nombre es obligatorio";
     }
+    elseif(strlen($nombre) <3 ){
+      $errores['name'] = "El nombre es muy corto";
+    }
+
+    // CAMPO APELLIDO
+    $apellido = trim($data["lastname"]);
+    // si está vacío,
+    if($apellido == "") {
+      // creo la posición "name" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
+      $errores['lastname'] = "El apellido es obligatorio";
+    }
+    elseif(strlen($apellido) <3 ){
+      $errores['lastname'] = "El apellido es muy corto";
+    }
 
     // CAMPO EMAIL
     $email = trim($data['email']);

@@ -34,16 +34,21 @@ include("include/head.php");
                 <h3 class="color-verde text-center mb-4">¡Creá tu cuenta ahora!</h3>
                 
                 
-                <form class="w-100" method="POST" action="registro.php">
+                <form class="w-100" method="GET" action="registro.php">
 
                 <div class="form-group">
-                    <label for="inputName">Tu nombre y Apellido</label>
-                    <input type="text" class="form-control" id="inputName" required>
+                    <label for="inputName">Tu nombre</label>
+                    <input type="text" class="form-control" id="inputName" name="nameHero" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName">Tu apellido</label>
+                    <input type="text" class="form-control" id="inputName" name="lastnameHero" required>
                 </div>
 
                 <div class="form-group">
                     <label for="inputMail">Tu mail</label>
-                    <input type="email" class="form-control" id="inputMail" required>
+                    <input type="email" class="form-control" id="inputMail" name="mailHero" required>
                 </div>
 
                 <button class="btn btn-secondary w-100" type="submit">Avanzar</button>

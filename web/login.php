@@ -11,6 +11,9 @@ if(isset($_SESSION["email"])) {
     header("location:feed.php");
 }
 
+if($_GET){
+    $status=$_GET['status'];
+}
 
 $errores = validarLogin($_POST);
 
@@ -46,6 +49,16 @@ if(!$errores && $_POST){
                 <div class="contenedor-logo">
                     <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
                 </div>
+
+                <?php if (isset($status)){
+                ?>
+                <div class="alert alert-success" role="alert">
+                ¡Enhorabuena! Te registraste correctamente.
+                </div>    
+                <?php                   
+                }
+                ?>
+
                 <h3>Iniciar sesión</h3>
                 <input type="email" id="email" name="email" value="<?=persistenciaLogin('email')?>" placeholder="Correo electrónico" required><br>
                 <small><?=isset($errores['email']) ? $errores['email'] : ""?></small>
@@ -55,7 +68,15 @@ if(!$errores && $_POST){
                 <p id="checkbox-recordar"><input type="checkbox" name="recordar" id="recordar"><label for="recordar" class="fuente-chica">Recordarme</label></p>
                 <input type="submit" id="boton-ingresar" value="Ingresar">
                 <p id="olvido-password" class="fuente-chica"><a href="recuperar-contrasena.php" class="text-secondary">¿Olvidaste tu contraseña?</a></p>
+
+                <?php if (!isset($status)){
+                ?>                
                 <p id="registrarse" class="fuente-chica"><a  href="registro.php" class="font-weight-bold d-inline-block" alt="Enlace a la página de registro">¿No tienes cuenta? Regístrate aquí.</a></p>
+                <?php                   
+                }
+                ?>
+
+
             </form>
         </div>
     </div>
