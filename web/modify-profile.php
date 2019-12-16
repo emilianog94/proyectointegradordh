@@ -49,8 +49,10 @@ if($_POST){
             }
 
             if(isset($_FILES['avatar'])){
-                $nombreImagen = guardarAvatar();
-                modificarJson($nombreImagen , 'avatar' , $_SESSION['avatar'] , $_SESSION['id']);    
+                if($_FILES["avatar"]["error"] != 4) {
+                    $nombreImagen = guardarAvatar();
+                    modificarJson($nombreImagen , 'avatar' , $_SESSION['avatar'] , $_SESSION['id']); 
+                    }
             }
             
         }
@@ -87,7 +89,6 @@ include("include/header-user.php");
 
 
                         <div class="text-center">
-                            <!-- <img height = "100px" class="rounded-circle" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile"> -->
                             <div class="mini-contenedor-foto">
                                 <img class="main-foto" src="avatars/<?=$_SESSION['avatar'];?>" alt="">
                             </div>
@@ -97,6 +98,7 @@ include("include/header-user.php");
                         <div class="custom-file my-3">
                              <input type="file" id="inputGroupFile01" class="custom-file-input" name="avatar" aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="inputGroupFile01">Cambiar imagen de perfil</label>
+                            <small><?=isset($errores['avatar']) ? $errores['avatar']: ""?></small>
                         </div>
 
 

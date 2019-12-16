@@ -81,13 +81,13 @@ function validarModificacion($data) {
     }
 
   //AQUI SE HACE LA VALIDACION CON LA CONFIRMACION DE MAIL
-    if(isset($_POST['validacion_email'])){
-      if(strlen($_POST['validacion_email'])== 0){
-          $errores['validacion_email'] = "Este campo no se puede encontrar vacio";
-      }elseif (!($_POST['validacion_email'] == $_POST['email'])){
-          $errores['validacion_email'] = "El mail no coincide con el ingresado";
+    if(isset($_POST['confirm-email'])){
+      if(strlen($_POST['confirm-email'])== 0){
+          $errores['confirm-email'] = "Este campo no se puede encontrar vacio";
+      }elseif (!($_POST['confirm-email'] == $_POST['email'])){
+          $errores['confirm-email'] = "El mail no coincide con el ingresado";
       }else{
-          $validado['validacion_email'] = $_POST['validacion_email'];
+          $validado['confirm-email'] = $_POST['confirm-email'];
       }
   }
   }
@@ -95,23 +95,22 @@ function validarModificacion($data) {
   
   // CAMPO AVATAR
 
-  if(isset($_FILES['avatar'])){
-    $avatar = $_FILES['avatar'];
+  if(isset($data['avatar'])){
+    if(!empty($data['avatar'])){
+      $avatar = $data['avatar'];
 
-    if($avatar['error']) {
-
-    } else {
-        // obtengo la extensión
-        $ext = strtolower(pathinfo($avatar['name'], PATHINFO_EXTENSION));
-        if($ext !== 'jpg' && $ext !== 'jpeg' && $ext !== 'png' ) {
-          $errores['avatar'] = "La extensión del archivo debe ser jpg, png ó jpeg";
-        }elseif ($avatar['size'] > 2*MB){
-            $errores['avatar'] == "El archivo es demasiado pesado, maximo 2MB";
-        }
+      if($avatar['error']) {
   
-     }
-
-
+      } else {
+          // obtengo la extensión
+          $ext = strtolower(pathinfo($avatar['name'], PATHINFO_EXTENSION));
+          if($ext !== 'jpg' && $ext !== 'jpeg' && $ext !== 'png' ) {
+            $errores['avatar'] = "La extensión del archivo debe ser jpg, png ó jpeg";
+          }elseif ($avatar['size'] > 2*MB){
+              $errores['avatar'] == "El archivo es demasiado pesado, maximo 2MB";
+          }
+       }
+    }
   }
 
 
