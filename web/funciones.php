@@ -95,9 +95,9 @@ function validarModificacion($data) {
   
   // CAMPO AVATAR
 
-  if(isset($data['avatar'])){
-    if(!empty($data['avatar'])){
-      $avatar = $data['avatar'];
+  if(isset($_FILES['avatar'])){
+    if(!empty($_FILES['avatar'])){
+      $avatar = $_FILES['avatar'];
 
       if($avatar['error']) {
   
