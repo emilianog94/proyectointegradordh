@@ -37,6 +37,9 @@ body{
     min-height:100vh !important;
 }
 
+.h-100{
+    height:100%;
+}
 
 footer{
     background-color:#2e3035;
@@ -60,6 +63,12 @@ footer a:hover{
     width:120px;
 }
 
+/* FIX DE FLECHA DE DESPLEGADO NO CENTRADA */
+.nav-item.dropdown{
+    display:flex;
+    align-items:center;
+}
+
 .btn-secondary{
     border:0 !important;
     background-color:#1bb76e !important;
@@ -79,6 +88,14 @@ a.color-verde:hover {
 
 .bg-verde{
     background-color:#1bb76e;
+}
+
+.bg-gris{
+    background-color:#2e3035;
+}
+
+.bg-white{
+    background-color:#fefefe;
 }
 
 .nav-item{

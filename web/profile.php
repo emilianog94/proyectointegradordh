@@ -469,7 +469,8 @@ include("include/head.php");
     </div>
   </div>
   <!--Fin seccion Posteos-->
-  
+  <?php include("include/footer.php");?>
+
   
 </body>
 </html>

@@ -25,7 +25,7 @@ include("include/head.php");
   
   <!--Seccion Posteos -->
   
-		<div class="container contenedor-feed mt-3">
+	<div class="container contenedor-feed mt-3 mb-5">
     <div class="row">
         <div class="col-3">
 
@@ -231,7 +231,8 @@ include("include/head.php");
   
   
   <!--Fin seccion Posteos-->
-  
+  <?php include("include/footer.php");?>
+
   
 </body>
 </html>

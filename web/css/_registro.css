@@ -7,10 +7,8 @@ small{
     background-image: url(../img/background_contacto.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100%;
+    background-position:50%;
     object-fit: cover;
-    height: 100%;
-    background-attachment:fixed;
 }
 
 
@@ -75,6 +73,26 @@ box-shadow: inset 0px 0px 300px 0px rgba(140,70,140,1);
 
 .seleccion-intereses  label {
     margin: 10px;
+}
+
+.processing{
+    background-image:url('../img/background-welcome.gif');
+    background-size:cover;
+    background-position:50%;
+    background-repeat:no-repeat;
+}
+
+.processing a{
+    text-decoration:underline;
+    color:#1bb76e;
+}
+
+.procesando{
+    min-height:500px;
+}
+
+.procesando .small:hover{
+    text-decoration:underline;
 }
 
 @media screen and (min-width:576px){

@@ -58,7 +58,8 @@ if($_POST){
 
             // se redirige al usuario al login
             crearSesion($usuario);
-            header('location:login.php?status=success');exit;
+            header('location:processing.php');
+            exit;
         }
     }
 }
@@ -227,17 +228,17 @@ if($_POST){
                                                     
                                                     <div class="seleccion-intereses d-flex flex-column flex-md-row">
                                                         
-                                                        <input type="checkbox" id="myCheckbox1" name="diseno_y_arte"   />
+                                                        <input type="checkbox" id="myCheckbox1" name="diseno_y_arte" <?php if(isset($_POST['diseno_y_arte'])){echo "checked";}?>  />
                                                         <label for="myCheckbox1">
                                                             <img src="img/categoria-diseno.jpg"><p class="mt-2">Diseño y Arte</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox2"  name="fotografia"   />
+                                                        <input type="checkbox" id="myCheckbox2"  name="fotografia" <?php if(isset($_POST['fotografia'])){echo "checked";}?>  />
                                                         <label for="myCheckbox2">
                                                             <img src="img/categoria-fotografia.jpg"><p class="mt-2">Fotografía</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" > />
+                                                        <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" <?php if(isset($_POST['programacion_y_logica'])){echo "checked";}?> />
                                                         <label for="myCheckbox3">
                                                             <img src="img/categoria-programacion.jpg"><p class="mt-2">Programación y Lógica</p>
                                                         </label>

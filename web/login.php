@@ -11,10 +11,6 @@ if(isset($_SESSION["email"])) {
     header("location:feed.php");
 }
 
-if($_GET){
-    $status=$_GET['status'];
-}
-
 $errores = validarLogin($_POST);
 
 if(!$errores && $_POST){
@@ -44,20 +40,11 @@ if(!$errores && $_POST){
     <!-- <?php include("include/header.php");?> -->
     
     <div class="contenedor-principal-login">
-        <div class="contenedor-form-login rounded shadow my-4">
+        <div class="contenedor-form-login rounded shadow my-4 container text-center d-block p-5">
             <form action="" method="post" id="form-login" name="form-login">
                 <div class="contenedor-logo">
                     <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
                 </div>
-
-                <?php if (isset($status)){
-                ?>
-                <div class="alert alert-success" role="alert">
-                ¡Enhorabuena! Te registraste correctamente.
-                </div>    
-                <?php                   
-                }
-                ?>
 
                 <h3>Iniciar sesión</h3>
                 <input type="email" id="email" name="email" value="<?=persistenciaLogin('email')?>" placeholder="Correo electrónico" required><br>
