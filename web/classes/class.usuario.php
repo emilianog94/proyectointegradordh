@@ -1,6 +1,6 @@
 <?php 
 
-class Usuario implements Interactible  {
+class Usuario{
 
 }
 
