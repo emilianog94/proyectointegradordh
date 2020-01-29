@@ -53,11 +53,6 @@ include("include/head.php");
                     <a href="#" class="btn btn-secondary">Participar</a>
                 </div>
 
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-trophy"></i>&nbsp;¡Creá tu Chally!</p>
-                <div class="card shadow  p-3 mt-1 mb-4">
-                    <a href="#" class="btn btn-secondary">Crear un desafío</a>
-                </div>
-
             </aside>
         </div>
 
@@ -74,8 +69,16 @@ include("include/head.php");
 
                             <div class="card-header posteo d-flex align-items-center">
                                 <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="Foto de Usuario">
-                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>                       
-                                <a class="ml-auto" href="#"><i class="fa fa-ellipsis-v"></i></a>
+                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>    
+                                
+
+                                <div class="ml-auto">
+                                    <a class="" href="edit-post.php"><i class="fas fa-pen"></i></a>
+                                    &nbsp;
+
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></button>
+                                </div>
+
                             </div>
 
                             <div class="card-contenido">
@@ -117,106 +120,13 @@ include("include/head.php");
                                 <span class="guardar"><i class="fas fa-bookmark"></i> </span>
                             </div>
 
-                        </div> <!-- CIERRE CARD -->
 
-                        <div class="card mb-5">
 
-                            <div class="card-header posteo d-flex align-items-center">
-                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="Foto Usuario">
-                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>                       
-                                <a class="ml-auto" href="#"><i class="fa fa-ellipsis-v"></i></a>
-                            </div>
 
-                            <div class="card-contenido">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>Les recomiendo este desafío que está muy bueno para poder ejercitar habilidades de CSS y HTML</p>
-                                    </div>
-
-                                    <div class="row card-content-attached">
-                                        <div class="col-12 col-md-4">
-                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="Desafío Viajes Espaciales">
-                                        </div>
-
-                                        <div class="col-12 col-md-8">
-                                            <h3 class="ml-0">Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
-
-                                            <div class="metadata d-flex justify-content-between">
-                                                <span class="dificultad">Dificultad: <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> </span>
-                                                <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
-
-                                            </div>
-                                            <br>
-
-                                            <p>El desafío consiste en Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos amet qui officia repellat inventore natus molestiae, ullam odio aut similique! Accusantium obcaecati, asperiores culpa officiis aliquam esse impedit sit distinctio.</p>
-                                            <a href="#" class="btn btn-secondary">Ver más información</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="card-footer d-flex justify-content-around">
-                                <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
-
-                                <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
-
-                                <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
-                                <span class="guardar"><i class="fas fa-bookmark"></i> </span>
-                            </div>
 
                         </div> <!-- CIERRE CARD -->
 
 
-                        <div class="card mb-5">
-
-                            <div class="card-header posteo d-flex align-items-center">
-                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="Foto Usuario">
-                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>                       
-                                <a class="ml-auto" href="#"><i class="fa fa-ellipsis-v"></i></a>
-                            </div>
-
-                            <div class="card-contenido">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>Les recomiendo este desafío que está muy bueno para poder ejercitar habilidades de CSS y HTML</p>
-                                    </div>
-
-                                    <div class="row card-content-attached">
-                                        <div class="col-12 col-md-4">
-                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="Desafío Viajes Espaciales">
-                                        </div>
-
-                                        <div class="col-12 col-md-8">
-                                            <h3 class="ml-0" >Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
-
-                                            <div class="metadata d-flex justify-content-between">
-                                                <span class="dificultad">Dificultad: <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> </span>
-                                                <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
-
-                                            </div>
-                                            <br>
-
-                                            <p>El desafío consiste en Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos amet qui officia repellat inventore natus molestiae, ullam odio aut similique! Accusantium obcaecati, asperiores culpa officiis aliquam esse impedit sit distinctio.</p>
-                                            <a href="#" class="btn btn-secondary">Ver más información</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="card-footer d-flex justify-content-around">
-                                <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
-
-                                <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
-
-                                <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
-                                <span class="guardar"><i class="fas fa-bookmark"></i> </span>
-                            </div>
-
-                        </div> <!-- CIERRE CARD -->
 
 
 																								

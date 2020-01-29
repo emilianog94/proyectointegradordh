@@ -98,6 +98,16 @@ a.color-verde:hover {
     background-color:#fefefe;
 }
 
+.nav-item#post-cta{
+    border: 2px solid #51c790;
+    border-radius: 5px;
+    background-color: #1bb76e;
+}
+
+.nav-item#post-cta a{
+    color:#fff !important;
+}
+
 .nav-item{
     margin-left:10px;
 }

@@ -98,7 +98,7 @@ include("include/header-user.php");
                         <div class="custom-file my-3">
                              <input type="file" id="inputGroupFile01" class="custom-file-input" name="avatar" aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="inputGroupFile01">Cambiar imagen de perfil</label>
-                            <small><?=isset($errores['avatar']) ? $errores['avatar']: ""?></small>
+                            <small class="error"><?=isset($errores['avatar']) ? $errores['avatar']: ""?></small>
                         </div>
 
 
@@ -111,7 +111,7 @@ include("include/header-user.php");
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
                                         <input type="text" class="form-control" name="name" id="inputName" value="<?=$_SESSION['name'];?>" >
-                                        <small><?=isset($errores['name']) ? $errores['name']: ""?></small>
+                                        <small class="error"><?=isset($errores['name']) ? $errores['name']: ""?></small>
                                     </div>
                                 </div>
                                 
@@ -119,7 +119,7 @@ include("include/header-user.php");
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
                                         <input type="text" class="form-control" name="lastname" id="inputName" value="<?=$_SESSION['lastname'];?>">
-                                        <small><?=isset($errores['lastname']) ? $errores['lastname']: ""?></small>
+                                        <small class="error"><?=isset($errores['lastname']) ? $errores['lastname']: ""?></small>
                                     </div>
                                 </div>
                                 
@@ -136,7 +136,7 @@ include("include/header-user.php");
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
                                         <input type="email" class="form-control" name="email" id="inputMail" value="<?=$_SESSION['email'];?>">
-                                        <small><?=isset($errores['email']) ? $errores['email']: ""?></small>
+                                        <small class="error"><?=isset($errores['email']) ? $errores['email']: ""?></small>
                                     </div>
                                 </div>
                                 
@@ -144,7 +144,7 @@ include("include/header-user.php");
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
                                         <input type="email" class="form-control" name="confirm-email" value="<?=$_SESSION['email'];?>" id="inputMail" >
-                                        <small><?=isset($errores['confirm-email']) ? $errores['confirm-email']: ""?></small>
+                                        <small class="error"><?=isset($errores['confirm-email']) ? $errores['confirm-email']: ""?></small>
                                     </div>
                                 </div>
                                 
@@ -154,7 +154,7 @@ include("include/header-user.php");
                                     <!-- DEBERIA HACER UNA FUNCION APARTE PARA LA CONTRASEÑA Y QUE SEA OPCIONAL; ES DECIR QUE SI ESTA VACIO NO PASE NADA -->
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control" name="password" id="inputPassword">
-                                        <small><?=isset($errores['password']) ? $errores['password']: ""?></small>
+                                        <small class="error"><?=isset($errores['password']) ? $errores['password']: ""?></small>
                                     </div>
                                 </div>
                                 
@@ -162,7 +162,7 @@ include("include/header-user.php");
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control" name="confirm-password" id="inputPassword">
-                                        <small><?=isset($errores['confirm-password']) ? $errores['confirm-password']: ""?></small>
+                                        <small class="error"><?=isset($errores['confirm-password']) ? $errores['confirm-password']: ""?></small>
                                     </div>
                                 </div>
 
