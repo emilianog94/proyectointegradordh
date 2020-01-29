@@ -31,27 +31,35 @@ include("include/head.php");
 
             <aside class="d-none d-md-block sticky-top">
 
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bell"></i>&nbsp;Alertas de Desafíos</p>
-                <div class="card shadow  p-3 mt-1 mb-4 alert alert-danger">
-                    <p><a href="#"><i class="fas fa-clock"></i> Creá una infografía sobre cascos de realidad virtual</a>
-                        <br> ¡Termina en 6 horas!</p>
+                <div class="card shadow  p-3 mt-1 mb-4 text-center">
+                    <p class="font-weight-bold mb-0"> Matías Bruno</p>
+                    <p>44 Puntos</p>
 
-                    <p><a href="#"><i class="fas fa-clock"></i>Rediseñá la tapa de un juego actual con estilo Retro  </a>
-                        <br> ¡Termina en 9 horas!</p>
+                    <img class="rounded-circle d-block m-auto shadow" style="max-width:50%" src="img/foto-matias-bruno.jpg" alt="">
+                    <br>
+                    <a href="#" class="btn btn-secondary">Ver perfil</a>
                 </div>
 
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones</p>
                 <div class="card shadow  p-3 mt-1 mb-4">
-                    <p>Tenés 6 invitaciones de amigos pendientes</p>
-                    <a href="#" class="btn btn-secondary">Ver invitaciones</a>
+                    <p class="font-weight-bold mb-0">Fecha Límite de Respuesta</p>
+                    <p class="mb-0">24/04/20</p>
                 </div>
 
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-trophy"></i>&nbsp;Chally destacado de la semana</p>
-                <div class="card shadow  p-3 mt-1 mb-4">
-                    <p>Creá un pixel-art de un momento épico de la TV Argentina</p>
-                    <img src="img/challys/pelea-samid-viale.jpg" alt="Desafío - Creá un pixel-art de un momento épico de la TV Argentina">
-                    <a href="#" class="btn btn-secondary">Participar</a>
+                <div class="card shadow  p-3 mt-1 mb-3 categorias">
+                    <p class="font-weight-bold mb-0">Categorías</p>
+                    <ul class="mb-0">
+                        <li>Diseño y Arte</li>
+                    </ul>
                 </div>
+
+                <div class="card shadow  p-3 mt-1 mb-3">
+                    <p class="font-weight-bold">¿Tenés tu solución lista?</p>
+                    <a href="#" class="btn btn-secondary">Publicar respuesta</a>
+                </div>
+
+
+
+
 
             </aside>
         </div>
@@ -86,22 +94,33 @@ include("include/head.php");
 
 
                                     <div class="row card-content-attached">
-                                        <div class="col-12 col-md-4">
-                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="Desafío Viajes Espaciales">
+                                        <div class="col-12">
+                                            <img src="img/challys/viajes-especiales-landscape.jpg" class="img-fluid mb-3" alt="Desafío Viajes Espaciales">
                                         </div>
 
-                                        <div class="col-12 col-md-8">
-                                            <h3 class="ml-0">Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
+                                        <div class="col-12">
+                                            <h2 class="ml-0 color-verde mb-3">Diseñá una landing page para una agencia ficticia de viajes interplanetarios</h3>
 
-                                            <div class="metadata d-flex ">
+                                            <div class="metadata d-flex">
                                                 <span class="dificultad">Dificultad: <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> </span>
                                                 <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
-
                                             </div>
-                                            <br>
+                                            <hr>
 
+                                            <h5>Descripción</h5>
                                             <p>El desafío consiste en Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos amet qui officia repellat inventore natus molestiae, ullam odio aut similique! Accusantium obcaecati, asperiores culpa officiis aliquam esse impedit sit distinctio.</p>
-                                            <a href="#" class="btn btn-secondary">Abrir desafío</a>
+
+                                            <hr>
+
+                                            <h5>Requisitos y Condiciones</h5>
+                                            <ul class="requisitos">
+                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;La landing page no necesariamente debe estar programada</li>
+                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;El diseño pueden realizarse con cualquier software de diseño</li>
+                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;El diseños debe subirse en formato JPG/PNG</li>
+                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;Todos los materiales gráficos pueden diseñarse desde cero o bien ser tomados de bancos públicos.</li>
+                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;La landing page deberá contar si o si con una call to action de tipo formulario</li>
+                                            </ul>
+
                                         </div>
                                     </div>
 

@@ -42,3 +42,7 @@ span.comments:hover{
 span.compartidos:hover{
     color:#0366d6;
 }
+
+.metadata.d-flex span:first-child{
+    margin-right:30px;
+}
