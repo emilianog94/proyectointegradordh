@@ -1,8 +1,5 @@
-<?php 
+<?php
 
-class Usuario{
-
+class Usuario
+{
 }
-
-
-?>
