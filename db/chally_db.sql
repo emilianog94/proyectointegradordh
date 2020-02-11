@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-01-2020 a las 00:18:23
+-- Tiempo de generación: 11-02-2020 a las 02:29:11
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -58,6 +58,15 @@ CREATE TABLE `categorias` (
   `nombre` varchar(40) DEFAULT NULL,
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id_categoria`, `nombre`, `descripcion`) VALUES
+(1, 'Diseño y Arte', NULL),
+(2, 'Fotografia', NULL),
+(3, 'Programacion y Logica', NULL);
 
 -- --------------------------------------------------------
 
@@ -118,6 +127,18 @@ CREATE TABLE `intereses` (
   `id_categoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `intereses`
+--
+
+INSERT INTO `intereses` (`id_interes`, `nombre`, `id_usuario`, `id_categoria`) VALUES
+(1, NULL, 1, 2),
+(2, NULL, 1, 3),
+(3, NULL, 2, 3),
+(4, NULL, 3, 3),
+(5, NULL, 4, 2),
+(6, NULL, 5, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -160,8 +181,20 @@ CREATE TABLE `usuarios` (
   `apellido` varchar(40) DEFAULT NULL,
   `contrasena` varchar(40) NOT NULL,
   `username` varchar(40) DEFAULT NULL,
-  `mail` varchar(60) NOT NULL
+  `mail` varchar(60) NOT NULL,
+  `avatar` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `fecha_nacimiento`, `sexo`, `nombre`, `apellido`, `contrasena`, `username`, `mail`, `avatar`) VALUES
+(1, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$bR0jDF6inx29uICA5H60U.oNBKaPJC6RE', 'franklinss', 'francofourmantin@gmail.com', 'img_5df7b954b822e.png'),
+(2, '1981-05-29', 'h', 'Matias', 'Bruno', '$2y$10$APje3LOVckLEQ.ZA2s35J.c3e82kcV/0i', 'matiasbr1', 'matias@mail.com', 'img_5df68b928a2d4.jpg'),
+(3, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$oqhBCHEiBTdE.m8HE/BgS.5Ef.FvbX2Ts', 'EmilianoG', 'emiliano@gioia.com.ar', 'img_5df80ba7eafe4.jpg'),
+(4, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$N5VrZv.fqvwmCC/RaCpEf.75iGGtqHSza', 'emilainog94', 'emiliano@gioia.com.ara', 'img_5df81ce9eefe3.jpg'),
+(5, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$dsKYZd3CFhQKSi0U24GcP.otRQG9P1Jw6', 'Emilainoasdasd', 'emiliano@gioiaa.com.ar', 'img_5df81d1a5019f.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -265,7 +298,7 @@ ALTER TABLE `archivos`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
@@ -289,7 +322,7 @@ ALTER TABLE `desafios_destacados`
 -- AUTO_INCREMENT de la tabla `intereses`
 --
 ALTER TABLE `intereses`
-  MODIFY `id_interes` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_interes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `likes`
@@ -307,7 +340,7 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
