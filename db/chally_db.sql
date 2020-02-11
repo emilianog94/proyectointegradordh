@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-02-2020 a las 02:29:11
+-- Tiempo de generación: 11-02-2020 a las 03:20:31
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -98,7 +98,8 @@ CREATE TABLE `desafios` (
   `id_categoria` int(11) DEFAULT NULL,
   `id_autor` int(11) DEFAULT NULL,
   `dificultad` tinyint(4) DEFAULT NULL,
-  `requisitos` text DEFAULT NULL
+  `requisitos` text DEFAULT NULL,
+  `nombre` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
