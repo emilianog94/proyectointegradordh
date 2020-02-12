@@ -1,5 +1,5 @@
 <?php 
-require_once("funciones.php");
+require_once("config.php");
 
 session_start();
 //SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
@@ -11,19 +11,32 @@ if(isset($_SESSION["email"])) {
     header("location:feed.php");
 }
 
-$errores = validarLogin($_POST);
+if($_POST){
+    $usuario = new Usuario("","","",$_POST['password'],$_POST['email'],NULL,NULL);
+    $errores = Usuario::validarLogin($usuario);
+    var_dump($errores);
 
-if(!$errores && $_POST){
-   
-    crearSesion(buscarUsuario("email", $_POST['email']));
-
-    if(isset($_POST['recordar'])){
-        crearCookies();
-        header("location:feed.php");exit;
-    }else{
-        header("location:feed.php");exit;
+    if(!$errores){
+        Usuario::crearSesion($nuevoUsuario);
+        header('location:processing.php');
     }
+
+/* 
+    if(!$errores && $_POST){
+   
+        crearSesion(buscarUsuario("email", $_POST['email'])); 
+    
+        if(isset($_POST['recordar'])){
+            crearCookies();
+            header("location:feed.php");exit;
+        }else{
+            header("location:feed.php");exit;
+        }
+    }
+*/
 }
+
+
 
 
 ?>
@@ -47,7 +60,7 @@ if(!$errores && $_POST){
                 </div>
 
                 <h3>Iniciar sesión</h3>
-                <input type="email" id="email" name="email" value="<?=persistenciaLogin('email')?>" placeholder="Correo electrónico" required><br>
+                <input type="email" id="email" name="email" value="<?php ?>" placeholder="Correo electrónico" required><br>
                 <small><?=isset($errores['email']) ? $errores['email'] : ""?></small>
                 <input type="password" id="pass" name="password" placeholder="Contraseña" required>
                 <small><?=isset($errores['password']) ? $errores['password'] : ""?></small>

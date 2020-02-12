@@ -18,7 +18,7 @@
 
         <li class="nav-item">
 
-          <a class="nav-link" href="profile.php"><i class="fas fa-user"></i> &nbsp; <?=$_SESSION['name'] . " " . $_SESSION['lastname'];?></a>
+          <a class="nav-link" href="profile.php"><i class="fas fa-user"></i> &nbsp; <?=$usuario['nombre'] . " " . $usuario['apellido'];?></a>
         </li>
 
         <li class="nav-item">

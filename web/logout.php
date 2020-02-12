@@ -1,6 +1,5 @@
 <?php
-require_once("funciones.php");
-
+include("config.php");
 session_start();
 
 //CIERRA LA SESIÓN

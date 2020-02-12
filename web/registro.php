@@ -1,66 +1,40 @@
 <?php
-require_once('funciones.php');
+require_once('config.php');
 
 session_start();
 //SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
 if(isset($_COOKIE["email"])) {
     crearSesionConCookies();
 }
+
+
 //SI LA SESIÓN ESTÁ INICIADA NO SE PUEDE ACCEDER AL REGISTRO
 if(isset($_SESSION["email"])) {
     header("location:feed.php");
 }
 
 
-if($_GET){
-    $nameHero=$_GET['nameHero'];
-    $lastnameHero=$_GET['lastnameHero'];
-    $mailHero=$_GET['mailHero'];
-}
-
+// 1) Verifico si estamos en Post
 if($_POST){
-    $errores = [];
 
-    if (isset($_POST)){
+    // 2) Creo la instancia con todos los datos (por mas que estos sean erróneos)
+    $nuevoUsuario = new Usuario($_POST['name'],$_POST['lastname'],$_POST['username'],$_POST['password'],$_POST['email'],$_POST['birth'],$_POST['sex'],$_FILES['avatar']);
 
-        $errores = validarRegistro($_POST);
+    // 3) Hago el método de validación y almaceno los potenciales errores en un array llamado $errores
+    $errores = $nuevoUsuario->validarRegistro();
 
-        if(!$errores) {
-            // llamo a la función guardarUsuario() --> me devuelve un array asociativo con los datos que envió el usuario
-            $usuario = guardarUsuario($_POST);
-            
-            // llamo a la función guardarAvatar() --> guarda la imagen y devuelve le nombre con el que guardé la imagen
-            $nombreImagen = guardarAvatar();
-            
-            // al array asocativo del nuevo usuario, le creo la posición "avatar" para guardar el nombre de la imagen que subió el usuario
-            $usuario['avatar'] = $nombreImagen;
 
-            //Llamo a la funcion arrayintereses() para generar un array con los intereses marcados por el usuario 
-            $intereses = arrayIntereses($_POST);
+    // 4) Si el array de errores está vacío...
+    if(!$errores){
 
-            //Ese array lo vamos a guardar en el indice intereses del usuario
-            $usuario['intereses'] = $intereses;
-            
-            // me traigo el contenido del archivo usuarios.json
-            $listaDeUsuarios = file_get_contents('usuarios.json');
-            
-            // convierto ese contenido a formato array para poder manipular los datos
-            $arrayUsuarios = json_decode($listaDeUsuarios, true);
-            
-            // en la última posicón del array de usuarios me guardo al nuevo usuario
-            $arrayUsuarios[] = $usuario;
-            
-            // convierto el aray de usuarios a formato json para volver a guardarlo en el archivo de usuarios
-            $todosLosUsuarios = json_encode($arrayUsuarios);
-            
-            // guardo el json completo de ususarios en usuarios.json 
-            file_put_contents('usuarios.json', $todosLosUsuarios);
+        // 5) Guardo el usuario en la base de datos
+        Usuario::saveUsuario($nuevoUsuario);
 
-            // se redirige al usuario al login
-            crearSesion($usuario);
-            header('location:processing.php');
-            exit;
-        }
+        // 6) Creo la sesión 
+        Usuario::crearSesion($nuevoUsuario);
+        header('location:processing.php');
+
+
     }
 }
     
@@ -98,8 +72,9 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
-                                        <input type="text" class="form-control" name="name" required value="<?php if($_GET){echo $nameHero;} else {echo persistenciaRegistro("name");}?>">
-                                        <small><?=mostrarErrores('name')?></small>
+                                        <input type="text" class="form-control" name="name" required value="<?php if($_POST){
+                                            echo $nuevoUsuario->getNombre(); } ?>">
+                                        <small><?php if($_POST && isset($errores['name'])) {echo $errores['name']; } ?></small>
 
                                     </div>
                                 </div>
@@ -107,8 +82,9 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
-                                        <input type="text" class="form-control" name="lastname" value="<?php if ($_GET) {echo $lastnameHero;} else {echo persistenciaRegistro('lastname');}?>" required>
-                                        <small><?=mostrarErrores('lastname')?></small>
+                                        <input type="text" class="form-control" name="lastname" value="<?php if($_POST){
+                                            echo $nuevoUsuario->getApellido(); } ?>" required>
+                                        <small><?php if($_POST && isset($errores['lastname'])) {echo $errores['lastname']; } ?></small>
 
                                     </div>
                                 </div>
@@ -116,8 +92,9 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Nombre de usuario</label>
-                                        <input type="text" class="form-control" name="username" value="<?=persistenciaRegistro('username')?>" required>
-                                        <small><?=mostrarErrores('username')?></small>
+                                        <input type="text" class="form-control" name="username" value="<?php if($_POST){
+                                            echo $nuevoUsuario->getUsername(); } ?>" required>
+                                        <small><?php if($_POST && isset($errores['username'])) {echo $errores['username']; } ?></small>
                                       
                                     </div>
                                 </div>
@@ -125,24 +102,28 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
-                                        <input type="email" class="form-control " name="email" value="<?php if ($_GET) {echo $mailHero;} else {echo persistenciaRegistro('email');}?>" required>
+                                        <input type="email" class="form-control " name="email" value="<?php if($_POST){
+                                            echo $nuevoUsuario->getMail(); } ?>" required>
+                                            
+                                           <small><?php if($_POST && isset($errores['email'])) {echo $errores['email']; } ?></small>
+
                                         </div>
-                                        <small><?=mostrarErrores('email')?></small>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
-                                        <input type="email" class="form-control " name="validacion_email" value="<?=persistenciaRegistro('validacion_email')?>"  required>
+                                        <input type="email" class="form-control " name="validacion_email" value="<?php if($_POST){
+                                            echo $nuevoUsuario->getMail(); } ?>" required>
                                         </div>
-                                        <small ><?=mostrarErrores('validacion_email')?></small>
+                                        <small></small>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control " name="password" data-toggle="tooltip" data-placement="bottom" title="Mínimo de 8 caracteres, un número, una mayúscula y un caracter especial." required>
-                                        <small><?=mostrarErrores('password')?></small>
+                                        <small><?php if($_POST && isset($errores['password'])) {echo $errores['password']; } ?></small>
                                         </div>
                                 </div>
                                 
@@ -150,7 +131,7 @@ if($_POST){
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control" name="confirm-password" required>
-                                        <small> <?=mostrarErrores('confirm-password')?></small>
+                                        <small><?php if($_POST && isset($errores['confirm-password'])) {echo $errores['confirm-password']; } ?></small>
                                     </div>
                                 </div>
                                 
@@ -159,7 +140,8 @@ if($_POST){
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputFechaNac">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control" name="birth" placeholder="Date of Birth" value="<?=persistenciaRegistro('birth')?>"required>
+                                        <input type="date" class="form-control" name="birth" placeholder="Date of Birth" value="<?php if($_POST){
+                                            echo $nuevoUsuario->getFecha_nacimiento(); } ?>"required>
                                     </div>
                                 </div>
                                 
@@ -167,26 +149,26 @@ if($_POST){
                                     <label for="">Sexo</label>
                                     <select class="custom-select" name="sex" value="" >
                                         <option selected>Seleccionar</option>
-                                        <option value="h" <?php if(isset($_POST['sex'])) {
-                                            if($_POST['sex'] == "h"){
+                                        <option value="h" <?php if($_POST) {
+                                            if($nuevoUsuario->getSexo() == "h"){
                                                 echo "selected";
                                             }
                                             }?>>Hombre</option>
 
-                                        <option value="m" <?php if(isset($_POST['sex'])) {
-                                            if($_POST['sex'] == "m"){
+                                        <option value="m" <?php if($_POST) {
+                                            if($nuevoUsuario->getSexo() == "m"){
                                                 echo "selected";
                                             }
                                             }?>>Mujer</option>
                                     </select>
-                                    <small ><?=mostrarErrores('sex')?></small>
-                                    
+                                    <small ></small>
+            
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Tu foto de perfil</label>
                                     <input type="file" class="form-control-file" name="avatar">
-                                    <small><?=mostrarErrores('avatar')?></small>
+                                    <small><?php if($_POST && isset($errores['avatar'])) {echo $errores['avatar']; } ?></small>
                
                                 </div>
                                 
@@ -199,8 +181,8 @@ if($_POST){
                                         <label class="form-check-label"  for="invalidCheck">
                                             Acepto los <a href="#" class="subrayado">términos y condiciones</a> y la <a href="#" class="subrayado">política de privacidad</a>.
                                         </label>
-                                        <small ><?=mostrarErrores('tyc_check')?></small>
-                                        <small ><?=mostrarErrores('intereses')?></small>
+                                        <small></small>
+                                        <small></small>
                                     </div>
                                 </div>
                                 

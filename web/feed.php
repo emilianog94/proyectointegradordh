@@ -1,7 +1,6 @@
 <?php
 
-require_once("funciones.php");
-
+include('config.php');
 session_start();
 //SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
 if(isset($_COOKIE["email"])) {
@@ -11,6 +10,9 @@ if(isset($_COOKIE["email"])) {
 if(!isset($_SESSION["email"])) {
     header("location:index.php");
 }
+
+$usuario= Usuario::mantenerSesion();
+
 
 ?>
 <!DOCTYPE html>
