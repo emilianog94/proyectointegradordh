@@ -39,9 +39,7 @@ $usuario = Usuario::mantenerSesion();
 
             <div class="col-12 col-md-7 processing">
             </div>
-            <?php
-           //header( "refresh:5;url=feed.php" ); 
-            ?>
+            <?php header( "refresh:5;url=feed.php" ); ?>
                 
         </div>
         <div class="row">

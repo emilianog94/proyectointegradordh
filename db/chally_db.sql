@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-02-2020 a las 23:03:26
+-- Tiempo de generación: 14-02-2020 a las 00:46:15
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -108,7 +108,8 @@ CREATE TABLE `desafios` (
 
 INSERT INTO `desafios` (`id_desafio`, `fecha_creacion`, `fecha_limite`, `imagen`, `descripcion`, `id_respuesta_ganadora`, `id_categoria`, `id_autor`, `dificultad`, `requisitos`, `nombre`) VALUES
 (8, '2020-02-13', '2020-02-27', 'img_5e458478ababd.jpg', 'Realizar la secuencia de Fibonacci en PHP la cual se define como que el siguiente numero es la suma de los dos anteriores <br />\r\n<br />\r\n1 1 2 3 5 8 13 21 44 65 etc<br />\r\n<br />\r\nEl objetiv es obtener la cantidad de veces que se necesita iterar la funcion hasta tener el numero 102334155 (ni mas ni menos)', NULL, 3, 1, 2, ' -->Navegador<br />\r\n-->Editor de texto(notepad++ ,vscode , atom ,sublimetext etc)<br />\r\n-->Servidor PHP (xampp)', 'Desafio de programar la secuencia de Fibonacci'),
-(10, '2020-02-13', '2020-02-13', 'img_5e45bf9291242.png', 'Aprobar sprint4 (PDO) de DigitalHouse   ', NULL, 3, 7, 2, '          ABM Posteos <br /><br />\r\nY no me acuerdo que mas', 'Este no es el nombre');
+(10, '2020-02-13', '2020-02-13', 'img_5e45bf9291242.png', 'Aprobar sprint4 (PDO) de DigitalHouse   ', NULL, 3, 7, 2, '              ABM Posteos <br /><br /><br /><br /><br /><br />\r\nY no me acuerdo que mas', 'Aprobar SPRINT4 DigitalHouse  xd'),
+(16, '2020-02-14', '2020-02-27', 'img_5e45dd93952d2.jpeg', 'Se invita a artistas, diseñadores e ilustradores  a crear material gráfico único para Joker inspirado en las últimas imágenes y avances de la película. ¡También se alienta a los artistas a grabar y enviar videos de time-lapse de su trabajo para que los fans puedan ver cómo el arte cobra vida!<br /><br /><br />\r\n<br /><br /><br />\r\nLos artistas pueden descargar el Paquete de Recursos desde https://tlnt.at/2LfTS4d para obtener inspiración y referencias visuales de los personajes que aparecen en la película.', NULL, 3, 10, 3, '   <br /><br /><br />\r\n· Los diseños serán presentados en JPEG o PNG con un tamaño máximo de 10MB. <br /><br /><br />\r\n· Todas las presentaciones deben ser material gráfico original (es decir, no utilizar materiales preexistentes de terceros, ya sea de stock o protegidos por derechos de autor). <br /><br /><br />\r\n· Los Artistas pueden representar retratos de los personajes de Guasón y pueden incluir el logotipo del título de Guasón en su material gráfico. Todos los derechos sobre y para los personajes y el logotipo del título están reservados por Warner Bros. Pictures', 'Poster alternativo inspirado en la pelíc Joker ');
 
 -- --------------------------------------------------------
 
@@ -188,7 +189,7 @@ CREATE TABLE `usuarios` (
   `sexo` char(1) DEFAULT NULL,
   `nombre` varchar(40) NOT NULL,
   `apellido` varchar(40) DEFAULT NULL,
-  `contrasena` varchar(40) NOT NULL,
+  `contrasena` varchar(60) NOT NULL,
   `username` varchar(40) DEFAULT NULL,
   `mail` varchar(60) NOT NULL,
   `avatar` varchar(50) DEFAULT NULL
@@ -205,7 +206,10 @@ INSERT INTO `usuarios` (`id_usuario`, `fecha_nacimiento`, `sexo`, `nombre`, `ape
 (4, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$N5VrZv.fqvwmCC/RaCpEf.75iGGtqHSza', 'emilainog94', 'emiliano@gioia.com.ara', 'img_5df81ce9eefe3.jpg'),
 (5, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$dsKYZd3CFhQKSi0U24GcP.otRQG9P1Jw6', 'Emilainoasdasd', 'emiliano@gioiaa.com.ar', 'img_5df81d1a5019f.jpg'),
 (6, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$tpcTQhvHub42dNeh3qqcqub87BurDnqpl', 'franklinsss', 'franco@netactics.com.ar', 'img_5e456934af44e.jpg'),
-(7, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$uBVWXMGlagqMbJ7pX9FNnuN8/uNdzBY90', 'FranKlin420', 'franco@gmail.com', 'img_5e45913d5ce02.jpg');
+(7, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$uBVWXMGlagqMbJ7pX9FNnuN8/uNdzBY90', 'FranKlin420', 'franco@gmail.com', 'img_5e45913d5ce02.jpg'),
+(8, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$heAvDgRCqoU3kWAkFrRvKe64IOMdDYfjn', 'franklinsssss', 'asdasdadasd@123123.com', 'img_5e45d835625e5.jpg'),
+(9, '2020-02-06', 'h', 'Franco', 'Fourmantin', '$2y$10$yL0/Y80nRHdaWcKS0X8/F../yfH0fbMK3', 'onomatopeya', 'francoo@gmail.com', 'img_5e45db0add107.jpg'),
+(10, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$RpEKCaOVH7kDTAs68mKr.OLKGqQPZzV7xxo5Cb8ZPYhtK5v5vDhuO', '420Franklin', 'francooo@gmail.com', 'img_5e45dc3a6e7a5.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -321,7 +325,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `desafios`
 --
 ALTER TABLE `desafios`
-  MODIFY `id_desafio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_desafio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `desafios_destacados`
@@ -351,7 +355,7 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

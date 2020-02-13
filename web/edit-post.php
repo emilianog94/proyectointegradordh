@@ -65,7 +65,7 @@ include("include/header-user.php");
                                 <div class="col-12  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label class="font-weight-bold" for="inputName">Nombre del Desafío</label>
-                                        <input type="text" class="form-control" name="name" id="inputName" placeholder="Diseñá un póster alternativo para la nueva película '1917' " value="<?=$desafio['nombre_desafio']?>">
+                                        <input type="text" class="form-control" name="name" id="inputName" placeholder="Diseñá un póster alternativo para la nueva película '1917' " value="<?=isset($desafio['nombre_desafio'])? $desafio['nombre_desafio']: "" ?>">
                                         <small>¡Describilo lo mejor posible en menos de 60 caracteres!</small>
                                         <?=isset($errores['name']) ? $errores['name'] : ""?>
                                     </div>
@@ -115,7 +115,7 @@ include("include/header-user.php");
 
                                     <div class="form-group mt-4">
                                         <label class="font-weight-bold" for="fechaLimite">Fecha Límite de envío de respuestas</label>
-                                        <input type="date" class="form-control" name="fechaLimite" id="fechaLimite" placeholder="" value="<?=$desafio['fecha_limite']?>">
+                                        <input type="date" class="form-control" name="fechaLimite" id="fechaLimite" placeholder="" value="<?=isset($desafio['fecha_limite'])? $desafio['fecha_limite']:""?>">
                                         <small>¡El mínimo es de una semana!</small>
                                     </div>
 

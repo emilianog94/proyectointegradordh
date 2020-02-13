@@ -23,6 +23,7 @@ if($_POST){
     // 3) Hago el método de validación y almaceno los potenciales errores en un array llamado $errores
     $errores = $nuevoUsuario->validarRegistro();
 
+    //var_dump($errores);
 
     // 4) Si el array de errores está vacío...
     if(!$errores){

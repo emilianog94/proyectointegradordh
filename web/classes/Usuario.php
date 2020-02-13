@@ -236,8 +236,8 @@ class Usuario
             }
         
             //CAMPO TERMINOS Y CONDICIONES 
-            if(isset($data['tyc_check'])){
-              if(empty($data['tyc_check']))
+            if(isset($_POST['tyc_check'])){
+              if(empty($_POST['tyc_check']))
               $errores['tyc_check'] = "Debe aceptar los términos y condiciones para continuar";
             }
         
@@ -270,9 +270,8 @@ class Usuario
                   $query= $link->prepare("SELECT * FROM usuarios WHERE mail='$mail'");
                   $query->execute();
                   $resultado = $query->fetch(PDO::FETCH_ASSOC);
-
-                  if($data->getMail() == $resultado['mail'] && password_verify($data->getPassword(),$resultado['contrasena'])) {
-                    $errores['login']="Usuario o contraseña incorrectos";
+                  if($data->getMail() != $resultado['mail'] || !password_verify($data->getPassword(),$resultado['contrasena'])) {
+                    $errores['password']="Usuario o contraseña incorrectos";
                   }
 
 

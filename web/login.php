@@ -20,19 +20,6 @@ if($_POST){
         header('location:processing.php');
     }
 
-/* 
-    if(!$errores && $_POST){
-   
-        crearSesion(buscarUsuario("email", $_POST['email'])); 
-    
-        if(isset($_POST['recordar'])){
-            crearCookies();
-            header("location:feed.php");exit;
-        }else{
-            header("location:feed.php");exit;
-        }
-    }
-*/
 }
 
 

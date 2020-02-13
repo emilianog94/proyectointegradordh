@@ -153,6 +153,12 @@ include("include/head.php");
     </div>
 
 </div>
+
+</div>
+
+</div>
+
+
   
   
   <!--Fin seccion Posteos-->
