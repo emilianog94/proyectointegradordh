@@ -60,7 +60,8 @@ class Usuario
       $link = Conexion::conectar();
       $query= $link->prepare("SELECT * FROM usuarios WHERE mail = '$mail' ");
       $query->execute();
-      $usuario = $query->fetch(PDO::FETCH_ASSOC);  
+      $usuario = $query->fetch(PDO::FETCH_ASSOC);
+      //var_dump($usuario);exit;  
       return $usuario;    
     }
 
@@ -165,7 +166,7 @@ class Usuario
                   $nombreImagen = uniqid('img_') . '.' . $ext;
                   
                   // armo la ruta final de la imagen, concatenando al final el nombre que creé
-                  $carpetaFinal = dirname(__FILE__) . "/avatars/" . $nombreImagen;
+                  $carpetaFinal = dirname(__FILE__ , 2) . "/avatars/" . $nombreImagen;
                   
                   // muevo el archivo a la carpeta avatars
                   move_uploaded_file($directorioTemporal, $carpetaFinal);
@@ -270,7 +271,7 @@ class Usuario
                   $query->execute();
                   $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
-                  if($data->getMail() == $resultado['mail'] && !password_verify($data->getPassword(),$resultado['contrasena'])) {
+                  if($data->getMail() == $resultado['mail'] && password_verify($data->getPassword(),$resultado['contrasena'])) {
                     $errores['login']="Usuario o contraseña incorrectos";
                   }
 

@@ -1,4 +1,5 @@
 <?php
+require_once("config.php");
 
 //FUNCION PRE PARA LOS VARDUMP LINDOS 
 function pre($dato){
@@ -58,7 +59,7 @@ function validarModificacion($data) {
   // CAMPO EMAIL
   $email = trim($data['email']);
   $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-  // si está vacío
+  // si está vacíob
   if($email == ""){
     // creo la posición "email" en el array de errores y guardo el string con el error que le quiero mostrar al usuario
     $errores['email'] = "El mail es obligatorio";

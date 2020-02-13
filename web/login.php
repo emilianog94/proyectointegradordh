@@ -14,10 +14,9 @@ if(isset($_SESSION["email"])) {
 if($_POST){
     $usuario = new Usuario("","","",$_POST['password'],$_POST['email'],NULL,NULL);
     $errores = Usuario::validarLogin($usuario);
-    var_dump($errores);
 
     if(!$errores){
-        Usuario::crearSesion($nuevoUsuario);
+        Usuario::crearSesion($usuario);
         header('location:processing.php');
     }
 

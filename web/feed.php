@@ -1,6 +1,6 @@
 <?php
 
-include('config.php');
+include('funciones.php');
 session_start();
 //SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
 if(isset($_COOKIE["email"])) {
@@ -13,6 +13,13 @@ if(!isset($_SESSION["email"])) {
 
 $usuario= Usuario::mantenerSesion();
 
+//var_dump($usuario);
+
+
+//Vamos a obtener todos los desafios
+$desafios = Desafio::listarDesafios();
+
+//var_dump($desafios);
 
 ?>
 <!DOCTYPE html>
@@ -64,22 +71,33 @@ include("include/head.php");
                 <!--Menu para elegir vista de posteos-->
                 <!--Fin menu para elegir vista de posteos-->
 
+                <?php foreach($desafios as $desafio){?>
                 <div class="row">
                     <div class="col-12">
 
+                        
                         <div class="card mb-5">
 
                             <div class="card-header posteo d-flex align-items-center">
-                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="Foto de Usuario">
-                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>    
+                                <img class="rounded-circle" src="avatars/<?=$desafio['avatar']?>" alt="Foto de Usuario">
+                                <p class="mb-0 ml-3"><?=$desafio['username']?>&nbsp;<span class="text-secondary texto-chico">Comenzó el <?=$desafio['fecha_creacion']?> / Finaliza el <?=$desafio['fecha_limite']?></span></p>    
                                 
-
+                               <?php if($desafio['id_usuario'] == $usuario['id_usuario'] ):?>
                                 <div class="ml-auto">
-                                    <a class="" href="edit-post.php"><i class="fas fa-pen"></i></a>
+                                <div class="ml-auto">
+                                    <a class="" href="edit-post.php?id_desafio=<?=$desafio['id_desafio']?>"><i class="fas fa-pen"></i></a>
                                     &nbsp;
 
-                                    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></button>
+
+                                   <!-- <form method="post"> 
+                                        <input class="btn" type="submit" name="button1" value='<i class="far fa-trash-alt"></i>'/>
+                                    </form>-->
+                                    <form action="delete-post.php" style="display: inline" method="POST">
+                                    <button type="submit" class="btn" data-toggle="modal" value="<?=$desafio['id_desafio']?>" name="id_desafio"><i class="far fa-trash-alt"></i></button>
+                                    </form>
                                 </div>
+                                </div>
+                               <?php endif; ?>
 
                             </div>
 
@@ -89,20 +107,22 @@ include("include/head.php");
 
                                     <div class="row card-content-attached">
                                         <div class="col-12 col-md-4">
-                                            <img src="img/challys/viajes-especiales.jpg" class="img-fluid" alt="Desafío Viajes Espaciales">
+                                            <img src="img_post/<?=$desafio['imagen']?>" class="img-fluid" alt="Desafío Viajes Espaciales">
                                         </div>
 
                                         <div class="col-12 col-md-8">
-                                            <h3 class="ml-0">Diseñá una landing page para una agencia ficticia de viajes interplanetarios.</h3>
+                                            <h3 class="ml-0"><?=$desafio['nombre_desafio']?></h3>
 
                                             <div class="metadata d-flex ">
-                                                <span class="dificultad">Dificultad: <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> </span>
+                                                <span class="dificultad">Dificultad: <?php for ($i = 0 ; $i < $desafio['dificultad'] ; $i++){ echo "<img src='img/logo_c.svg' alt=''>"; }?>  <?php for ($i = $desafio['dificultad'] ; $i < 5 ; $i++){ echo "<img src='img/logo_c_gris.svg' alt=''>"; }?>  
                                                 <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
 
                                             </div>
                                             <br>
-
-                                            <p>El desafío consiste en Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos amet qui officia repellat inventore natus molestiae, ullam odio aut similique! Accusantium obcaecati, asperiores culpa officiis aliquam esse impedit sit distinctio.</p>
+                                            <h4>Descripcion:</h4>
+                                            <p><?=$desafio['descripcion']?></p>
+                                            <h4>Requisitos</h4>
+                                            <p><?=$desafio['requisitos']?></p>
                                             <a href="#" class="btn btn-secondary">Abrir desafío</a>
                                         </div>
                                     </div>
@@ -119,13 +139,8 @@ include("include/head.php");
                                 <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
                                 <span class="guardar"><i class="fas fa-bookmark"></i> </span>
                             </div>
-
-
-
-
-
                         </div> <!-- CIERRE CARD -->
-
+                        <?php }?>
 
 
 

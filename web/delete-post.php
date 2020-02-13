@@ -1,23 +1,12 @@
 <?php
-require_once("config.php");
 session_start();
+require_once("funciones.php");
 
-//SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
-if(isset($_COOKIE["email"])) {
-    crearSesionConCookies();
+if($_POST){
+    Desafio::eliminarDesafio($_POST['id_desafio']);
 }
 
-/*
-//SI LA SESIÓN NO ESTÁ INICIADA NO SE PUEDE ACCEDER 
-if(!isset($_SESSION["email"]) || empty($_SERVER['HTTP_REFERER'])) {
-    header("location:index.php");
-}
-
-*/
-$usuario = Usuario::mantenerSesion();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +14,7 @@ $usuario = Usuario::mantenerSesion();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>¡Estás registrado!</title>
+    <title>Post eliminado!</title>
     <?php include_once('include/head.php');?>
 </head>
 <body class="animated fadeIn bg-verde">
@@ -33,15 +22,13 @@ $usuario = Usuario::mantenerSesion();
         <div class="row procesando shadow my-2 my-md-5 mx-2 mx-md-0">
 
             <div class="col-12 col-md-5 d-flex flex-column align-items-center bg-white justify-content-center">
-                    <h1 class="color-verde">¡Bienvenido <?=$usuario['nombre'];?>! </h1>
+                    <h1 class="color-verde">Post eliminado con exito</h1>
                     <p>Serás redireccionado al feed. <br><span class="small">  <a href="feed.php">Clickeá acá si no sos redireccionado en 5 segundos</a></span></p>       
             </div>
 
             <div class="col-12 col-md-7 processing">
             </div>
-            <?php
-           //header( "refresh:5;url=feed.php" ); 
-            ?>
+            <?php header( "refresh:5;url=feed.php" );?>
                 
         </div>
         <div class="row">

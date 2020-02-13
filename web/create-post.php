@@ -2,8 +2,44 @@
 session_start();
 require('funciones.php');
 $title = "Subir nuevo desafío";
+$usuario= Usuario::mantenerSesion();
+
+//Doble chequeo de si existe POST (tanto aqui como en la clase)
+if($_POST){
+    if(isset($_POST)){
+
+        //Validamos los campos con clase estatica validarCampos que retorna errores en caso de que los haya
+        
+        $errores = Desafio::validarCampos();    
+
+        //var_dump($errores);
+        //Si no existen errores pasamos a crear la clase
+        if(!$errores){
+            //echo "No encontre erroes";
+            $newDesafio = new Desafio;
+            $newDesafio->setNombre($_POST['name']);
+            $newDesafio->setDescripcion($_POST['descripcion']);
+            $newDesafio->setDificultad($_POST['dificultad']);
+            $newDesafio->setFecha_creacion(date('Y-m-d'));
+            $newDesafio->setFecha_limite($_POST['fechaLimite']);
+            $newDesafio->setId_autor($usuario['id_usuario']);
+            $newDesafio->setRequisitos($_POST['requisitos']);
+            $newDesafio->setId_categoria($_POST['categoria']);
+            $newDesafio->setId_respuesta_ganadora(null);
+            $newDesafio->setImagen(Desafio::archivarImagen());  //Esto devuelve el nombre de la imagen que es lo que tenemos que guardar en la DB
+            $seGuardoEnDb = $newDesafio->guardarEnDB();
+            header( 'location:feed.php' );
+ 
+            //header('location:feed.php');exit;
+        }
+
+            //var_dump($errores) ;
+    }
+}
 include("include/head.php");
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +58,7 @@ include("include/head.php");
 
                 <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
                     <h3 class="color-verde text-left mb-3 mx-0"><a href="feed.php"><i class="fas fa-arrow-left color-verde"></i></a> Nuevo Desafío</h3>
-                    <form class="w-100 needs-validation" method="POST" action="" enctype="multipart/form-data">
+                    <form class="w-100 needs-validation" method="POST" action="create-post.php" enctype="multipart/form-data">
 
                         <div class="form-row">
 
@@ -31,6 +67,7 @@ include("include/head.php");
                                     <label class="font-weight-bold" for="inputName">Nombre del Desafío</label>
                                     <input type="text" class="form-control" name="name" id="inputName" placeholder="Diseñá un póster alternativo para la nueva película '1917' ">
                                     <small>¡Describilo lo mejor posible en menos de 60 caracteres!</small>
+                                    <small><?=isset($errores['name']) ? $errores['name'] : ""?></small>
                                 </div>
 
 
@@ -38,24 +75,26 @@ include("include/head.php");
                                     <label class="custom-file-label" for="inputGroupFile01">Foto principal del desafío</label>
                                     <input type="file" id="inputGroupFile01" class="custom-file-input" name="foto-desafio" aria-describedby="inputGroupFileAddon01">
                                     <small>Foto cuadrada ilustrativa del desafío (Tamaño recomendado: 1000x1000px)</small>
+                                    <small><?=isset($errores['foto-desafio']) ? $errores['foto-desafio'] : ""?></small>
                                 </div>
+
 
                                 <div class="form-group mt-4">
-                                    <label for="" class="font-weight-bold">Categorías del Desafío</label><br>
-                                    <input type="checkbox" id="myCheckbox1" name="diseno_y_arte" />
-                                    <label for="myCheckbox1">Diseño y Arte</label> <br>
-
-                                    <input type="checkbox" id="myCheckbox2" name="fotografia" />
-                                    <label for="myCheckbox2">Fotografía</label><br>
-
-                                    <input type="checkbox" id="myCheckbox3" name="programacion_y_logica">
-                                    <label for="myCheckbox3">Programación y Lógica</label> <br>
-                                </div>
-
+                                        <label for="dificultad" class="font-weight-bold">Categoria</label>
+                                        <select class="form-control" name="categoria" id="categoria">
+                                             <option value="0">Seleccionar categoria</option>
+                                            <option value="1">Diseño y Programacion</option>
+                                            <option value="2">Fotografia</option>   
+                                            <option value="3">Programacion y Logica</option>
+                                        </select>
+                                        <?=isset($errores['categoria']) ? $errores['categoria'] : ""?>
+                                    </div>
+                                <small><?=isset($errores['categoria']) ? $errores['categoria'] : ""?></small>
                                 <div class="form-group">
                                     <label for="descripcion" class="font-weight-bold">Descripción del Desafío</label>
                                     <textarea class="form-control" name="descripcion" id="descripcion" rows="5"></textarea>
                                     <small>Describí el desafío lo mejor posible en pocas palabras</small>
+                
                                 </div>
 
                                 <div class="form-group">

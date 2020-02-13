@@ -16,8 +16,7 @@
           <a class="nav-link" href="feed.php"><i class="fas fa-newspaper"></i> &nbsp; Inicio</a>
         </li>
 
-        <li class="nav-item">
-
+        <li class="nav-item"> 
           <a class="nav-link" href="profile.php"><i class="fas fa-user"></i> &nbsp; <?=$usuario['nombre'] . " " . $usuario['apellido'];?></a>
         </li>
 

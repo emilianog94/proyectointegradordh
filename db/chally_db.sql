@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-02-2020 a las 03:20:31
--- Versión del servidor: 10.4.10-MariaDB
--- Versión de PHP: 7.3.12
+-- Tiempo de generación: 13-02-2020 a las 23:03:26
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -102,6 +102,14 @@ CREATE TABLE `desafios` (
   `nombre` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `desafios`
+--
+
+INSERT INTO `desafios` (`id_desafio`, `fecha_creacion`, `fecha_limite`, `imagen`, `descripcion`, `id_respuesta_ganadora`, `id_categoria`, `id_autor`, `dificultad`, `requisitos`, `nombre`) VALUES
+(8, '2020-02-13', '2020-02-27', 'img_5e458478ababd.jpg', 'Realizar la secuencia de Fibonacci en PHP la cual se define como que el siguiente numero es la suma de los dos anteriores <br />\r\n<br />\r\n1 1 2 3 5 8 13 21 44 65 etc<br />\r\n<br />\r\nEl objetiv es obtener la cantidad de veces que se necesita iterar la funcion hasta tener el numero 102334155 (ni mas ni menos)', NULL, 3, 1, 2, ' -->Navegador<br />\r\n-->Editor de texto(notepad++ ,vscode , atom ,sublimetext etc)<br />\r\n-->Servidor PHP (xampp)', 'Desafio de programar la secuencia de Fibonacci'),
+(10, '2020-02-13', '2020-02-13', 'img_5e45bf9291242.png', 'Aprobar sprint4 (PDO) de DigitalHouse   ', NULL, 3, 7, 2, '          ABM Posteos <br /><br />\r\nY no me acuerdo que mas', 'Este no es el nombre');
+
 -- --------------------------------------------------------
 
 --
@@ -195,7 +203,9 @@ INSERT INTO `usuarios` (`id_usuario`, `fecha_nacimiento`, `sexo`, `nombre`, `ape
 (2, '1981-05-29', 'h', 'Matias', 'Bruno', '$2y$10$APje3LOVckLEQ.ZA2s35J.c3e82kcV/0i', 'matiasbr1', 'matias@mail.com', 'img_5df68b928a2d4.jpg'),
 (3, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$oqhBCHEiBTdE.m8HE/BgS.5Ef.FvbX2Ts', 'EmilianoG', 'emiliano@gioia.com.ar', 'img_5df80ba7eafe4.jpg'),
 (4, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$N5VrZv.fqvwmCC/RaCpEf.75iGGtqHSza', 'emilainog94', 'emiliano@gioia.com.ara', 'img_5df81ce9eefe3.jpg'),
-(5, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$dsKYZd3CFhQKSi0U24GcP.otRQG9P1Jw6', 'Emilainoasdasd', 'emiliano@gioiaa.com.ar', 'img_5df81d1a5019f.jpg');
+(5, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$dsKYZd3CFhQKSi0U24GcP.otRQG9P1Jw6', 'Emilainoasdasd', 'emiliano@gioiaa.com.ar', 'img_5df81d1a5019f.jpg'),
+(6, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$tpcTQhvHub42dNeh3qqcqub87BurDnqpl', 'franklinsss', 'franco@netactics.com.ar', 'img_5e456934af44e.jpg'),
+(7, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$uBVWXMGlagqMbJ7pX9FNnuN8/uNdzBY90', 'FranKlin420', 'franco@gmail.com', 'img_5e45913d5ce02.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -311,7 +321,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `desafios`
 --
 ALTER TABLE `desafios`
-  MODIFY `id_desafio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_desafio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `desafios_destacados`
@@ -341,7 +351,7 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

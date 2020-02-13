@@ -1,26 +1,39 @@
 <?php
 session_start();
 require('funciones.php');
-/*$_SESSION['email']="eg@gmail.com";
+$usuario= Usuario::mantenerSesion();
 
-$listaDeUsuarios = file_get_contents('jsonPrueba.json');
-$arrayUsuarios = json_decode($listaDeUsuarios, true);
-
-function verificarUsuario ($array){
-
-    foreach ($array as $usuario){
-        if ($usuario['email'] == $_SESSION['email']){
-          return $usuario;
-        }
-}
+if($_GET){
+    if(isset($_GET))
+    $id_desafio_to_update = $_GET['id_desafio'];
+    $desafio = Desafio::buscarPorIdDesafio($id_desafio_to_update);
+    $_SESSION['id_desafio_to_update'] = $id_desafio_to_update;
 }
 
-
-$usuario = verificarUsuario($arrayUsuarios);
-
-*/
-
-
+//Vamos a invocar el desafio con el id que nos pasaron por GET
+if($_POST){
+    if(isset($_POST)){
+                //Validamos los campos con clase estatica validarCampos que retorna errores en caso de que los haya
+                $errores = Desafio::validarCampos();    
+                //Si no existen errores pasamos a crear la clase
+                if(!$errores){
+                    //echo "No encontre erroes";
+                    $desafio = new Desafio;
+                    $desafio->setNombre($_POST['name']);
+                    $desafio->setDescripcion($_POST['descripcion']);
+                    $desafio->setDificultad($_POST['dificultad']);
+                    //$desafio->setFecha_creacion(date('Y-m-d'));
+                    $desafio->setFecha_limite($_POST['fechaLimite']);
+                    $desafio->setId_autor($usuario['id_usuario']);
+                    $desafio->setRequisitos($_POST['requisitos']);
+                    $desafio->setId_categoria($_POST['categoria']);
+                    $desafio->setId_respuesta_ganadora(null);
+                    $desafio->setImagen(Desafio::archivarImagen());  //Esto devuelve el nombre de la imagen que es lo que tenemos que guardar en la DB
+                    $seGuardoEnDb = $desafio->actualizarDesafio($_SESSION['id_desafio_to_update']);
+                    header('location:processing.php');  
+                }
+}
+}
 
 
 $title="Subir nuevo desafío";
@@ -44,13 +57,7 @@ include("include/header-user.php");
                     
                     <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
                         <h3 class="color-verde text-left mb-3 mx-0"><a href="feed.php"><i class="fas fa-arrow-left color-verde"></i></a>Editar Desafío</h3>
-                        <form class="w-100 needs-validation" method="POST" action="" enctype="multipart/form-data">
-
-                    
-
-
-
-                        
+                        <form class="w-100 needs-validation" method="POST" action="edit-post.php" enctype="multipart/form-data">
 
 
                             <div class="form-row">
@@ -58,8 +65,9 @@ include("include/header-user.php");
                                 <div class="col-12  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label class="font-weight-bold" for="inputName">Nombre del Desafío</label>
-                                        <input type="text" class="form-control" name="name" id="inputName" placeholder="Diseñá un póster alternativo para la nueva película '1917' " >
+                                        <input type="text" class="form-control" name="name" id="inputName" placeholder="Diseñá un póster alternativo para la nueva película '1917' " value="<?=$desafio['nombre_desafio']?>">
                                         <small>¡Describilo lo mejor posible en menos de 60 caracteres!</small>
+                                        <?=isset($errores['name']) ? $errores['name'] : ""?>
                                     </div>
 
 
@@ -67,47 +75,47 @@ include("include/header-user.php");
                                         <label class="custom-file-label" for="inputGroupFile01">Foto principal del desafío</label>
                                         <input type="file" id="inputGroupFile01" class="custom-file-input" name="foto-desafio" aria-describedby="inputGroupFileAddon01">
                                         <small>Foto cuadrada ilustrativa del desafío (Tamaño recomendado: 1000x1000px)</small>
+                                        <?=isset($errores['foto-desafio']) ? $errores['foto-desafio'] : ""?>
                                     </div>
 
                                     <div class="form-group mt-4">
-                                                    <label for="" class="font-weight-bold">Categorías del Desafío</label><br>
-                                                    <input type="checkbox" id="myCheckbox1" name="diseno_y_arte"/>
-                                                    <label for="myCheckbox1">Diseño y Arte</label> <br>
-                                                    
-                                                    <input type="checkbox" id="myCheckbox2" name="fotografia"/>
-                                                    <label for="myCheckbox2">Fotografía</label><br>
-                                                    
-                                                    <input type="checkbox" id="myCheckbox3" name="programacion_y_logica">
-                                                    <label for="myCheckbox3">Programación y Lógica</label> <br>
+                                        <label for="dificultad" class="font-weight-bold">Categoria</label>
+                                        <select class="form-control" name="categoria" id="categoria">
+                                            <option value="0">Seleccionar categoria</option>
+                                            <option value="1" <?=($desafio['categoria'] == '1') ? "selected": "" ?>>Diseño y Arte</option>
+                                            <option value="2" <?=($desafio['categoria'] == '2') ? "selected": "" ?>>Fotografia</option>
+                                            <option value="3"<?=($desafio['categoria'] == '3' )? "selected": "" ?> >Programacion y Logica</option>
+                                        </select>
+                                        <?=isset($errores['categoria']) ? $errores['categoria'] : ""?>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="descripcion" class="font-weight-bold">Descripción del Desafío</label>
-                                        <textarea class="form-control" name="descripcion" id="descripcion" rows="5"></textarea>
+                                        <textarea class="form-control" name="descripcion" id="descripcion" rows="5"><?=isset($desafio['descripcion']) ? $desafio['descripcion'] : ""?></textarea>
                                         <small>Describí el desafío lo mejor posible en pocas palabras</small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="requisitos" class="font-weight-bold">Requisitos del Desafío</label>
-                                        <textarea class="form-control" name="requisitos" id="requisitos" rows="5"></textarea>
+                                        <textarea class="form-control" name="requisitos" id="requisitos" rows="5"> <?=isset($desafio['requisitos']) ? $desafio['requisitos'] : ""?></textarea>
                                         <small>Colocá en formato lista todas las condiciones que creas necesarias para poder concretar el desafío (Reglas, Software, Formatos, etc)</small>
                                     </div>
 
 
                                     <div class="form-group mt-4">
                                         <label for="dificultad" class="font-weight-bold">Nivel de Dificultad</label>
-                                        <select class="form-control" name="dificultad" id="dificultad">
-                                            <option value="1">Muy fácil</option>
-                                            <option value="2">Fácil</option>
-                                            <option value="3">Intermedio</option>
-                                            <option value="4">Difícil</option>
-                                            <option value="5">Experto</option>
+                                        <select class="form-control" name="dificultad" id="dificultad" >
+                                            <option value="1" <?=($desafio['dificultad'] == '1') ? "selected": "" ?> > Muy fácil</option>
+                                            <option value="2"  <?=($desafio['dificultad'] == '2') ? "selected": "" ?> >Fácil</option>
+                                            <option value="3" <?=($desafio['dificultad'] == '3') ? "selected": "" ?> >Intermedio</option>
+                                            <option value="4" <?=($desafio['dificultad'] == '4') ? "selected": "" ?> >Difícil</option>
+                                            <option value="5" <?=($desafio['dificultad'] == '5') ? "selected": "" ?> >Experto</option>
                                         </select>
                                     </div>
 
                                     <div class="form-group mt-4">
                                         <label class="font-weight-bold" for="fechaLimite">Fecha Límite de envío de respuestas</label>
-                                        <input type="date" class="form-control" name="fechaLimite" id="fechaLimite" placeholder="" >
+                                        <input type="date" class="form-control" name="fechaLimite" id="fechaLimite" placeholder="" value="<?=$desafio['fecha_limite']?>">
                                         <small>¡El mínimo es de una semana!</small>
                                     </div>
 
@@ -122,7 +130,7 @@ include("include/header-user.php");
                                 
 
 
-                             
+
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-12 ">
                                 <!--
@@ -142,13 +150,8 @@ include("include/header-user.php");
                     </div>
 
                         </section>
-                        <?php
+<?php
 include("include/footer.php");
-?>                    
-                    </div>
-
-
-
+?>                    </div>
 </body>
-
 </html>

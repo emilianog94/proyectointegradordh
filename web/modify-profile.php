@@ -1,24 +1,8 @@
 <?php
 session_start();
 require('funciones.php');
-/*$_SESSION['email']="eg@gmail.com";
-
-$listaDeUsuarios = file_get_contents('jsonPrueba.json');
-$arrayUsuarios = json_decode($listaDeUsuarios, true);
-
-function verificarUsuario ($array){
-
-    foreach ($array as $usuario){
-        if ($usuario['email'] == $_SESSION['email']){
-          return $usuario;
-        }
-}
-}
 
 
-$usuario = verificarUsuario($arrayUsuarios);
-
-*/
 
 if($_POST){
     $errores = [];
@@ -65,6 +49,7 @@ if($_POST){
 
 
 $title="Modificar Perfil";
+$usuario= Usuario::mantenerSesion();
 include("include/head.php");
 ?>
 <!DOCTYPE html>
@@ -90,7 +75,7 @@ include("include/header-user.php");
 
                         <div class="text-center">
                             <div class="mini-contenedor-foto">
-                                <img class="main-foto" src="avatars/<?=$_SESSION['avatar'];?>" alt="">
+                                <img class="main-foto" src="avatars/<?=$usuario['avatar'];?>" alt="">
                             </div>
                         </div>
 
@@ -110,7 +95,7 @@ include("include/header-user.php");
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
-                                        <input type="text" class="form-control" name="name" id="inputName" value="<?=$_SESSION['name'];?>" >
+                                        <input type="text" class="form-control" name="name" id="inputName" value="<?=$usuario['nombre'];?>" >
                                         <small class="error"><?=isset($errores['name']) ? $errores['name']: ""?></small>
                                     </div>
                                 </div>
@@ -118,7 +103,7 @@ include("include/header-user.php");
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
-                                        <input type="text" class="form-control" name="lastname" id="inputName" value="<?=$_SESSION['lastname'];?>">
+                                        <input type="text" class="form-control" name="lastname" id="inputName" value="<?=$usuario['apellido'];?>">
                                         <small class="error"><?=isset($errores['lastname']) ? $errores['lastname']: ""?></small>
                                     </div>
                                 </div>
@@ -126,7 +111,7 @@ include("include/header-user.php");
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Nombre de usuario</label>
-                                        <input type="text" class="form-control" name="username" id="inputName" data-toggle="tooltip" data-placement="top" title="Test" value="<?=$_SESSION['username'];?>"  disabled> 
+                                        <input type="text" class="form-control" name="username" id="inputName" data-toggle="tooltip" data-placement="top" title="Test" value="<?=$usuario['username'];?>"  disabled> 
                                         <small class="text-muted">Este dato no se puede modificar</small>
 
                                     </div>
@@ -135,7 +120,7 @@ include("include/header-user.php");
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
-                                        <input type="email" class="form-control" name="email" id="inputMail" value="<?=$_SESSION['email'];?>">
+                                        <input type="email" class="form-control" name="email" id="inputMail" value="<?=$usuario['mail'];?>">
                                         <small class="error"><?=isset($errores['email']) ? $errores['email']: ""?></small>
                                     </div>
                                 </div>
@@ -143,7 +128,7 @@ include("include/header-user.php");
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
-                                        <input type="email" class="form-control" name="confirm-email" value="<?=$_SESSION['email'];?>" id="inputMail" >
+                                        <input type="email" class="form-control" name="confirm-email" value="<?=$usuario['mail'];?>" id="inputMail" >
                                         <small class="error"><?=isset($errores['confirm-email']) ? $errores['confirm-email']: ""?></small>
                                     </div>
                                 </div>
@@ -169,13 +154,13 @@ include("include/header-user.php");
                                 <div class="col-12 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                                     <label for="" class="font-weight-bold">Lista de Intereses</label><br>
-                                                    <input type="checkbox" id="myCheckbox1" name="diseno_y_arte" <?=($_SESSION['intereses']['diseno_y_arte'] == true) ? "checked" : "" ?>/>
+                                                    <input type="checkbox" id="myCheckbox1" name="diseno_y_arte" <?//=($usuario['intereses']['diseno_y_arte'] == true) ? "checked" : "" ?>/>
                                                     <label for="myCheckbox1">Diseño y Arte</label> <br>
                                                     
-                                                    <input type="checkbox" id="myCheckbox2" name="fotografia" <?=($_SESSION['intereses']['fotografia'] == true) ? "checked" : "" ?> />
+                                                    <input type="checkbox" id="myCheckbox2" name="fotografia" <?//=($usuario['intereses']['fotografia'] == true) ? "checked" : "" ?> />
                                                     <label for="myCheckbox2">Fotografía</label><br>
                                                     
-                                                    <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" <?=($_SESSION['intereses']['programacion_y_logica'] == true) ? "checked" : "" ?>>
+                                                    <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" <?//=($usuario['intereses']['programacion_y_logica'] == true) ? "checked" : "" ?>>
                                                     <label for="myCheckbox3">Programación y Lógica</label> <br>
                                     </div>
                                 </div>
@@ -187,7 +172,7 @@ include("include/header-user.php");
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputFechaNac">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control" id="inputFechaNac" name="birth" value="<?=$_SESSION['birth'];?>" placeholder="Date of Birth" required disabled>
+                                        <input type="date" class="form-control" id="inputFechaNac" name="birth" value="<?=$usuario['fecha_nacimiento'];?>" placeholder="Date of Birth" required disabled>
                                         <small class="text-muted">Este dato no se puede modificar</small>
 
                                     </div>

@@ -2,14 +2,8 @@
 require_once('funciones.php');
 
 session_start();
-//SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
-if(isset($_COOKIE["email"])) {
-    crearSesionConCookies();
-}
-//SI LA SESIÓN NO ESTÁ INICIADA NO SE PUEDE ACCEDER AL PERFIL
-if(!isset($_SESSION["email"])) {
-    header("location:index.php");
-}
+$usuario= Usuario::mantenerSesion();
+$desafios = Desafio::buscarPorId($usuario['id_usuario']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +22,12 @@ include("include/head.php");
       <!--<div class="row">-->
         <!--<div class="col-12">-->
           <div class="text-white info_profile text-center pt-5 pb-5">
-            <!-- <img class="img-thumbnail rounded-circle profile-pic" src="avatars/<?=$_SESSION['avatar'];?>" alt="head_profile">         -->
+            <!-- <img class="img-thumbnail rounded-circle profile-pic" src="avatars/<?=$usuario['avatar'];?>" alt="head_profile">         -->
             <div class="contenedor-main-foto">
-                <img class="main-foto" src="avatars/<?=$_SESSION['avatar'];?>" alt="">
+                <img class="main-foto" src="avatars/<?=$usuario['avatar'];?>" alt="">
             </div>
-            <h1><?=$_SESSION['name'] . " " . $_SESSION['lastname'];?></h1>
-            <h2>@<?=$_SESSION['username'];?></h2>
+            <h1><?=$usuario['nombre'] . " " . $usuario['apellido'];?></h1>
+            <h2>@<?=$usuario['username'];?></h2>
             <h3>Challys creados: 0</h3>
             <h3>Challys resueltos: 9</h3>
           </div>
@@ -283,174 +277,65 @@ include("include/head.php");
       </div>
       
       
-      <div class="col-12 d-flex col-mb-8 col-lg-8">
-        <div class="seccion-derecha my-3">   
-          
-          <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-4 my-3 ">
-                <img src="img/image_photo.jpg" class="imagen_chally img-fluid px-3" alt="...">
-              </div>
-              
-              <div class="col-md-8">
-                <div>
-                  <div class="card-body">
-                    <div class="boton_opciones">
-                      
-                      <div class="dropdown d-flex ">
-                        <div>
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                        </div>
-                        <button class="btn  ml-auto " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          ...
-                        </button>
+      <div class="col-12 d-flex col-mb-8 col-lg-8 mt-3">
+      <?php foreach($desafios as $desafio){?>
+                <div class="row">
+                    <div class="col-12">
+
                         
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Ver desafio</a>
-                          <a class="dropdown-item" href="#">Ver respuestas</a>
-                        </div>
-                      </div>
-                      
-                    </div>
-                    <h5 class="card-title color-verde ">Titulo del chally</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ad, impedit libero, maxime quidem atque id minus magnam omnis iusto consequatur nisi? Repudiandae laboriosam voluptate explicabo corrupti, eum mollitia at.</p>
-                    <p class="card-text"><small class="text-muted">Solved</small></p>
-                    <a href="#" class="btn btn-secondary">Partcipar</a>
-                  </div>
-                  
-                  
-                </div>
-                
-              </div>
-              
-            </div>
-            <div class="card-footer d-flex justify-content-around">
-              <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
-              
-              <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
-              
-              <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
-              <span class="guardar"><i class="fas fa-bookmark"></i> </span>
-            </div>
-          </div>
+                        <div class="card mb-5">
+
+                            <div class="card-header posteo d-flex align-items-center">
+                                <img class="rounded-circle" src="avatars/<?=$desafio['avatar']?>" alt="Foto de Usuario">
+                                <p class="mb-0 ml-3"><?=$desafio['username']?>&nbsp;<span class="text-secondary texto-chico">Comenzó el <?=$desafio['fecha_creacion']?> / Finaliza el <?=$desafio['fecha_limite']?></span></p>    
+                                
+                            </div>
+
+                            <div class="card-contenido">
+                                <div class="row">
+
+
+                                    <div class="row card-content-attached">
+                                        <div class="col-12 col-md-4">
+                                            <img src="img_post/<?=$desafio['imagen']?>" class="img-fluid" alt="Desafío Viajes Espaciales">
+                                        </div>
+
+                                        <div class="col-12 col-md-8">
+                                            <h3 class="ml-0"><?=$desafio['nombre']?></h3>
+
+                                            <div class="metadata d-flex ">
+                                                <span class="dificultad">Dificultad: <?php for ($i = 0 ; $i < $desafio['dificultad'] ; $i++){ echo "<img src='img/logo_c.svg' alt=''>"; }?>  <?php for ($i = $desafio['dificultad'] ; $i < 5 ; $i++){ echo "<img src='img/logo_c_gris.svg' alt=''>"; }?>  
+                                                <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
+
+                                            </div>
+                                            <br>
+                                            <h4>Descripcion:</h4>
+                                            <p><?=$desafio['descripcion']?></p>
+                                            <h4>Requisitos</h4>
+                                            <p><?=$desafio['requisitos']?></p>
+                                            <a href="#" class="btn btn-secondary">Abrir desafío</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="card-footer d-flex justify-content-around">
+                                <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
+
+                                <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
+
+                                <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
+                                <span class="guardar"><i class="fas fa-bookmark"></i> </span>
+                            </div>
+                        </div> <!-- CIERRE CARD -->
+                        
+                        <?php }?>
+
+ 
           
-          
-          
-          <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-4 my-3 ">
-                <img src="img/image_story2.jpg" class="imagen_chally img-fluid px-3" alt="...">
-              </div>
-              
-              <div class="col-md-8">
-                
-                
-                <div>
-                  <div class="card-body">
-                    <div class="boton_opciones">
-                      
-                      <div class="dropdown d-flex ">
-                        <div>
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c_gris.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c_gris.svg" alt="..." width="18px" height="18px">
-                          
-                        </div>
-                        <button class="btn  ml-auto " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          ...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Ver desafio</a>
-                          <a class="dropdown-item" href="#">Ver respuestas</a>
-                        </div>
-                      </div>
-                      
-                    </div>
-                    <h5 class="card-title color-verde ">Titulo del chally</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ad, impedit libero, maxime quidem atque id minus magnam omnis iusto consequatur nisi? Repudiandae laboriosam voluptate explicabo corrupti, eum mollitia at.</p>
-                    <p class="card-text"><small class="text-muted">Solved</small></p>
-                    <a href="#" class="btn btn-secondary">Partcipar</a>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-            
-            <div class="card-footer d-flex justify-content-around">
-              <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
-              
-              <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
-              
-              <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
-              <span class="guardar"><i class="fas fa-bookmark"></i> </span>
-            </div>
-          </div>
-          
-          
-          
-          <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-4 my-3 ">
-                <img src="img/image_mode.jpg" class="imagen_chally  img-fluid px-3" alt="...">
-              </div>
-              
-              <div class="col-md-8">
-                
-                
-                <div>
-                  <div class="card-body">
-                    <div class="boton_opciones">
-                      
-                      <div class="dropdown d-flex ">
-                        <div>
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c.svg" alt="..." width="18px" height="18px">
-                          <img src="img/logo_c_gris.svg" alt="..." width="18px" height="18px">
-                          
-                        </div>
-                        <button class="btn  ml-auto " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          ...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Ver desafio</a>
-                          <a class="dropdown-item" href="#">Ver respuestas</a>
-                        </div>
-                      </div>
-                      
-                    </div>
-                    <h5 class="card-title color-verde ">Titulo del chally</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ad, impedit libero, maxime quidem atque id minus magnam omnis iusto consequatur nisi? Repudiandae laboriosam voluptate explicabo corrupti, eum mollitia at.</p>
-                    <p class="card-text"><small class="text-muted">Solved</small></p>
-                    <a href="#" class="btn btn-secondary">Partcipar</a>
-                    
-                  </div>
-                  
-                </div>
-              </div>
-              
-            </div>
-            <div class="card-footer d-flex justify-content-around">
-              <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
-              
-              <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
-              
-              <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
-              <span class="guardar"><i class="fas fa-bookmark"></i> </span>
-            </div>
-          </div>
-          
-        </div>
-      </div>
+        
       
       <div class="col-2 d-none d-mb-flex d-lg-flex d-xl-flex d-sm-none col-sm-2 col-md-1 col-lg-1 col-xl-1">
         <div class="text-center">
