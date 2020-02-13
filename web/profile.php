@@ -340,18 +340,19 @@ include("include/head.php");
       <div class="col-2 d-none d-mb-flex d-lg-flex d-xl-flex d-sm-none col-sm-2 col-md-1 col-lg-1 col-xl-1">
         <div class="text-center">
           <div class="dropdown d-flex mt-3">
-            <button class="btn btn-secondary dropdown-toggle ml-auto " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!--<button class="btn btn-secondary dropdown-toggle ml-auto " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Todos
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#">Creados</a>
               <a class="dropdown-item" href="#">Resueltos</a>
               <a class="dropdown-item" href="#">Todos</a>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>  
     </div>
+  </div>
   </div>
   <!--Fin seccion Posteos-->
   <?php include("include/footer.php");?>

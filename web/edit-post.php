@@ -30,7 +30,7 @@ if($_POST){
                     $desafio->setId_respuesta_ganadora(null);
                     $desafio->setImagen(Desafio::archivarImagen());  //Esto devuelve el nombre de la imagen que es lo que tenemos que guardar en la DB
                     $seGuardoEnDb = $desafio->actualizarDesafio($_SESSION['id_desafio_to_update']);
-                    header('location:processing.php');  
+                    header('location:edit-processing.php');  
                 }
 }
 }
